@@ -1,0 +1,4 @@
+- 正式环境：
+- name: MYSQL_HOST value: rm-bp12ij6m7c3s86k64.mysql.rds.aliyuncs.com - name: MYSQL_PORT value: '3306' - name: MYSQL_USER value: ptg_devops_mysql02_su - name: MYSQL_PASSWORD value: '@SX6g$hBVw' - name: MYSQL_DATABASE value: app_mgmt
+- 开发环境
+- 
