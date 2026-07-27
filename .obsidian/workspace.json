@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Navicat.md",
+                "file": "CS336/CS336-L9-Scaling-Laws.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Navicat"
+              "title": "CS336-L9-Scaling-Laws"
             }
           }
         ],
@@ -224,8 +224,8 @@
             "state": {
               "type": "calendar",
               "state": {},
-              "icon": "calendar-with-checkmark",
-              "title": "Calendar"
+              "icon": "lucide-ghost",
+              "title": "calendar"
             }
           }
         ],
@@ -247,13 +247,15 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "53f6f55a5e32eef7",
+  "active": "0d70f51ccdb772d2",
   "lastOpenFiles": [
-    "Opencode/Opencode使用.md",
+    "CS336/课程进度.md",
+    "CS336/CS336-L9-Scaling-Laws.md",
     "Navicat.md",
+    "CS336/未命名.md",
+    "Opencode/Opencode使用.md",
     "Opencode/Plugin.md",
     "Opencode/bugfix01-没有report接口.md",
-    "CS336/课程进度.md",
     "Opencode",
     "CS336/CS336-L7-Parallelism-1.md",
     "CS336/Lecture 07 Parallel.md",
