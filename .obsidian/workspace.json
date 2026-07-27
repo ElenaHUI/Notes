@@ -55,16 +55,44 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CS336/CS336-L9-Scaling-Laws.md",
+                "file": "Opencode/Opencode使用.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CS336-L9-Scaling-Laws"
+              "title": "Opencode使用"
+            }
+          },
+          {
+            "id": "04f121a13b3d9733",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Leetcode/课程表.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "课程表"
+            }
+          },
+          {
+            "id": "3e19138454ee8b8e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Leetcode/数据结构操作速记.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "数据结构操作速记"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -199,13 +227,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Navicat.md",
+                "file": "Leetcode/数据结构操作速记.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Navicat 的大纲"
+              "title": "数据结构操作速记 的大纲"
             }
           },
           {
@@ -224,8 +252,8 @@
             "state": {
               "type": "calendar",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "calendar"
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
             }
           }
         ],
@@ -233,7 +261,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 443.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -247,15 +275,20 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "0d70f51ccdb772d2",
+  "active": "79528a5fa5a5fadf",
   "lastOpenFiles": [
-    "CS336/课程进度.md",
-    "CS336/CS336-L9-Scaling-Laws.md",
-    "Navicat.md",
-    "CS336/未命名.md",
+    "Leetcode/课程表.md",
+    "Leetcode/数据结构操作速记.md",
     "Opencode/Opencode使用.md",
-    "Opencode/Plugin.md",
+    "Leetcode",
     "Opencode/bugfix01-没有report接口.md",
+    "note.md",
+    "Navicat.md",
+    "CS336/CS336-L9-Scaling-Laws.md",
+    "CS336/CS336-L10-Inference.md",
+    "CS336/课程进度.md",
+    "CS336/未命名.md",
+    "Opencode/Plugin.md",
     "Opencode",
     "CS336/CS336-L7-Parallelism-1.md",
     "CS336/Lecture 07 Parallel.md",
@@ -269,7 +302,6 @@
     "CS336/CS336 课程进度.md",
     "未命名 2.md",
     "未命名.base",
-    "note.md",
     "创建链接.md",
     "CS336",
     "欢迎.md"
