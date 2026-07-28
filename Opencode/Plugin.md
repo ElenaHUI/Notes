@@ -12,8 +12,5 @@
 启动方式
 
 ```bash
-curl -fsSL  http://aliwl-sw529.eng.t-head.cn:31762/files/dev/install.sh| bash -s -- --plugin report-issue --endpoint  https://tone-dev.eng.t-head.cn/app-notifier/alert/issue/report
+curl -fsSL http://aliwl-sw529.eng.t-head.cn:31762/files/dev/install.sh| bash -s -- --plugin report-issue --endpoint  https://tone-dev.eng.t-head.cn/app-notifier/alert/issue/report
 ```
-
-- [x] 启动插件链路
-- [ ] 新建前端ui
