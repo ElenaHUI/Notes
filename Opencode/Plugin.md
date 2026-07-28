@@ -1,5 +1,6 @@
 [插件代码](https://code.alibaba-inc.com/thead_devops/opencode-plugins)
 
+服务端代码
 [https://code.alibaba-inc.com/t-head-native/app-notifier](https://code.alibaba-inc.com/t-head-native/app-notifier)
 
 红区访问
