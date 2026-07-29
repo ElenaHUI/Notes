@@ -1,3 +1,17 @@
+---
+tags:
+  - CS336
+  - Triton
+  - CUDA
+  - kernels
+  - optimization
+  - FlashAttention
+lecture: L6
+aliases:
+  - Triton编程
+  - GPU Kernel
+---
+
 ### GPU 硬件规格对比
 
 |   |   |   |   |
@@ -270,3 +284,12 @@ def matmul_relu_kernel(
 stride 的作用：PyTorch 中矩阵按行线性存储，x[i, j] 的内存地址 = base + i * stride(0) + j * stride(1)。对 contiguous 矩阵 stride = (N, 1)，但 stride 参数让 kernel 能处理非连续的情况。
 
 算术强度：naive matmul 每算一个元素都要从 HBM 读写，算术强度 O(1)；tiling 后每个 tile 从 HBM 加载一次就反复使用，算术强度提升到 O(tile_size)。
+
+---
+
+## 相关链接
+
+- GPU 硬件基础（SM、存储层级）：[[CS336-L5-GPUs-TPUs]]
+- 多 GPU 并行（通信原语）：[[CS336-L7-Parallelism-1]]
+- 算术强度在推理中的应用：[[CS336-L10-Inference]]
+- 课程进度：[[课程进度]]

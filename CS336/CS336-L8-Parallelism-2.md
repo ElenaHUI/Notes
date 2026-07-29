@@ -1,3 +1,17 @@
+---
+tags:
+  - CS336
+  - parallelism
+  - distributed
+  - FSDP
+  - ZeRO
+  - MoE
+lecture: L8
+aliases:
+  - 并行策略进阶
+  - 3D并行
+---
+
 ## Part 1: 网络基础
 
 单 GPU 存在算力和显存上限，必须多 GPU / 多机并行。
@@ -121,3 +135,12 @@ TP 只切 matmul 部分，LayerNorm / Dropout 等 pointwise op 的 activation �
 - 合理的 3D 并行配置可实现近线性扩展（utilization 不随规模下降）
 
 ![](https://intranetproxy.alipay.com/skylark/lark/0/2026/png/235356748/1784805590658-03d06633-9e0d-4824-91ed-332da873fa14.png)
+
+---
+
+## 相关链接
+
+- 通信原语基础（AllReduce、NCCL）：[[CS336-L7-Parallelism-1]]
+- 单 GPU 优化：[[CS336-L5-GPUs-TPUs]]、[[CS336-L6-Triton]]
+- 推理中的 batching 与显存管理：[[CS336-L10-Inference]]
+- 课程进度：[[课程进度]]

@@ -1,3 +1,16 @@
+---
+tags:
+  - CS336
+  - parallelism
+  - distributed
+  - communication
+  - NCCL
+lecture: L7
+aliases:
+  - 分布式通信
+  - 并行策略入门
+---
+
 **核心主题**：编排计算以避免数据传输瓶颈。上周（单 GPU）通过 fusion/tiling 减少内存访问；本周（多 GPU）通过 replication/sharding 减少跨 GPU/节点通信。
 
 **为什么要多 GPU**：(1) 参数（optimizer state + gradients + activations）单卡放不下；(2) 想用更多 FLOPs 加速训练。
@@ -100,3 +113,12 @@ ReduceScatter 无 2x 因子。AllReduce 比 ReduceScatter 多传 2x 数据、多
 - Tensor parallelism 需要极快互联（NVLink）；Pipeline parallelism 可用慢互联但要减少 bubble
 - 核心权衡三角：re-compute（重算）vs store in memory（存显存）vs communicate（存别的 GPU 再传过来）
 - 硬件在变快，但模型总会更大 → 层级结构会一直存在
+
+---
+
+## 相关链接
+
+- 单 GPU 优化（fusion、tiling）：[[CS336-L5-GPUs-TPUs]]、[[CS336-L6-Triton]]
+- 并行策略进阶（ZeRO、TP、PP、EP）：[[CS336-L8-Parallelism-2]]
+- 推理中的并行与 batching：[[CS336-L10-Inference]]
+- 课程进度：[[课程进度]]

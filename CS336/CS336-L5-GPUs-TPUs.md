@@ -1,3 +1,16 @@
+---
+tags:
+  - CS336
+  - GPU
+  - TPU
+  - hardware
+  - optimization
+lecture: L5
+aliases:
+  - GPU架构
+  - 硬件优化
+---
+
 ### GPU 硬件架构
 
 以 NVIDIA A100 为例，一块 GPU 包含 128 个 SM（Streaming Multiprocessor）。SM 是 GPU 的核心计算单元，内部包含 CUDA 计算核心、Warp Scheduler、Register File、Shared Memory 等。
@@ -68,3 +81,12 @@ FlashAttention 的做法：把 Q、K、V 按 block 切分，每次只在 SRAM（
 效果：显存从 O(N²) 降到 O(N)，速度大幅提升（省掉了大量 HBM 读写），数值结果与标准 Attention 精确等价（不是近似）。
 
 PyTorch 2.0+ 中 `F.scaled_dot_product_attention` 会自动调用 FlashAttention，flash-attn 库提供更灵活的接口。
+
+---
+
+## 相关链接
+
+- 用 Triton 编写自定义 kernel：[[CS336-L6-Triton]]
+- 多 GPU 并行策略：[[CS336-L7-Parallelism-1]]、[[CS336-L8-Parallelism-2]]
+- 推理中的 memory-bound 分析：[[CS336-L10-Inference]]
+- 课程进度：[[课程进度]]
