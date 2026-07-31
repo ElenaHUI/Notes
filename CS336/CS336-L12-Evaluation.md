@@ -48,9 +48,11 @@ aliases:
 
 **经典范式：** in-distribution 评估——在同一数据集的 train/test split 上训练和评估。
 
+纯 CNN+LSTM 在 1BW 上的 perplexity 演进：51.3 → 30.0（[Jozefowicz+ 2016](https://arxiv.org/abs/1602.02410)）
+
 ### GPT-2 的转变
 
-- 训练数据：WebText（40GB，Reddit 链接的网站）
+- 训练数据：WebText（40GB，Reddit 链接的网站）（[GPT-2](https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf)）
 - 评估方式：**zero-shot** 在标准数据集上（out-of-distribution）
 - 结果：小数据集（PTB）上迁移效果好，大数据集（1BW）上不明显
 
@@ -167,6 +169,8 @@ Agent = 语言模型 + agent scaffold（决定如何使用 LM 的逻辑）
 
 ### Agent Scaffold 策略
 
+[Agent scaffold 讨论](https://x.com/karpathy/status/1904957279748596000)
+
 | 策略 | 说明 |
 |---|---|
 | Explicit planning | 维护 todo list，逐项完成 |
@@ -186,6 +190,8 @@ Agent = 语言模型 + agent scaffold（决定如何使用 LM 的逻辑）
 **目标：** 将推理与知识分离——推理是更纯粹的智能形式（不只是记忆事实）。
 
 ### ARC-AGI
+
+[ARC-AGI 官网](https://arcprize.org/)
 
 - 100% 人类可解，但对 AI 有挑战性
 - 每个任务唯一，记忆无用
@@ -209,13 +215,13 @@ Agent = 语言模型 + agent scaffold（决定如何使用 LM 的逻辑）
 
 | Benchmark | 内容 |
 |---|---|
-| **HarmBench** | 510 种违反法律/规范的有害行为 |
-| **AIR-Bench** | 基于监管框架和公司政策；314 风险类别，5694 prompts |
+| **[HarmBench](https://arxiv.org/abs/2402.04249)** | 510 种违反法律/规范的有害行为（[HELM](https://crfm.stanford.edu/helm/)） |
+| **[AIR-Bench](https://arxiv.org/abs/2402.07776)** | 基于监管框架和公司政策；314 风险类别，5694 prompts（[HELM](https://crfm.stanford.edu/helm/)） |
 
 ### Jailbreaking
 
 - LM 被训练为拒绝有害指令
-- **GCG（Greedy Coordinate Gradient）：** 自动优化 prompt 绕过安全机制
+- **[GCG](https://arxiv.org/abs/2307.15043)（Greedy Coordinate Gradient）：** 自动优化 prompt 绕过安全机制（Zou+ 2023）
 - 可从开源模型（Llama）迁移到闭源模型（GPT-4）
 
 ### 安全的复杂性
@@ -237,9 +243,9 @@ Agent = 语言模型 + agent scaffold（决定如何使用 LM 的逻辑）
 
 | 方法 | 说明 |
 |---|---|
-| **GDPval**（OpenAI） | 44 职业 × 9 大 GDP 行业；任务来自 ~14 年经验的专业人士 |
-| **MedHELM** | 121 临床任务，29 位临床医生出题；混合私有+公开数据 |
-| **Clio**（Anthropic） | 用 LM 分析真实用户数据，分享人们提问的通用模式 |
+| **[GDPval](https://arxiv.org/abs/2503.10328)**（OpenAI） | 44 职业 × 9 大 GDP 行业；任务来自 ~14 年经验的专业人士 |
+| **[MedHELM](https://arxiv.org/abs/2502.11175)** | 121 临床任务，29 位临床医生出题；混合私有+公开数据 |
+| **[Clio](https://arxiv.org/abs/2412.13678)**（Anthropic） | 用 LM 分析真实用户数据，分享人们提问的通用模式 |
 
 > [!warning] 矛盾
 > 真实性和隐私有时相互冲突。
@@ -258,16 +264,16 @@ Agent = 语言模型 + agent scaffold（决定如何使用 LM 的逻辑）
 
 | 路线 | 方法 |
 |---|---|
-| Route 1 | 从模型推断 train-test overlap（利用数据点的 exchangeability） |
-| Route 2 | 鼓励报告规范（模型提供者报告重叠情况） |
-| Route 3 | 使用**新鲜评估**（LiveCodeBench、UncheatableEval：爬取新网页） |
+| Route 1 | 从模型推断 train-test overlap（利用数据点的 exchangeability，[Oren+ 2023](https://arxiv.org/abs/2310.20707)） |
+| Route 2 | 鼓励报告规范（模型提供者报告重叠情况，[Zhang+ 2024](https://arxiv.org/abs/2404.04232)） |
+| Route 3 | 使用**新鲜评估**（[LiveCodeBench](https://livecodebench.github.io/)、UncheatableEval：爬取新网页） |
 | Route 4 | 使用**私有评估**（公司内部代码库、个人写作；perplexity 最容易） |
 
 ### 数据集质量
 
-- SWE-Bench → SWE-Bench Verified（修复问题）
-- 创建 benchmark 的 Platinum 版本（更高质量）
-- Agent benchmark 的问题：测试用例不足、trivial agent 就能解决
+- SWE-Bench → [SWE-Bench Verified](https://openai.com/index/introducing-swe-bench-verified/)（修复问题）
+- 创建 benchmark 的 [Platinum 版本](https://arxiv.org/abs/2504.01794)（更高质量，Vendrow+ 2025）
+- Agent benchmark 的问题：测试用例不足、trivial agent 就能解决（[Zhu+ 2025](https://arxiv.org/abs/2504.12516)）
 - **Docent：** 用 LLM 检查 agent trace 来发现问题
 
 ---
@@ -295,7 +301,7 @@ Agent = 语言模型 + agent scaffold（决定如何使用 LM 的逻辑）
 - **无论如何，必须定义游戏规则！**
 
 > [!tip] 例外：nanogpt speedrun
-> 固定数据，计算达到特定 validation loss 的时间 → 评估的是方法而非模型。
+> 固定数据，计算达到特定 validation loss 的时间 → 评估的是方法而非模型。（[参考](https://github.com/karpathy/nanogpt)）
 
 ---
 

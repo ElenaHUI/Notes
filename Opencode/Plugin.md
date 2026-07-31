@@ -14,5 +14,11 @@ https://code.alibaba-inc.com/thead_devops/web-mgmt
 
 启动方式
 ```bash
-curl -fsSL http://aliwl-sw529.eng.t-head.cn:31762/files/dev/install.sh| bash -s -- --plugin report-issue --endpoint  https://tone-dev.eng.t-head.cn/app-notifier/alert/issue/report
+curl -fsSL http://aliwl-sw529.eng.t-head.cn:31762/files/dev/install.sh -o /tmp/install.sh
+bash /tmp/install.sh --plugin report-issue --endpoint https://tone-dev.eng.t-head.cn/app-notifier/alert/issue/report
 ```
+/
+进度：
+- [x] dev环境测试 ✅ 2026-07-31
+- [x] prod环境测试 ✅ 2026-07-31
+- [ ] B红区测试

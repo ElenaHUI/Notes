@@ -1,0 +1,364 @@
+## 概述
+
+本文档基于实际问答整理，详细介绍如何使用 NVIDIA Dynamo 作为 vLLM 服务的智能负载均衡器，替代 Kubernetes 原生的 Service 负载均衡，获得更好的性能和智能路由能力。
+
+## 目录
+
+1. [为什么选择 Dynamo](#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9-dynamo)
+    
+2. [KV 缓存原理详解](#kv-%E7%BC%93%E5%AD%98%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3)
+    
+3. [Dynamo 架构和组件](#dynamo-%E6%9E%B6%E6%9E%84%E5%92%8C%E7%BB%84%E4%BB%B6)
+    
+4. [部署方案对比](#%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94)
+    
+5. [完整部署指南](#%E5%AE%8C%E6%95%B4%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97)
+    
+6. [性能优化和监控](#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%92%8C%E7%9B%91%E6%8E%A7)
+    
+7. [故障排查](#%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5)
+    
+8. [最佳实践](#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5)
+    
+
+---
+
+## 为什么选择 Dynamo
+
+### Kubernetes Service 负载均衡的局限性
+
+传统的 Kubernetes Service 负载均衡采用简单的轮询或随机策略：
+
+```
+# 传统 K8s Service 负载均衡
+apiVersion: v1
+kind: Service
+metadata:
+  name: vllm-service
+spec:
+  selector:
+    app: vllm
+  ports:
+    - port: 8000
+  # 简单轮询，不考虑：
+  # - 请求内容相似性
+  # - 后端负载状态
+  # - KV 缓存命中率
+```
+
+### Dynamo 的智能优势
+
+|   |   |   |
+|---|---|---|
+|特性|Kubernetes Service|Dynamo Frontend|
+|路由策略|轮询/随机|KV-Aware 智能路由|
+|缓存感知|无|基于 KV 缓存状态路由|
+|负载感知|无|实时负载监控|
+|故障处理|基础健康检查|请求迁移 + 熔断|
+|性能提升|无|2-40x TTFT 提升|
+|多模型支持|需要多个 Service|单一网关统一管理|
+
+---
+
+## KV 缓存原理详解
+
+### 什么是 KV 缓存
+
+KV 缓存（Key-Value Cache）是 Transformer 模型推理的核心优化技术：
+
+```
+# Transformer Attention 计算
+for token in input_sequence:
+    key = W_k @ token_embedding      # Key 向量
+    value = W_v @ token_embedding    # Value 向量
+    query = W_q @ token_embedding    # Query 向量
+    
+    # 这些 Key 和 Value 可以被缓存重用
+    kv_cache.store(token_position, key, value)
+```
+
+### 自回归生成中的 KV 缓存复用
+
+```
+# 没有 KV 缓存（低效）
+input: "请帮我写一个"
+step1: 计算 "请帮我写一个" → 生成 "Python"
+step2: 计算 "请帮我写一个Python" → 生成 "脚本"  # 重复计算！
+step3: 计算 "请帮我写一个Python脚本" → 生成 "来"
+
+# 有 KV 缓存（高效）
+input: "请帮我写一个"
+step1: 计算并缓存 "请帮我写一个" 的 KV → 生成 "Python"
+step2: 复用缓存 + 计算 "Python" 的 KV → 生成 "脚本"
+step3: 复用缓存 + 计算 "脚本" 的 KV → 生成 "来"
+```
+
+### 什么样的请求可以共享 KV 缓存
+
+#### 1. 相同前缀的请求
+
+```
+# 这些请求可以共享 KV 缓存
+request1 = "请帮我写一个Python脚本来处理CSV文件"
+request2 = "请帮我写一个Python脚本来连接数据库"  
+request3 = "请帮我写一个Python脚本来发送邮件"
+
+# 共同前缀："请帮我写一个Python脚本来"
+# 这部分的 KV 计算结果可以在三个请求间复用
+```
+
+#### 2. 系统提示词复用
+
+```
+# 大量请求都有相同的系统提示词
+system_prompt = """你是一个专业的AI助手，请遵循以下规则：
+1. 回答要准确、有用
+2. 语言要礼貌、专业
+3. 如果不确定，请说明
+"""
+
+user_request1 = system_prompt + "什么是机器学习？"
+user_request2 = system_prompt + "如何学习Python？"
+user_request3 = system_prompt + "推荐一些书籍"
+
+# system_prompt 部分的 KV 可以在所有请求间复用
+```
+
+#### 3. Claude Code 等编程助手的典型场景
+
+Claude Code 是 KV 缓存优化的完美场景：
+
+- 高度重复的系统提示词：每个请求都包含 2000-4000 tokens 的相同系统提示
+    
+- 累积的对话历史：多轮对话，每次请求都包含完整历史
+    
+- 工具调用模式：相似的工具调用序列重复出现
+    
+
+实际效果：
+
+- 缓存命中率：85-97%
+    
+- 读写比例：11.7x（读取缓存 vs 写入新内容）
+    
+- 性能提升：TTFT 从 2秒 降低到 180ms（11.7x 提升）
+    
+
+### KV 缓存的块化管理
+
+现代推理框架将 KV 缓存分成固定大小的块：
+
+```
+# vLLM 的 PagedAttention 机制
+BLOCK_SIZE = 16  # 每个块包含 16 个 token
+
+sequence = "请帮我写一个Python脚本来处理CSV文件并生成报告"
+# 分块：
+# Block 0: "请帮我写一个Python脚本来处理CSV文件"  (16 tokens)
+# Block 1: "并生成报告"  (剩余 tokens)
+
+# 每个 block 有唯一的哈希值
+block_0_hash = hash("请帮我写一个Python脚本来处理CSV文件")
+block_1_hash = hash("并生成报告")
+```
+
+### 性能提升效果
+
+```
+# 无缓存命中的情况
+TTFT = prefill_time + first_decode_time
+     = 2000ms + 50ms = 2050ms
+
+# 有缓存命中的情况（50% 命中）
+TTFT = (prefill_time * 0.5) + first_decode_time  
+     = (2000ms * 0.5) + 50ms = 1050ms
+
+# 完全缓存命中的情况
+TTFT = first_decode_time = 50ms  # 提升 40x！
+```
+
+---
+
+## Dynamo 架构和组件
+
+### 核心组件
+
+![](data:image/svg+xml;base64,PHN2ZyB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLXJvbGVkZXNjcmlwdGlvbj0iZmxvd2NoYXJ0LXYyIiByb2xlPSJncmFwaGljcy1kb2N1bWVudCBkb2N1bWVudCIgdmlld0JveD0iLTggLTggNDQ2LjI4NTE1NjI1IDQyNi45NzY1NjI1IiBzdHlsZT0ibWF4LXdpZHRoOiA0NDYuMjg1MTU2MjVweDsiIHdpZHRoPSI0NDYuMjg1MTU2MjUiIGlkPSJ0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTIiIGhlaWdodD0iNDI2Ljk3NjU2MjUiPjxzdHlsZT4jdGV4dC1kaWFncmFtLWNzZzI3eGNqN25kLTcxNTEye2ZvbnQtZmFtaWx5OiJ0cmVidWNoZXQgbXMiLHZlcmRhbmEsYXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTZweDtmaWxsOiMzMzM7fSN0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTIgLmVycm9yLWljb257ZmlsbDojNTUyMjIyO30jdGV4dC1kaWFncmFtLWNzZzI3eGNqN25kLTcxNTEyIC5lcnJvci10ZXh0e2ZpbGw6IzU1MjIyMjtzdHJva2U6IzU1MjIyMjt9I3RleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMiAuZWRnZS10aGlja25lc3Mtbm9ybWFse3N0cm9rZS13aWR0aDoycHg7fSN0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTIgLmVkZ2UtdGhpY2tuZXNzLXRoaWNre3N0cm9rZS13aWR0aDozLjVweDt9I3RleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMiAuZWRnZS1wYXR0ZXJuLXNvbGlke3N0cm9rZS1kYXNoYXJyYXk6MDt9I3RleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMiAuZWRnZS1wYXR0ZXJuLWRhc2hlZHtzdHJva2UtZGFzaGFycmF5OjM7fSN0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTIgLmVkZ2UtcGF0dGVybi1kb3R0ZWR7c3Ryb2tlLWRhc2hhcnJheToyO30jdGV4dC1kaWFncmFtLWNzZzI3eGNqN25kLTcxNTEyIC5tYXJrZXJ7ZmlsbDojMzMzMzMzO3N0cm9rZTojMzMzMzMzO30jdGV4dC1kaWFncmFtLWNzZzI3eGNqN25kLTcxNTEyIC5tYXJrZXIuY3Jvc3N7c3Ryb2tlOiMzMzMzMzM7fSN0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTIgc3Zne2ZvbnQtZmFtaWx5OiJ0cmVidWNoZXQgbXMiLHZlcmRhbmEsYXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTZweDt9I3RleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMiAubGFiZWx7Zm9udC1mYW1pbHk6InRyZWJ1Y2hldCBtcyIsdmVyZGFuYSxhcmlhbCxzYW5zLXNlcmlmO2NvbG9yOiMzMzM7fSN0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTIgLmNsdXN0ZXItbGFiZWwgdGV4dHtmaWxsOiMzMzM7fSN0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTIgLmNsdXN0ZXItbGFiZWwgc3BhbiwjdGV4dC1kaWFncmFtLWNzZzI3eGNqN25kLTcxNTEyIHB7Y29sb3I6IzMzMzt9I3RleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMiAubGFiZWwgdGV4dCwjdGV4dC1kaWFncmFtLWNzZzI3eGNqN25kLTcxNTEyIHNwYW4sI3RleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMiBwe2ZpbGw6IzMzMztjb2xvcjojMzMzO30jdGV4dC1kaWFncmFtLWNzZzI3eGNqN25kLTcxNTEyIC5ub2RlIHJlY3QsI3RleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMiAubm9kZSBjaXJjbGUsI3RleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMiAubm9kZSBlbGxpcHNlLCN0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTIgLm5vZGUgcG9seWdvbiwjdGV4dC1kaWFncmFtLWNzZzI3eGNqN25kLTcxNTEyIC5ub2RlIHBhdGh7ZmlsbDojRUNFQ0ZGO3N0cm9rZTojOTM3MERCO3N0cm9rZS13aWR0aDoxcHg7fSN0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTIgLmZsb3djaGFydC1sYWJlbCB0ZXh0e3RleHQtYW5jaG9yOm1pZGRsZTt9I3RleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMiAubm9kZSAua2F0ZXggcGF0aHtmaWxsOiMwMDA7c3Ryb2tlOiMwMDA7c3Ryb2tlLXdpZHRoOjFweDt9I3RleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMiAubm9kZSAubGFiZWx7dGV4dC1hbGlnbjpjZW50ZXI7fSN0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTIgLm5vZGUuY2xpY2thYmxle2N1cnNvcjpwb2ludGVyO30jdGV4dC1kaWFncmFtLWNzZzI3eGNqN25kLTcxNTEyIC5hcnJvd2hlYWRQYXRoe2ZpbGw6IzMzMzMzMzt9I3RleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMiAuZWRnZVBhdGggLnBhdGh7c3Ryb2tlOiMzMzMzMzM7c3Ryb2tlLXdpZHRoOjIuMHB4O30jdGV4dC1kaWFncmFtLWNzZzI3eGNqN25kLTcxNTEyIC5mbG93Y2hhcnQtbGlua3tzdHJva2U6IzMzMzMzMztmaWxsOm5vbmU7fSN0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTIgLmVkZ2VMYWJlbHtiYWNrZ3JvdW5kLWNvbG9yOiNlOGU4ZTg7dGV4dC1hbGlnbjpjZW50ZXI7fSN0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTIgLmVkZ2VMYWJlbCByZWN0e29wYWNpdHk6MC41O2JhY2tncm91bmQtY29sb3I6I2U4ZThlODtmaWxsOiNlOGU4ZTg7fSN0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTIgLmxhYmVsQmtne2JhY2tncm91bmQtY29sb3I6cmdiYSgyMzIsIDIzMiwgMjMyLCAwLjUpO30jdGV4dC1kaWFncmFtLWNzZzI3eGNqN25kLTcxNTEyIC5jbHVzdGVyIHJlY3R7ZmlsbDojZmZmZmRlO3N0cm9rZTojYWFhYTMzO3N0cm9rZS13aWR0aDoxcHg7fSN0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTIgLmNsdXN0ZXIgdGV4dHtmaWxsOiMzMzM7fSN0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTIgLmNsdXN0ZXIgc3BhbiwjdGV4dC1kaWFncmFtLWNzZzI3eGNqN25kLTcxNTEyIHB7Y29sb3I6IzMzMzt9I3RleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMiBkaXYubWVybWFpZFRvb2x0aXB7cG9zaXRpb246YWJzb2x1dGU7dGV4dC1hbGlnbjpjZW50ZXI7bWF4LXdpZHRoOjIwMHB4O3BhZGRpbmc6MnB4O2ZvbnQtZmFtaWx5OiJ0cmVidWNoZXQgbXMiLHZlcmRhbmEsYXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTJweDtiYWNrZ3JvdW5kOmhzbCg4MCwgMTAwJSwgOTYuMjc0NTA5ODAzOSUpO2JvcmRlcjoxcHggc29saWQgI2FhYWEzMztib3JkZXItcmFkaXVzOjJweDtwb2ludGVyLWV2ZW50czpub25lO3otaW5kZXg6MTAwO30jdGV4dC1kaWFncmFtLWNzZzI3eGNqN25kLTcxNTEyIC5mbG93Y2hhcnRUaXRsZVRleHR7dGV4dC1hbmNob3I6bWlkZGxlO2ZvbnQtc2l6ZToxOHB4O2ZpbGw6IzMzMzt9I3RleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMiA6cm9vdHstLW1lcm1haWQtZm9udC1mYW1pbHk6InRyZWJ1Y2hldCBtcyIsdmVyZGFuYSxhcmlhbCxzYW5zLXNlcmlmO308L3N0eWxlPjxnPjxtYXJrZXIgb3JpZW50PSJhdXRvIiBtYXJrZXJIZWlnaHQ9IjEyIiBtYXJrZXJXaWR0aD0iMTIiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgcmVmWT0iNSIgcmVmWD0iNiIgdmlld0JveD0iMCAwIDEwIDEwIiBjbGFzcz0ibWFya2VyIGZsb3djaGFydCIgaWQ9InRleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMl9mbG93Y2hhcnQtcG9pbnRFbmQiPjxwYXRoIHN0eWxlPSJzdHJva2Utd2lkdGg6IDE7IHN0cm9rZS1kYXNoYXJyYXk6IDEsIDA7IiBjbGFzcz0iYXJyb3dNYXJrZXJQYXRoIiBkPSJNIDAgMCBMIDEwIDUgTCAwIDEwIHoiLz48L21hcmtlcj48bWFya2VyIG9yaWVudD0iYXV0byIgbWFya2VySGVpZ2h0PSIxMiIgbWFya2VyV2lkdGg9IjEyIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIHJlZlk9IjUiIHJlZlg9IjQuNSIgdmlld0JveD0iMCAwIDEwIDEwIiBjbGFzcz0ibWFya2VyIGZsb3djaGFydCIgaWQ9InRleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMl9mbG93Y2hhcnQtcG9pbnRTdGFydCI+PHBhdGggc3R5bGU9InN0cm9rZS13aWR0aDogMTsgc3Ryb2tlLWRhc2hhcnJheTogMSwgMDsiIGNsYXNzPSJhcnJvd01hcmtlclBhdGgiIGQ9Ik0gMCA1IEwgMTAgMTAgTCAxMCAwIHoiLz48L21hcmtlcj48bWFya2VyIG9yaWVudD0iYXV0byIgbWFya2VySGVpZ2h0PSIxMSIgbWFya2VyV2lkdGg9IjExIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIHJlZlk9IjUiIHJlZlg9IjExIiB2aWV3Qm94PSIwIDAgMTAgMTAiIGNsYXNzPSJtYXJrZXIgZmxvd2NoYXJ0IiBpZD0idGV4dC1kaWFncmFtLWNzZzI3eGNqN25kLTcxNTEyX2Zsb3djaGFydC1jaXJjbGVFbmQiPjxjaXJjbGUgc3R5bGU9InN0cm9rZS13aWR0aDogMTsgc3Ryb2tlLWRhc2hhcnJheTogMSwgMDsiIGNsYXNzPSJhcnJvd01hcmtlclBhdGgiIHI9IjUiIGN5PSI1IiBjeD0iNSIvPjwvbWFya2VyPjxtYXJrZXIgb3JpZW50PSJhdXRvIiBtYXJrZXJIZWlnaHQ9IjExIiBtYXJrZXJXaWR0aD0iMTEiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgcmVmWT0iNSIgcmVmWD0iLTEiIHZpZXdCb3g9IjAgMCAxMCAxMCIgY2xhc3M9Im1hcmtlciBmbG93Y2hhcnQiIGlkPSJ0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTJfZmxvd2NoYXJ0LWNpcmNsZVN0YXJ0Ij48Y2lyY2xlIHN0eWxlPSJzdHJva2Utd2lkdGg6IDE7IHN0cm9rZS1kYXNoYXJyYXk6IDEsIDA7IiBjbGFzcz0iYXJyb3dNYXJrZXJQYXRoIiByPSI1IiBjeT0iNSIgY3g9IjUiLz48L21hcmtlcj48bWFya2VyIG9yaWVudD0iYXV0byIgbWFya2VySGVpZ2h0PSIxMSIgbWFya2VyV2lkdGg9IjExIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIHJlZlk9IjUuMiIgcmVmWD0iMTIiIHZpZXdCb3g9IjAgMCAxMSAxMSIgY2xhc3M9Im1hcmtlciBjcm9zcyBmbG93Y2hhcnQiIGlkPSJ0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTJfZmxvd2NoYXJ0LWNyb3NzRW5kIj48cGF0aCBzdHlsZT0ic3Ryb2tlLXdpZHRoOiAyOyBzdHJva2UtZGFzaGFycmF5OiAxLCAwOyIgY2xhc3M9ImFycm93TWFya2VyUGF0aCIgZD0iTSAxLDEgbCA5LDkgTSAxMCwxIGwgLTksOSIvPjwvbWFya2VyPjxtYXJrZXIgb3JpZW50PSJhdXRvIiBtYXJrZXJIZWlnaHQ9IjExIiBtYXJrZXJXaWR0aD0iMTEiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgcmVmWT0iNS4yIiByZWZYPSItMSIgdmlld0JveD0iMCAwIDExIDExIiBjbGFzcz0ibWFya2VyIGNyb3NzIGZsb3djaGFydCIgaWQ9InRleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMl9mbG93Y2hhcnQtY3Jvc3NTdGFydCI+PHBhdGggc3R5bGU9InN0cm9rZS13aWR0aDogMjsgc3Ryb2tlLWRhc2hhcnJheTogMSwgMDsiIGNsYXNzPSJhcnJvd01hcmtlclBhdGgiIGQ9Ik0gMSwxIGwgOSw5IE0gMTAsMSBsIC05LDkiLz48L21hcmtlcj48ZyBjbGFzcz0icm9vdCI+PGcgY2xhc3M9ImNsdXN0ZXJzIi8+PGcgY2xhc3M9ImVkZ2VQYXRocyI+PHBhdGggbWFya2VyLWVuZD0idXJsKCN0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTJfZmxvd2NoYXJ0LXBvaW50RW5kKSIgc3R5bGU9ImZpbGw6bm9uZTsiIGNsYXNzPSJlZGdlLXRoaWNrbmVzcy1ub3JtYWwgZWRnZS1wYXR0ZXJuLXNvbGlkIGZsb3djaGFydC1saW5rIExTLUEgTEUtQiIgaWQ9IkwtQS1CLTAiIGQ9Ik0yNDcuNTA0LDQyLjE5NUwyNDcuNTA0LDQ2LjM2MkMyNDcuNTA0LDUwLjUyOSwyNDcuNTA0LDU4Ljg2MiwyNDcuNTA0LDY2LjMxMkMyNDcuNTA0LDczLjc2MiwyNDcuNTA0LDgwLjMyOSwyNDcuNTA0LDgzLjYxMkwyNDcuNTA0LDg2Ljg5NSIvPjxwYXRoIG1hcmtlci1lbmQ9InVybCgjdGV4dC1kaWFncmFtLWNzZzI3eGNqN25kLTcxNTEyX2Zsb3djaGFydC1wb2ludEVuZCkiIHN0eWxlPSJmaWxsOm5vbmU7IiBjbGFzcz0iZWRnZS10aGlja25lc3Mtbm9ybWFsIGVkZ2UtcGF0dGVybi1zb2xpZCBmbG93Y2hhcnQtbGluayBMUy1CIExFLUMiIGlkPSJMLUItQy0wIiBkPSJNMTc2Ljg5OCwxMzEuNjA1TDE1OS4wNDQsMTM2LjIzNkMxNDEuMTg5LDE0MC44NjcsMTA1LjQ3OSwxNTAuMTI5LDg3LjYyNCwxNTguMDQzQzY5Ljc3LDE2NS45NTcsNjkuNzcsMTcyLjUyNCw2OS43NywxNzUuODA3TDY5Ljc3LDE3OS4wOTEiLz48cGF0aCBtYXJrZXItZW5kPSJ1cmwoI3RleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMl9mbG93Y2hhcnQtcG9pbnRFbmQpIiBzdHlsZT0iZmlsbDpub25lOyIgY2xhc3M9ImVkZ2UtdGhpY2tuZXNzLW5vcm1hbCBlZGdlLXBhdHRlcm4tc29saWQgZmxvd2NoYXJ0LWxpbmsgTFMtQyBMRS1EIiBpZD0iTC1DLUQtMCIgZD0iTTY5Ljc3LDIyNi41ODZMNjkuNzcsMjMwLjc1M0M2OS43NywyMzQuOTE5LDY5Ljc3LDI0My4yNTMsNjkuNzcsMjUwLjcwM0M2OS43NywyNTguMTUzLDY5Ljc3LDI2NC43MTksNjkuNzcsMjY4LjAwM0w2OS43NywyNzEuMjg2Ii8+PHBhdGggbWFya2VyLWVuZD0idXJsKCN0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTJfZmxvd2NoYXJ0LXBvaW50RW5kKSIgc3R5bGU9ImZpbGw6bm9uZTsiIGNsYXNzPSJlZGdlLXRoaWNrbmVzcy1ub3JtYWwgZWRnZS1wYXR0ZXJuLXNvbGlkIGZsb3djaGFydC1saW5rIExTLUQgTEUtRSIgaWQ9IkwtRC1FLTAiIGQ9Ik02OS43NywzMTguNzgxTDY5Ljc3LDMyMi45NDhDNjkuNzcsMzI3LjExNSw2OS43NywzMzUuNDQ4LDY5Ljc3LDM0Mi44OThDNjkuNzcsMzUwLjM0OCw2OS43NywzNTYuOTE1LDY5Ljc3LDM2MC4xOThMNjkuNzcsMzYzLjQ4MSIvPjxwYXRoIG1hcmtlci1lbmQ9InVybCgjdGV4dC1kaWFncmFtLWNzZzI3eGNqN25kLTcxNTEyX2Zsb3djaGFydC1wb2ludEVuZCkiIHN0eWxlPSJmaWxsOm5vbmU7IiBjbGFzcz0iZWRnZS10aGlja25lc3Mtbm9ybWFsIGVkZ2UtcGF0dGVybi1zb2xpZCBmbG93Y2hhcnQtbGluayBMUy1CIExFLUYiIGlkPSJMLUItRi0wIiBkPSJNMjQ3LjUwNCwxMzQuMzkxTDI0Ny41MDQsMTM4LjU1N0MyNDcuNTA0LDE0Mi43MjQsMjQ3LjUwNCwxNTEuMDU3LDI0Ny41MDQsMTYyLjkwN0MyNDcuNTA0LDE3NC43NTcsMjQ3LjUwNCwxOTAuMTIyLDI0Ny41MDQsMjA1LjQ4OEMyNDcuNTA0LDIyMC44NTQsMjQ3LjUwNCwyMzYuMjIsMjQ3LjUwNCwyNDcuMTg2QzI0Ny41MDQsMjU4LjE1MywyNDcuNTA0LDI2NC43MTksMjQ3LjUwNCwyNjguMDAzTDI0Ny41MDQsMjcxLjI4NiIvPjxwYXRoIG1hcmtlci1lbmQ9InVybCgjdGV4dC1kaWFncmFtLWNzZzI3eGNqN25kLTcxNTEyX2Zsb3djaGFydC1wb2ludEVuZCkiIHN0eWxlPSJmaWxsOm5vbmU7IiBjbGFzcz0iZWRnZS10aGlja25lc3Mtbm9ybWFsIGVkZ2UtcGF0dGVybi1zb2xpZCBmbG93Y2hhcnQtbGluayBMUy1GIExFLUciIGlkPSJMLUYtRy0wIiBkPSJNMjQ3LjUwNCwzMTguNzgxTDI0Ny41MDQsMzIyLjk0OEMyNDcuNTA0LDMyNy4xMTUsMjQ3LjUwNCwzMzUuNDQ4LDI1Mi43ODksMzQzLjI3OEMyNTguMDc0LDM1MS4xMDgsMjY4LjY0NCwzNTguNDM1LDI3My45MjksMzYyLjA5OEwyNzkuMjE0LDM2NS43NjIiLz48cGF0aCBtYXJrZXItZW5kPSJ1cmwoI3RleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMl9mbG93Y2hhcnQtcG9pbnRFbmQpIiBzdHlsZT0iZmlsbDpub25lOyIgY2xhc3M9ImVkZ2UtdGhpY2tuZXNzLW5vcm1hbCBlZGdlLXBhdHRlcm4tc29saWQgZmxvd2NoYXJ0LWxpbmsgTFMtQiBMRS1IIiBpZD0iTC1CLUgtMCIgZD0iTTMwOC4zNzYsMTM0LjM5MUwzMjAuMzk4LDEzOC41NTdDMzMyLjQyLDE0Mi43MjQsMzU2LjQ2NCwxNTEuMDU3LDM2OC40ODYsMTU4LjUwN0MzODAuNTA4LDE2NS45NTcsMzgwLjUwOCwxNzIuNTI0LDM4MC41MDgsMTc1LjgwN0wzODAuNTA4LDE3OS4wOTEiLz48cGF0aCBtYXJrZXItZW5kPSJ1cmwoI3RleHQtZGlhZ3JhbS1jc2cyN3hjajduZC03MTUxMl9mbG93Y2hhcnQtcG9pbnRFbmQpIiBzdHlsZT0iZmlsbDpub25lOyIgY2xhc3M9ImVkZ2UtdGhpY2tuZXNzLW5vcm1hbCBlZGdlLXBhdHRlcm4tc29saWQgZmxvd2NoYXJ0LWxpbmsgTFMtSCBMRS1JIiBpZD0iTC1ILUktMCIgZD0iTTM4MC41MDgsMjI2LjU4NkwzODAuNTA4LDIzMC43NTNDMzgwLjUwOCwyMzQuOTE5LDM4MC41MDgsMjQzLjI1MywzODAuNTA4LDI1MC43MDNDMzgwLjUwOCwyNTguMTUzLDM4MC41MDgsMjY0LjcxOSwzODAuNTA4LDI2OC4wMDNMMzgwLjUwOCwyNzEuMjg2Ii8+PHBhdGggbWFya2VyLWVuZD0idXJsKCN0ZXh0LWRpYWdyYW0tY3NnMjd4Y2o3bmQtNzE1MTJfZmxvd2NoYXJ0LXBvaW50RW5kKSIgc3R5bGU9ImZpbGw6bm9uZTsiIGNsYXNzPSJlZGdlLXRoaWNrbmVzcy1ub3JtYWwgZWRnZS1wYXR0ZXJuLXNvbGlkIGZsb3djaGFydC1saW5rIExTLUkgTEUtRyIgaWQ9IkwtSS1HLTAiIGQ9Ik0zODAuNTA4LDMxOC43ODFMMzgwLjUwOCwzMjIuOTQ4QzM4MC41MDgsMzI3LjExNSwzODAuNTA4LDMzNS40NDgsMzc1LjIyMywzNDMuMjc4QzM2OS45MzgsMzUxLjEwOCwzNTkuMzY4LDM1OC40MzUsMzU0LjA4MywzNjIuMDk4TDM0OC43OTgsMzY1Ljc2MiIvPjwvZz48ZyBjbGFzcz0iZWRnZUxhYmVscyI+PGcgY2xhc3M9ImVkZ2VMYWJlbCI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiIGNsYXNzPSJsYWJlbCI+PGZvcmVpZ25PYmplY3QgaGVpZ2h0PSIwIiB3aWR0aD0iMCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJlZGdlTGFiZWwiPjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0iZWRnZUxhYmVsIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAwKSIgY2xhc3M9ImxhYmVsIj48Zm9yZWlnbk9iamVjdCBoZWlnaHQ9IjAiIHdpZHRoPSIwIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9ImVkZ2VMYWJlbCI+PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJlZGdlTGFiZWwiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIiBjbGFzcz0ibGFiZWwiPjxmb3JlaWduT2JqZWN0IGhlaWdodD0iMCIgd2lkdGg9IjAiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0iZWRnZUxhYmVsIj48L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9ImVkZ2VMYWJlbCI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiIGNsYXNzPSJsYWJlbCI+PGZvcmVpZ25PYmplY3QgaGVpZ2h0PSIwIiB3aWR0aD0iMCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJlZGdlTGFiZWwiPjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0iZWRnZUxhYmVsIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAwKSIgY2xhc3M9ImxhYmVsIj48Zm9yZWlnbk9iamVjdCBoZWlnaHQ9IjAiIHdpZHRoPSIwIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9ImVkZ2VMYWJlbCI+PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJlZGdlTGFiZWwiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIiBjbGFzcz0ibGFiZWwiPjxmb3JlaWduT2JqZWN0IGhlaWdodD0iMCIgd2lkdGg9IjAiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0iZWRnZUxhYmVsIj48L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9ImVkZ2VMYWJlbCI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiIGNsYXNzPSJsYWJlbCI+PGZvcmVpZ25PYmplY3QgaGVpZ2h0PSIwIiB3aWR0aD0iMCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJlZGdlTGFiZWwiPjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0iZWRnZUxhYmVsIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAwKSIgY2xhc3M9ImxhYmVsIj48Zm9yZWlnbk9iamVjdCBoZWlnaHQ9IjAiIHdpZHRoPSIwIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9ImVkZ2VMYWJlbCI+PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJlZGdlTGFiZWwiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIiBjbGFzcz0ibGFiZWwiPjxmb3JlaWduT2JqZWN0IGhlaWdodD0iMCIgd2lkdGg9IjAiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0iZWRnZUxhYmVsIj48L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PC9nPjxnIGNsYXNzPSJub2RlcyI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjQ3LjUwMzkwNjI1LCAyMS4wOTc2NTYyNSkiIGRhdGEtaWQ9IkEiIGRhdGEtbm9kZT0idHJ1ZSIgaWQ9ImZsb3djaGFydC1BLTAiIGNsYXNzPSJub2RlIGRlZmF1bHQgZGVmYXVsdCBmbG93Y2hhcnQtbGFiZWwiPjxyZWN0IGhlaWdodD0iNDIuMTk1MzEyNSIgd2lkdGg9IjExOS4wNzgxMjUiIHk9Ii0yMS4wOTc2NTYyNSIgeD0iLTU5LjUzOTA2MjUiIHJ5PSIwIiByeD0iMCIgc3R5bGU9IiIgY2xhc3M9ImJhc2ljIGxhYmVsLWNvbnRhaW5lciIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01Mi4wMzkwNjI1LCAtMTMuNTk3NjU2MjUpIiBzdHlsZT0iIiBjbGFzcz0ibGFiZWwiPjxyZWN0Lz48Zm9yZWlnbk9iamVjdCBoZWlnaHQ9IjI3LjE5NTMxMjUiIHdpZHRoPSIxMDQuMDc4MTI1Ij48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9Im5vZGVMYWJlbCI+Q2xpZW50IFJlcXVlc3Q8L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjQ3LjUwMzkwNjI1LCAxMTMuMjkyOTY4NzUpIiBkYXRhLWlkPSJCIiBkYXRhLW5vZGU9InRydWUiIGlkPSJmbG93Y2hhcnQtQi0xIiBjbGFzcz0ibm9kZSBkZWZhdWx0IGRlZmF1bHQgZmxvd2NoYXJ0LWxhYmVsIj48cmVjdCBoZWlnaHQ9IjQyLjE5NTMxMjUiIHdpZHRoPSIxNDEuMjEwOTM3NSIgeT0iLTIxLjA5NzY1NjI1IiB4PSItNzAuNjA1NDY4NzUiIHJ5PSIwIiByeD0iMCIgc3R5bGU9IiIgY2xhc3M9ImJhc2ljIGxhYmVsLWNvbnRhaW5lciIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC02My4xMDU0Njg3NSwgLTEzLjU5NzY1NjI1KSIgc3R5bGU9IiIgY2xhc3M9ImxhYmVsIj48cmVjdC8+PGZvcmVpZ25PYmplY3QgaGVpZ2h0PSIyNy4xOTUzMTI1IiB3aWR0aD0iMTI2LjIxMDkzNzUiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0ibm9kZUxhYmVsIj5EeW5hbW8gRnJvbnRlbmQ8L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjkuNzY5NTMxMjUsIDIwNS40ODgyODEyNSkiIGRhdGEtaWQ9IkMiIGRhdGEtbm9kZT0idHJ1ZSIgaWQ9ImZsb3djaGFydC1DLTMiIGNsYXNzPSJub2RlIGRlZmF1bHQgZGVmYXVsdCBmbG93Y2hhcnQtbGFiZWwiPjxyZWN0IGhlaWdodD0iNDIuMTk1MzEyNSIgd2lkdGg9Ijg1LjcxMDkzNzUiIHk9Ii0yMS4wOTc2NTYyNSIgeD0iLTQyLjg1NTQ2ODc1IiByeT0iMCIgcng9IjAiIHN0eWxlPSIiIGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMzUuMzU1NDY4NzUsIC0xMy41OTc2NTYyNSkiIHN0eWxlPSIiIGNsYXNzPSJsYWJlbCI+PHJlY3QvPjxmb3JlaWduT2JqZWN0IGhlaWdodD0iMjcuMTk1MzEyNSIgd2lkdGg9IjcwLjcxMDkzNzUiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0ibm9kZUxhYmVsIj5LViBSb3V0ZXI8L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjkuNzY5NTMxMjUsIDI5Ny42ODM1OTM3NSkiIGRhdGEtaWQ9IkQiIGRhdGEtbm9kZT0idHJ1ZSIgaWQ9ImZsb3djaGFydC1ELTUiIGNsYXNzPSJub2RlIGRlZmF1bHQgZGVmYXVsdCBmbG93Y2hhcnQtbGFiZWwiPjxyZWN0IGhlaWdodD0iNDIuMTk1MzEyNSIgd2lkdGg9IjEzOS41MzkwNjI1IiB5PSItMjEuMDk3NjU2MjUiIHg9Ii02OS43Njk1MzEyNSIgcnk9IjAiIHJ4PSIwIiBzdHlsZT0iIiBjbGFzcz0iYmFzaWMgbGFiZWwtY29udGFpbmVyIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTYyLjI2OTUzMTI1LCAtMTMuNTk3NjU2MjUpIiBzdHlsZT0iIiBjbGFzcz0ibGFiZWwiPjxyZWN0Lz48Zm9yZWlnbk9iamVjdCBoZWlnaHQ9IjI3LjE5NTMxMjUiIHdpZHRoPSIxMjQuNTM5MDYyNSI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJub2RlTGFiZWwiPlNlcnZpY2UgRGlzY292ZXJ5PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDY5Ljc2OTUzMTI1LCAzODkuODc4OTA2MjUpIiBkYXRhLWlkPSJFIiBkYXRhLW5vZGU9InRydWUiIGlkPSJmbG93Y2hhcnQtRS03IiBjbGFzcz0ibm9kZSBkZWZhdWx0IGRlZmF1bHQgZmxvd2NoYXJ0LWxhYmVsIj48cmVjdCBoZWlnaHQ9IjQyLjE5NTMxMjUiIHdpZHRoPSIxMDYuMTI1IiB5PSItMjEuMDk3NjU2MjUiIHg9Ii01My4wNjI1IiByeT0iMCIgcng9IjAiIHN0eWxlPSIiIGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNDUuNTYyNSwgLTEzLjU5NzY1NjI1KSIgc3R5bGU9IiIgY2xhc3M9ImxhYmVsIj48cmVjdC8+PGZvcmVpZ25PYmplY3QgaGVpZ2h0PSIyNy4xOTUzMTI1IiB3aWR0aD0iOTEuMTI1Ij48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9Im5vZGVMYWJlbCI+ZXRjZC9LOHMgQVBJPC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI0Ny41MDM5MDYyNSwgMjk3LjY4MzU5Mzc1KSIgZGF0YS1pZD0iRiIgZGF0YS1ub2RlPSJ0cnVlIiBpZD0iZmxvd2NoYXJ0LUYtOSIgY2xhc3M9Im5vZGUgZGVmYXVsdCBkZWZhdWx0IGZsb3djaGFydC1sYWJlbCI+PHJlY3QgaGVpZ2h0PSI0Mi4xOTUzMTI1IiB3aWR0aD0iMTE1LjkyOTY4NzUiIHk9Ii0yMS4wOTc2NTYyNSIgeD0iLTU3Ljk2NDg0Mzc1IiByeT0iMCIgcng9IjAiIHN0eWxlPSIiIGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTAuNDY0ODQzNzUsIC0xMy41OTc2NTYyNSkiIHN0eWxlPSIiIGNsYXNzPSJsYWJlbCI+PHJlY3QvPjxmb3JlaWduT2JqZWN0IGhlaWdodD0iMjcuMTk1MzEyNSIgd2lkdGg9IjEwMC45Mjk2ODc1Ij48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9Im5vZGVMYWJlbCI+UmVxdWVzdCBQbGFuZTwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMTQuMDA1ODU5Mzc1LCAzODkuODc4OTA2MjUpIiBkYXRhLWlkPSJHIiBkYXRhLW5vZGU9InRydWUiIGlkPSJmbG93Y2hhcnQtRy0xMSIgY2xhc3M9Im5vZGUgZGVmYXVsdCBkZWZhdWx0IGZsb3djaGFydC1sYWJlbCI+PHJlY3QgaGVpZ2h0PSI0Mi4xOTUzMTI1IiB3aWR0aD0iMTEyLjQwNjI1IiB5PSItMjEuMDk3NjU2MjUiIHg9Ii01Ni4yMDMxMjUiIHJ5PSIwIiByeD0iMCIgc3R5bGU9IiIgY2xhc3M9ImJhc2ljIGxhYmVsLWNvbnRhaW5lciIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00OC43MDMxMjUsIC0xMy41OTc2NTYyNSkiIHN0eWxlPSIiIGNsYXNzPSJsYWJlbCI+PHJlY3QvPjxmb3JlaWduT2JqZWN0IGhlaWdodD0iMjcuMTk1MzEyNSIgd2lkdGg9Ijk3LjQwNjI1Ij48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9Im5vZGVMYWJlbCI+dkxMTSBXb3JrZXJzPC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM4MC41MDc4MTI1LCAyMDUuNDg4MjgxMjUpIiBkYXRhLWlkPSJIIiBkYXRhLW5vZGU9InRydWUiIGlkPSJmbG93Y2hhcnQtSC0xMyIgY2xhc3M9Im5vZGUgZGVmYXVsdCBkZWZhdWx0IGZsb3djaGFydC1sYWJlbCI+PHJlY3QgaGVpZ2h0PSI0Mi4xOTUzMTI1IiB3aWR0aD0iOTkuNTU0Njg3NSIgeT0iLTIxLjA5NzY1NjI1IiB4PSItNDkuNzc3MzQzNzUiIHJ5PSIwIiByeD0iMCIgc3R5bGU9IiIgY2xhc3M9ImJhc2ljIGxhYmVsLWNvbnRhaW5lciIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00Mi4yNzczNDM3NSwgLTEzLjU5NzY1NjI1KSIgc3R5bGU9IiIgY2xhc3M9ImxhYmVsIj48cmVjdC8+PGZvcmVpZ25PYmplY3QgaGVpZ2h0PSIyNy4xOTUzMTI1IiB3aWR0aD0iODQuNTU0Njg3NSI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJub2RlTGFiZWwiPkV2ZW50IFBsYW5lPC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM4MC41MDc4MTI1LCAyOTcuNjgzNTkzNzUpIiBkYXRhLWlkPSJJIiBkYXRhLW5vZGU9InRydWUiIGlkPSJmbG93Y2hhcnQtSS0xNSIgY2xhc3M9Im5vZGUgZGVmYXVsdCBkZWZhdWx0IGZsb3djaGFydC1sYWJlbCI+PHJlY3QgaGVpZ2h0PSI0Mi4xOTUzMTI1IiB3aWR0aD0iNTAuMDc4MTI1IiB5PSItMjEuMDk3NjU2MjUiIHg9Ii0yNS4wMzkwNjI1IiByeT0iMCIgcng9IjAiIHN0eWxlPSIiIGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTcuNTM5MDYyNSwgLTEzLjU5NzY1NjI1KSIgc3R5bGU9IiIgY2xhc3M9ImxhYmVsIj48cmVjdC8+PGZvcmVpZ25PYmplY3QgaGVpZ2h0PSIyNy4xOTUzMTI1IiB3aWR0aD0iMzUuMDc4MTI1Ij48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9Im5vZGVMYWJlbCI+TkFUUzwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48L2c+PC9nPjwvZz48L3N2Zz4=)
+
+|   |   |   |
+|---|---|---|
+|组件|作用|是否必需|
+|Dynamo Frontend|API 网关，路由决策|✅ 必需|
+|KV Router|智能路由算法|✅ 必需|
+|Service Discovery|发现后端服务|✅ 必需|
+|Request Plane|请求转发通道|✅ 必需|
+|Event Plane|KV 事件传输|可选|
+
+### 服务发现机制
+
+#### 方式 1：etcd 服务发现（完整功能）
+
+```
+// etcd 中存储的服务信息
+{
+  "dynamo/vllm-lb/workers/worker-1": {
+    "host": "10.244.1.5",
+    "port": 8000,
+    "model": "claude-3-5-sonnet",
+    "status": "healthy",
+    "load": 0.3,
+    "kv_cache_blocks": 1000
+  }
+}
+```
+
+#### 方式 2：Kubernetes 服务发现（推荐）
+
+```
+# 给现有 vLLM Service 打标签
+kubectl label service vllm-service-1 \
+  dynamo.nvidia.com/service-type=worker \
+  dynamo.nvidia.com/namespace=vllm-lb \
+  dynamo.nvidia.com/model=your-model
+```
+
+#### 方式 3：静态配置（最简单）
+
+```
+# dynamo-config.yaml
+discovery:
+  backend: "static"
+  endpoints:
+    - host: "vllm-service-1.default.svc.cluster.local"
+      port: 8000
+      model: "your-model"
+```
+
+### 通信平面
+
+#### Request Plane（必需）
+
+```
+# TCP 模式（默认，推荐）
+export DYN_REQUEST_PLANE=tcp
+
+# HTTP 模式
+export DYN_REQUEST_PLANE=http
+```
+
+#### Event Plane（可选，用于 KV Events）
+
+```
+# 使用 NATS 传输 KV 事件
+export NATS_URL=nats://nats:4222
+
+# 不使用事件（降级模式）
+export DYN_ROUTER_KV_EVENTS=false
+```
+
+---
+
+## 部署方案对比
+
+### 方案对比表
+
+|   |   |   |   |   |
+|---|---|---|---|---|
+|方案|复杂度|性能提升|功能完整度|推荐场景|
+|仅 Frontend + K8s 发现|低|2-3x|基础|快速验证|
+|Frontend + NATS|中|3-5x|完整|生产环境|
+|完整 Dynamo 平台|高|5-10x|最完整|企业级部署|
+
+### 最简部署（推荐起步）
+
+```
+# 零额外依赖的部署
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dynamo-frontend-minimal
+spec:
+  template:
+    spec:
+      containers:
+      - name: frontend
+        image: nvcr.io/nvidia/ai-dynamo/vllm-runtime:latest
+        command:
+          - python
+          - -m
+          - dynamo.frontend
+        args:
+          - --router-mode=kv
+          - --no-router-kv-events  # 不需要 NATS
+        env:
+        - name: DYN_DISCOVERY_BACKEND
+          value: "kubernetes"  # 不需要 etcd
+        - name: DYN_REQUEST_PLANE
+          value: "tcp"  # 不需要 NATS
+```
+
+### 生产级部署（推荐）
+
+包含 NATS 事件总线，支持实时 KV 事件：
+
+```
+# 需要部署：
+# 1. NATS 事件总线
+# 2. 修改 vLLM 启用 KV events
+# 3. Dynamo Frontend with KV events
+```
+
+---
+
+## 完整部署指南
+
+### 前置条件
+
+```
+# 1. Kubernetes 集群
+kubectl version
+
+# 2. 现有的 vLLM 服务
+kubectl get services -l app=vllm
+
+# 3. GPU 资源
+kubectl get nodes -o wide
+```
+
+### 步骤 1：创建命名空间
+
+```
+kubectl create namespace dynamo-system
+kubectl create namespace models  # 如果还没有
+```
+
+### 步骤 2：部署 NATS 事件总线
+
+```
+# nats-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nats
+  namespace: dynamo-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nats
+  template:
+    metadata:
+      labels:
+        app: nats
+    spec:
+      containers:
+      - name: nats
+        image: nats:2.10-alpine
+        args:
+          - --jetstream
+          - --store_dir=/data
+          - --max_file_store=10GB
+        ports:
+        - containerPort: 4222
+          name: client
+```
