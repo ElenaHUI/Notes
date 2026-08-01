@@ -20,8 +20,37 @@
               "icon": "lucide-file",
               "title": "待办汇总"
             }
+          },
+          {
+            "id": "7669ba1fdce77cfe",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "论文/SMC 2026.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "SMC 2026"
+            }
+          },
+          {
+            "id": "501a1d71e3585026",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "论文/GC 2026.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "GC 2026"
+            }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -156,13 +185,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "待办汇总.md",
+                "file": "论文/GC 2026.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "待办汇总 的大纲"
+              "title": "GC 2026 的大纲"
             }
           },
           {
@@ -204,21 +233,25 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "2784cb3c47619205",
+  "active": "501a1d71e3585026",
   "lastOpenFiles": [
+    "论文/SMC 2026.md",
+    "论文/GC 2026.md",
+    "待办汇总.md",
+    "论文/SMC 2026",
+    "论文",
+    "Infra/集群通信.md",
     "asset/______________________________________________________________________《基于PPU的红区大模型推理平台》介绍大纲.png",
     "Infra/llm-inference-concepts.html",
     "Leetcode/llm-inference-concepts.html",
     "CS336/CS336-L12-Evaluation.md",
     "PTG/LLM Prometheus 性能分析报告生成Skill.md",
     "Opencode/需求手册.md",
-    "集群通信.md",
     "llm-inference-concepts.html",
     "asset/Pasted image 20260801011441.png",
     "CS336/课程进度.md",
     "Infra",
     "CS336/CS336-L14-Data-Processing.md",
-    "待办汇总.md",
     "PTG/kimi2.6 PD分离部署记录.md",
     "PTG/Dynamo配置说明.md",
     "PTG/Dynamo.md",
@@ -237,7 +270,6 @@
     "Opencode/钉钉群消息.md",
     "Opencode/bugfix02-上报问题时 403 Forbidden.md",
     "Opencode/Navicat.md",
-    "Opencode/bugfix01-没有report接口.md",
     "Opencode/asset/Pasted image 20260731141931.png",
     "PTG/bugmirror.pdf.crdownload",
     "asset",
@@ -245,12 +277,10 @@
     "Opencode/asset/Pasted image 20260730152941.png",
     "Opencode/asset/Pasted image 20260730152903.png",
     "Opencode/asset/Pasted image 20260730152843.png",
-    "未命名.base",
     "未命名.canvas",
     "CS336/asset/Pasted image 20260729000506.png",
     "Opencode/asset/Pasted image 20260728201305.png",
     "Opencode/asset/Pasted image 20260728200945.png",
-    "Opencode/asset/Pasted image 20260728200903.png",
-    "CS336/asset"
+    "Opencode/asset/Pasted image 20260728200903.png"
   ]
 }
