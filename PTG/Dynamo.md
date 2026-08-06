@@ -1,9 +1,5 @@
  ![[______________________________________________________________________《基于PPU的红区大模型推理平台》介绍大纲.png]]
-这是一个架构研究问题，我需要先检索相关记忆，然后派遣 Research agent 深入调查 Dynamo 的 NIXL 机制。
 
-让我先检索已有的相关记忆： 现在让我派遣 Research agent 深入调查 Dynamo 的 NIXL 架构及其相对于 mooncake+RDMA 的优势。 已派遣两个 Research agent 分别调查 Dynamo NIXL 架构设计和您当前的 SGLang PD 部署配置，待结果返回后将为您进行对比分析。Sam 已完成当前部署配置的调查。正在等待 Alex 完成 Dynamo NIXL 架构研究，届时将综合两份报告为您进行对比分析。两个 Research agent 已完成全部调查。综合 Dynamo NIXL 架构研究和您当前部署配置的分析，以下是完整解答：
-
----
 
 ## 一、NIXL 是什么？相比 mooncake 有什么优势？
 
@@ -11,16 +7,16 @@ NIXL（NVIDIA Inference Transfer Library） 是 NVIDIA 开发的通用数据传�
 
 核心优势对比：
 
-|   |   |   |
-|---|---|---|
-|维度|Mooncake（当前）|NIXL（Dynamo）|
-|传输后端|单一引擎，主要面向 RDMA|插件化框架：UCX（默认）、LIBFABRIC、POSIX、GDS、3FS、对象存储等|
-|硬件要求|强依赖 RDMA（InfiniBand/RoCE）|不强制，自动降级到可用最优路径|
-|同机传输|走回环网络或需手动配置|UCX 自动检测 NVLink/PCIe/共享内存|
-|跨 TP 兼容|需要相同 TP 配置|支持不同 TP 间的元数据交换和 gather-scatter|
-|多内存层级|不支持|KVBM 支持 G1-G4 四层（GPU显存→CPU内存→SSD→远程存储）|
-|bootstrap 发现|手动配置 K8s 注解（`sglang.ai/bootstrap-port`）|Dynamo Discovery Service 自动发现|
-|运行时弹性|固定副本，需整机调度|运行时可重配置 xPyD，动态增删 worker|
+|              |                                                                                                                                                              |                                             |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
+| 维度           | Mooncake（当前）                                                                                                                                                 | NIXL（Dynamo）                                |
+| 传输后端         | 单一引擎，主要面向 [RDMA](https://developer.nvidia.com/blog/introducing-nvidia-dynamo-a-low-latency-distributed-inference-framework-for-scaling-reasoning-ai-models/) | 插件化框架：UCX（默认）、LIBFABRIC、POSIX、GDS、3FS、对象存储等 |
+| 硬件要求         | 强依赖 RDMA（InfiniBand/RoCE）                                                                                                                                    | 不强制，自动降级到可用最优路径                             |
+| 同机传输         | 走回环网络或需手动配置                                                                                                                                                  | UCX 自动检测 NVLink/PCIe/共享内存                   |
+| 跨 TP 兼容      | 需要相同 TP 配置                                                                                                                                                   | 支持不同 TP 间的元数据交换和 gather-scatter             |
+| 多内存层级        | 不支持                                                                                                                                                          | KVBM 支持 G1-G4 四层（GPU显存→CPU内存→SSD→远程存储）      |
+| bootstrap 发现 | 手动配置 K8s 注解（`sglang.ai/bootstrap-port`）                                                                                                                      | Dynamo Discovery Service 自动发现               |
+| 运行时弹性        | 固定副本，需整机调度                                                                                                                                                   | 运行时可重配置 xPyD，动态增删 worker                    |
 
 Dynamo 设计文档明确指出 NIXL 的 KV 传输是非阻塞的，GPU 前向传播可以在传输期间继续服务其他请求。
 

@@ -1,0 +1,10 @@
+{
+    "id": "url-namer",
+    "name": "URL Namer",
+    "version": "1.1.1",
+    "minAppVersion": "0.12.0",
+    "description": "This plugin retrieves the HTML title to name the unnamed URL link.",
+    "author": "zfei",
+    "authorUrl": "https://github.com/zfei/obsidian-url-namer",
+    "isDesktopOnly": false
+}

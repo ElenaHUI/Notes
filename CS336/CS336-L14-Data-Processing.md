@@ -421,7 +421,7 @@ p = {"low": 0.7, "high": 0.3}  # 更平衡
 2. 定义一组**任务 / prompts**
 3. 从强模型（teacher）收集**回复**
 
-### OpenThoughts（[Guha+ 2025](https://arxiv.org/abs/2503.07884)）
+  ### OpenThoughts（[Guha+ 2025](https://arxiv.org/abs/2503.07884)）
 
 | 要点 | 说明 |
 |---|---|
