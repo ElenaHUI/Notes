@@ -1,1 +1,1 @@
-![[红区AI Infra.png|700]]
+![[红区AI Infra.png|1467]]

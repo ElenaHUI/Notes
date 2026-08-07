@@ -8,31 +8,31 @@
         "type": "tabs",
         "children": [
           {
-            "id": "89e8e67160defb27",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Dynamo/NVIDIA Dynamo 博客学习笔记.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "NVIDIA Dynamo 博客学习笔记"
-            }
-          },
-          {
             "id": "2e811de24b6ae538",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "待办汇总.md",
+                "file": "Grafana看板.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "待办汇总"
+              "title": "Grafana看板"
+            }
+          },
+          {
+            "id": "de8dd0554bbbdf7e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "看板问题解决.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "看板问题解决"
             }
           }
         ],
@@ -98,7 +98,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "9a3c6079e211d7fa",
@@ -133,7 +134,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "待办汇总.md",
+                "file": "Grafana看板.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -176,7 +177,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "待办汇总.md",
+                "file": "Grafana看板.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -224,46 +225,47 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "2e811de24b6ae538",
+  "active": "de8dd0554bbbdf7e",
   "lastOpenFiles": [
+    "asset/Pasted image 20260807183405.png",
+    "asset/Pasted image 20260807182818.png",
+    "asset/Pasted image 20260807182718.png",
     "Grafana看板.md",
+    "看板问题解决.md",
+    "asset/Pasted image 20260807174959.png",
+    "asset/Pasted image 20260807174740.png",
+    "asset/Pasted image 20260807173829.png",
+    "asset/Pasted image 20260807173631.png",
+    "Dynamo/NVIDIA Dynamo 博客学习笔记.md",
+    "模型部署.md",
+    "待办汇总.md",
+    "PTG/kimi2.6 PD分离部署记录.md",
+    "PTG/bugmirror.pdf",
+    "PTG/红区Infra.md",
     "Opencode/Opencode使用.md",
     "asset/Pasted image 20260806171222.png",
     "Opencode/Plugin.md",
     "asset/Pasted image 20260806142612.png",
-    "Dynamo/NVIDIA Dynamo 博客学习笔记.md",
     "PTG/LLM Prometheus 性能分析报告生成Skill.md",
     "Dynamo.md",
     "Dynamo",
     "CS336/CS336-L15-After-Pretraining.md",
     "CS336/CS336-L14-Data-Processing.md",
-    "模型部署.md",
     "Opencode/需求手册.md",
     "asset/Pasted image 20260805155928.png",
     "asset/Pasted image 20260805155907.png",
-    "待办汇总.md",
-    "asset/Pasted image 20260805154934.png",
-    "asset/Pasted image 20260805154408.png",
-    "asset/Pasted image 20260805154318.png",
     "Opencode/bugfix01-没有report接口.md",
     "Opencode/未命名.md",
     "Opencode/使用手册.md",
     "Opencode/钉钉群消息.md",
     "Opencode/bugfix03-安装脚本时报错.md",
     "Opencode/bugfix02-上报问题时 403 Forbidden.md",
-    "asset/Pasted image 20260805112700.png",
-    "asset/Pasted image 20260805112245.png",
-    "asset/Pasted image 20260805112222.png",
     "Opencode/Navicat.md",
     "Dynamo/Dynamo配置说明.md",
     "Dynamo/Dynamo.md",
-    "PTG/红区Infra.md",
     "PTG/asset",
     "Infra/PD分离.md",
-    "PTG/kimi2.6 PD分离部署记录.md",
-    "PTG/bugmirror.pdf",
     "论文/SMC 2026.md",
-    "论文/GC 2026.md",
     "Infra/asset",
     "论文/SMC 2026",
     "论文",

@@ -7,62 +7,61 @@
 
 # Row 1 · Overview（区间汇总，7 项）
 
-| 参数名                  | 单位            | 含义                 | 计算方式                                                                                                                                                       | 什么情况下比较好                                                                                                      |
-| -------------------- | ------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| Request Success Rate | percent (%)   | 非 internal 错误的请求占比 | `(sum(increase(f_requests_total[R])) - sum(increase(f_requests_total{error_type="internal"}[R])) or vector(0)) / sum(increase(f_requests_total[R])) * 100` | **≥ 99 为绿、<99 为红**；理想 100。注意它不扣 cancelled/validation/overload，所以"99% 以上"只代表**没有内部错误**，需配合 Row 2 的 Outcome 图确认 |
-| Total Requests       | short（个）      | 窗口内前端收到的总请求数       | `sum(increase(f_requests_total[R]))`                                                                                                                       | 无好坏，是**基数**。它必须足够大（≥ 几百）其他分位数才有统计意义；为 0 说明没流量或采集断了                                                            |
-| Input Tokens         | short（个）      | 窗口内输入 token 总量     | `sum(increase(f_input_sequence_tokens_sum[R]))`                                                                                                            | 无好坏，成本/负载口径。与 Output 一起看比例：**输入远大于输出**说明适合开前缀缓存/P-D 分离                                                        |
-| Output Tokens        | short（个）      | 窗口内输出 token 总量     | `sum(increase(f_output_sequence_tokens_sum[R]))`                                                                                                           | 无好坏。`Output Tokens ÷ 窗口秒数` = 系统总输出吞吐，**越高越好**（同等延迟下）                                                          |
-| Average TTFT         | ms            | 窗口内平均首 token 延迟    | `sum(increase(f_time_to_first_token_seconds_sum[R])) / sum(increase(..._count[R])) * 1000`                                                                 | 越低越好。交互式对话经验值 **< 500 ms 良好、< 1000 ms 可接受**；且应与 Row 2 的 P50 接近（差距大说明有长尾拉偏均值）                                  |
-| Average ITL          | ms            | 窗口内平均 token 间延迟    | `sum(increase(f_inter_token_latency_seconds_sum[R])) / sum(increase(..._count[R])) * 1000`                                                                 | 越低越好。**< 50 ms**（≈20 tok/s）已快于人类阅读速度，**< 100 ms** 可接受；`1000/ITL` 即每秒出字数                                       |
-| Average E2E Latency  | s（注意与上两项单位不同） | 窗口内平均端到端耗时         | `sum(increase(f_request_duration_seconds_sum[R])) / sum(increase(..._count[R]))`                                                                           | 越低越好，但要**除以输出长度归一化**才可比。健康关系式：`E2E ≈ TTFT + ITL × Output_len`，若 E2E 明显大于该估算值 → 存在排队/路由额外开销                    |
+| 参数名                  | 单位            | 计算公式                                                    | 详细解释                                                                     |
+| -------------------- | ------------- | ------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Request Success Rate | percent (%)   | $\dfrac{N_{req}-N_{internal}}{N_{req}}\times 100\%$     | 只扣掉服务端内部错误，用户取消、参数非法、过载被拒都仍算成功。所以它反映的是"后端有没有 bug"，健康时应恒为 100%。           |
+| Total Requests       | short（个）      | $N_{req}=\Delta C_{requests}$                           | 窗口内的请求总数，是所有平均值和分位数的统计基数。基数太小分位数就不可信，为 0 说明没流量或采集断了。                     |
+| Input Tokens         | short（个）      | $T_{in}=\sum_i ISL_i$                                   | 窗口内输入 token 总量，代表 prefill 侧的工作量与成本。与输出量的比例决定系统是 prefill 重还是 decode 重。    |
+| Output Tokens        | short（个）      | $T_{out}=\sum_i OSL_i$，吞吐 $=\dfrac{T_{out}}{R}$         | 窗口内生成的 token 总量，除以窗口时长 $R$ 就是系统总吞吐（tok/s），是产能的核心口径。                      |
+| Average TTFT         | ms            | $\overline{TTFT}=\dfrac{\sum_i TTFT_i}{N_{req}}$        | 从请求进来到吐出第一个字的平均等待时间，包含排队、路由和 prefill，决定"回车后要等多久"。                        |
+| Average ITL          | ms            | $\overline{ITL}=\dfrac{\sum_i\sum_j ITL_{ij}}{N_{gap}}$ | 相邻两个输出 token 之间的平均间隔，决定出字快慢；$1000/ITL$ 就是每秒出字数。                          |
+| Average E2E Latency  | s（注意与上两项单位不同） | $\overline{E2E}=\dfrac{\sum_i E2E_i}{N_{req}}$          | 一个请求从进入到说完的平均总时长。它满足 $E2E \approx TTFT + ITL \times OSL$，所以必须结合输出长度才有意义。 |
 
 > ⚠️ 后 6 项面板内置阈值均为模板残留的 `red @ 80`（超过 80 就标红），对 token/请求数无意义，**只看数字别看颜色**。
 
 # Row 2 · Frontend（对外服务质量，9 项）
 
-| 参数名                       | 单位             | 含义                                                                                             | 计算方式                                                                                                                                       | 什么情况下比较好                                                                                                                                |
-| ------------------------- | -------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
-| Frontend RPS              | req/s          | 前端请求吞吐                                                                                         | `sum by(model)(rate(f_requests_total[w]))`                                                                                                 | 无绝对好坏，是**参照基线**。健康表现：RPS 上升时延迟平缓上升；**RPS 下降而延迟上升 = 系统已劣化**                                                                              |
-| E2E Request Latency       | s              | 端到端耗时的 P50/P90/Average/P99/MAX 五条线                                                             | `histogram_quantile(q, sum by(le)(rate(f_request_duration_seconds_bucket[w])))`；Average 用 `sum(rate(_sum))/clamp_min(sum(rate(_count)),1)` | **P99/P50 比值 < 3** 说明尾部可控；P50 稳定、曲线平滑无锯齿。P99 突刺 = 长尾/排队/坏 worker。MAX 是最高有值桶上界，阶梯状偏大，只作量级参考                                              |
-| Request Outcome Breakdown | reqps（堆叠）      | 按结果拆分请求速率：success + cancelled / validation / not_found / not_implemented / overload / internal | `sum(rate(f_requests_total{status="success"}[w]))` 及各 `{status="error", error_type="X"}`                                                   | **理想：只有 success 一条带，其余贴地为 0**。`internal` 必须为 0（有就是 bug）；`overload` > 0 即容量不足；`validation`/`not_found` > 0 是调用方问题；`cancelled` 少量正常（用户中断） |
-| Active vs Queued Requests | short（并发数，瞬时值） | active=在途请求总数；queued=首 token 前卡在 preprocess/route/dispatch 的请求数                                | `sum(f_active_requests)`；`sum(f_stage_requests{stage=~"preprocess\|route\|dispatch"})` ⚠️**无 model 过滤**                                    | **queued 长期贴近 0** 且只在流量尖峰时短暂抬起 = 健康；queued 持续 >0 且单调上升 = 积压（TTFT 必然恶化，需扩容/调路由）。active 稳定在容量区间内、不撞天花板                                    |
-| TTFT (p50/p90/p99)        | ms             | 首 token 延迟分位                                                                                   | `histogram_quantile(q, sum(rate(f_time_to_first_token_seconds_bucket[w])) by(le)) * 1000`                                                  | 越低越平稳越好；经验 **P50 < 500 ms、P99 < 2 s**。P99 抖动通常是 prefill 排队 → 查 Queued 与 KV Hit Rate                                                     |
-| ITL (p50/p90/p99)         | ms             | token 间延迟分位                                                                                    | `histogram_quantile(q, sum(rate(f_inter_token_latency_seconds_bucket[w])) by(le)) * 1000`                                                  | 越低且**曲线平直**越好，经验 **P50 < 50 ms、P99 < 200 ms**。ITL 随并发上升缓慢抬高属正常；阶梯式跳升 = decode batch 被 KV cache 压缩                                       |
-| ISL Distribution          | short（token 数） | 输入长度（prompt 大小）分位                                                                              | `histogram_quantile(q, sum(rate(f_input_sequence_tokens_bucket[w])) by(le))`                                                               | 本身无好坏，**关键是稳定**。突增会带动 TTFT 上升（属输入变化而非故障）；P99 远大于 P50 说明请求异构，此时用平均值判断性能会失真                                                               |
-| Output Size Distribution  | short（token 数） | 输出长度分位                                                                                         | `histogram_quantile(q, sum(rate(f_output_sequence_tokens_bucket[w])) by(le))`                                                              | 同样看稳定性。它是 decode 侧总工作量的驱动因子，判断 E2E 是否合理必须先看它                                                                                            |
-| Cached Tokens             | short（token 数） | 每请求命中前缀缓存的 token 数（后端 usage 口径）                                                                | `histogram_quantile(q, sum(rate(f_cached_tokens_bucket[w])) by(le))`                                                                       | **越高越好**，且应与 ISL 一起看：`Cached ÷ ISL` 即真实前缀复用率，**> 50% 属很好**，此时 TTFT 会明显下降。为 0 说明缓存完全没起作用                                                 |
+| 参数名 | 单位 | 计算公式 | 详细解释 |
+| --- | --- | --- | --- |
+| Frontend RPS | req/s | $RPS=\dfrac{\Delta N_{req}}{\Delta t}$ | 每秒进来多少请求，是负载的度量。其他所有曲线都要对照它判读：RPS 降而延迟升，说明系统已劣化。 |
+| E2E Request Latency | s | $P_q(E2E),\ q\in\{50,90,99\}$ | 端到端耗时的分布。P50 是典型体验、P99 是最差体验，看的是分布形状而不是单个数（MAX 为桶上界，只作量级参考）。 |
+| Request Outcome Breakdown | reqps（堆叠） | $r_s=\dfrac{\Delta N_s}{\Delta t}$，$s\in\{success,\ cancelled,\ validation,\ overload,\ internal,\ \dots\}$ | 把请求速率按结果分色堆叠，用来回答"失败的请求是怎么失败的"。理想图形是只有 success 一条带。 |
+| Active vs Queued Requests | short（并发数，瞬时值） | $N_{active}(t)$；$N_{queued}(t)=N_{pre}+N_{route}+N_{dispatch}$ | 瞬时并发水位与排队长度：active 是正在跑的，queued 是还没吐出第一个字、卡在排队的。queued 持续上涨就是积压。 |
+| TTFT (p50/p90/p99) | ms | $P_q(TTFT)$ | 首字延迟的分布，比平均值可靠。P99 偏高说明有请求在 prefill 队列里等。 |
+| ITL (p50/p90/p99) | ms | $P_q(ITL)$ | 出字间隔的分布。分位差大说明部分请求的 decode 被打断过（抢占或缓存换出）。 |
+| ISL Distribution | short（token 数） | $P_q(ISL)$ | 输入长度（prompt 大小）的分布，是性能的自变量：输入变长，延迟自然变长。 |
+| Output Size Distribution | short（token 数） | $P_q(OSL)$ | 输出长度的分布，是 decode 侧工作量的来源。判断 E2E 合不合理必须先看它。 |
+| Cached Tokens | short（token 数） | $P_q(N_{cached})$，复用率 $=\dfrac{N_{cached}}{ISL}$ | 输入里有多少 token 命中了前缀缓存、可以跳过 prefill。越高越好，TTFT 会明显下降。 |
 
 # Row 3 · KV Routing（路由内部，5 项 —— 均无 model 过滤，仅 KV-aware router 模式有数据）
 
-| 参数名 | 单位 | 含义 | 计算方式 | 什么情况下比较好 |
-|---|---|---|---|---|
-| Per-Worker Active Decode Blocks | short（block 数） | 各 worker 当前占用的 decode KV block（前端路由器账本视角） | `dynamo_frontend_worker_active_decode_blocks`（裸 gauge，按 `worker_id/dp_rank/worker_type/instance` 分线） | **各 worker 曲线彼此贴合 = 负载均衡良好**；离散度越小越好。某条持续偏高 = 热点 worker；所有曲线都逼近上限 = KV cache 将满，ITL 会随之恶化 |
-| Per-Worker Active Prefill Tokens | short（token 数） | 各 worker 当前在处理的 prefill token 数 | `dynamo_frontend_worker_active_prefill_tokens`（裸 gauge） | 同上，**齐平为好**。尖峰后应快速回落；持续高位 = prefill 侧饱和，TTFT 会涨 |
-| KV Hit Rate Distribution | percentunit（0~1） | 路由**决策时预测**的 KV 命中率 = `overlap_blocks / input_sequence_blocks` | `histogram_quantile(q, sum(rate(c_router_kv_hit_rate_bucket[w])) by(le))`；Average 用 sum/count | **≥ 0.7 绿、0.3~0.7 黄、< 0.3 红**（面板真实阈值）。越高越好，>0.7 时 TTFT 明显受益；<0.3 说明前缀复用差或 cache 太小被频繁淘汰。可与 Row 2 的 Cached Tokens 对照验证预测准确性 |
-| Routing Overhead Breakdown | ms | 路由开销按阶段拆分：block_hashing / indexer_find_matches / seq_hashing / scheduling / **total**，每阶段 avg+p50+p90 共 15 条 | avg：`sum(rate(r_overhead_X_ms_sum[w]))/clamp_min(sum(rate(..._count[w])),1)`；分位：`histogram_quantile(q, sum(rate(..._bucket[w])) by(le))` | **total 保持个位数 ms、且占 TTFT < 5~10%** 为好；各子阶段平稳无增长趋势。`indexer_find_matches` 随时间单调上升 = 前缀索引膨胀，是最常见的劣化点。建议只勾 `total avg/p90` 观察 |
-| KV Events Applied Breakdown | ops（堆叠） | KV 索引更新事件速率，按 `event_type` × `status` 拆分 | `sum(rate(c_kv_cache_events_applied{event_type="…", status="…"}[w]))`，6 个组合 | **只有 `stored\|ok`、`removed\|ok`、`cleared\|ok` 三条有值，异常三条恒为 0** 为健康。出现 `parent_block_not_found` / `invalid_block` / `block_not_found` = 索引与 worker 真实 cache 脱节，会直接拉低上面的 KV Hit Rate |
+| 参数名                              | 单位               | 计算公式                                                                                        | 详细解释                                                  |
+| -------------------------------- | ---------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| Per-Worker Active Decode Blocks  | short（block 数）   | $B_w(t)$，按 worker 分线                                                                        | 每个 worker 当前占用了多少 decode KV 显存块。用来看负载是否均摊、缓存是否将满。     |
+| Per-Worker Active Prefill Tokens | short（token 数）   | $T_w(t)$，按 worker 分线                                                                        | 每个 worker 手上正在算的 prefill token 量，看 prefill 侧忙不忙、是否偏斜。 |
+| KV Hit Rate Distribution         | percentunit（0~1） | $H=\dfrac{B_{overlap}}{B_{input}}$，取 $P_q(H)$                                               | 路由在挑 worker 时预估的前缀命中比例。命中越多，prefill 越省，TTFT 越低。       |
+| Routing Overhead Breakdown       | ms               | $\overline{t_{stage}}=\dfrac{\sum t_{stage}}{N_{stage}}$，$t_{total}=\sum_{stage} t_{stage}$ | 路由自己花掉的时间（算哈希、查前缀索引、选实例）。它是纯开销，应远小于 TTFT。             |
+| KV Events Applied Breakdown      | ops（堆叠）          | $r_{e,s}=\dfrac{\Delta N_{e,s}}{\Delta t}$                                                  | 路由更新前缀索引的事件速率。出现失败类事件说明索引与 worker 真实缓存已经不一致。          |
 
 # Row 4 · Workers（单实例下钻，3 项）
 
-| 参数名 | 单位 | 含义 | 计算方式 | 什么情况下比较好 |
-|---|---|---|---|---|
-| Worker Request Breakdown Per Worker | reqps | 每个 worker 的总请求率 / 取消率 / 各类错误率 | `sum by(instance)(rate(c_requests_total[w]))`；`sum by(instance)(rate(c_cancellation_total[w]))`；`sum by(instance, error_type)(rate(c_errors_total[w]))` | **各 instance 的 total 曲线量级接近（均衡），error 与 cancelled 贴地为 0**。某 instance total 显著低 = 该 worker 未被有效调度或已异常。⚠️ `errors_total` 是诊断计数器、非互斥失败数（可能把取消算进去），**不要用它算成功率** |
-| Worker Request Duration Per Worker | s | 每个 worker 内部 handler 的处理耗时分位（**仅推理，不含排队/路由**） | `histogram_quantile(q, sum by(instance,le)(rate(c_request_duration_seconds_bucket[w])))`；Average 用 sum/count by instance | **各 instance 曲线重叠、离散度小**为好；单个 instance 的 P99 突出 = 坏 worker（GPU 降频/KV 满/邻居干扰），可直接拿 instance 定位 pod。**核心判据：`E2E(Row2) − 本值` 应尽量小**，差值大说明时间花在排队与路由而非推理 |
-| Component Throughput (bytes/sec) | 无（实为 bytes/s，面板未设 unit） | `generate` 端点的请求/响应字节速率，按 instance 分线（未做 sum） | `rate(c_request_bytes_total{dynamo_endpoint="generate"}[w])`、`rate(c_response_bytes_total{…}[w])` | 与 RPS、ISL/OSL **成比例变化**即健康。请求字节突增而 RPS 不变 = 有超大 prompt 进来；响应字节与输出 token 数比例突变 = 序列化/协议层异常 |
+| 参数名                                 | 单位                      | 计算公式                                                                       | 详细解释                                           |
+| ----------------------------------- | ----------------------- | -------------------------------------------------------------------------- | ---------------------------------------------- |
+| Worker Request Breakdown Per Worker | reqps                   | $r_{inst}=\dfrac{\Delta N_{inst}}{\Delta t}$，错误按 $(inst,\ error\_type)$ 分组 | 每个实例各自承担多少请求、出多少错。用来判断调度是否均衡、哪个 pod 有问题。       |
+| Worker Request Duration Per Worker  | s                       | $P_q(D_{inst})$，$D$ = worker 内部处理耗时                                        | 只算 worker 里的推理时间，不含排队与路由。它与 E2E 的差值就是花在调度上的时间。 |
+| Component Throughput (bytes/sec)    | 无（实为 bytes/s，面板未设 unit） | $\dfrac{\Delta Bytes}{\Delta t}$，按 instance 分线                             | 端点上进出的字节速率，用来交叉验证请求量与报文大小是否正常（如是否来了超大 prompt）。 |
 
 ## 跨 row 的健康关系式（比单看某个数更有用）
 
 | 关系式 | 健康表现 | 违背时的含义 |
 |---|---|---|
-| `E2E ≈ TTFT + ITL × Output_len` | 两边接近 | 左边明显偏大 → 存在额外排队/路由开销 |
-| `E2E(前端) − Duration(worker)` | 差值小且稳定 | 差值大 → 瓶颈在排队/调度，不在推理 |
-| `Cached Tokens ÷ ISL` vs `KV Hit Rate` | 两者数值接近 | 偏差大 → 路由预测不准，查 KV Events 异常 |
-| `Routing total overhead ÷ TTFT` | < 5~10% | 超过 → 路由本身成瓶颈 |
+| $E2E \approx TTFT + ITL \times OSL$ | 两边接近 | 左边明显偏大 → 存在额外排队/路由开销 |
+| $E2E_{frontend} - D_{worker}$ | 差值小且稳定 | 差值大 → 瓶颈在排队/调度，不在推理 |
+| $\dfrac{N_{cached}}{ISL}$ vs $H$（KV Hit Rate） | 两者数值接近 | 偏差大 → 路由预测不准，查 KV Events 异常 |
+| $\dfrac{t_{total}}{TTFT}$ | $< 5\%\sim10\%$ | 超过 → 路由本身成瓶颈 |
 | Per-Worker 曲线离散度 | 小 | 大 → 路由不均衡，存在热点 |
-| `queued` 与 `TTFT P99` | 同步且都低 | queued 涨而 TTFT 未涨 → 指标口径有问题（注意 queued 缺 model 过滤） |
+| $N_{queued}$ 与 $P_{99}(TTFT)$ | 同步且都低 | queued 涨而 TTFT 未涨 → 指标口径有问题（注意 queued 缺 model 过滤） |
 
-需要我把这四张表连同健康判据写成一份 Markdown 文档放到桌面吗？或者继续讲第二个盘（Disagg，带 GPU/NVLink 的那个）。
 ## 2. Dynamo Disaggregated Analysis —— 唯一带 GPU/硬件视角的 P/D 分离盘
 
 - **唯一区分 prefill 与 decode 角色**：用 `dynamo_component="prefill"` 与 `dynamo_component="backend"` 分别出图，并有专门的 **Component Latency - Prefill vs Decode** 对比面板 → 看 P/D 配比是否失衡、哪一侧是瓶颈。
