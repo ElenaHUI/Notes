@@ -1,1 +1,5 @@
-{}
+{
+  "translucency": true,
+  "cssTheme": "Wikipedia",
+  "theme": "moonstone"
+}
