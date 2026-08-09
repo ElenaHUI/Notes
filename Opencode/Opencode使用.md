@@ -70,7 +70,7 @@
 ```
 
 
-```
+```json
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
@@ -196,7 +196,7 @@
 
 小技巧：由于每次启动opencode都需要清除代理并执行上述的三步，因此可以在～/.bashrc文件中添加下述代码，保存后使配置生效source ～/.bashrc，下一次启动opencode只需要在终端输入opencode即可。
 
-```
+```bash
 # Auto-load and start opencode without proxy interference
 opencode() {
     # 1. 清除代理环境变量 (防止网络问题)

@@ -233,7 +233,7 @@ DeepSeek v2 提出。
 
 **量化/反量化机制：**
 
-```
+```python
 x = 5.2342
 scale = 0.1
 zero_point = 4

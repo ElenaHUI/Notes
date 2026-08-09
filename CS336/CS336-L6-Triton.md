@@ -43,7 +43,7 @@ B200 还有 Tensor Memory（TMEM），位于寄存器和 Shared Memory 之间，
 
 **Naive 实现（无融合，最慢）：**
 
-```
+```python
 def naive_gelu(x):
     # 每一步都是一个独立的 PyTorch 算子，各自产生一个 CUDA kernel
     # 每步都要从 HBM 读、计算、写回 HBM → 大量冗余的显存读写
@@ -54,7 +54,7 @@ def naive_gelu(x):
 
 **Builtin 实现（融合，快）：**
 
-```
+```python
 def builtin_gelu(x):
     return torch.nn.functional.gelu(x, approximate="tanh")
 ```
@@ -63,7 +63,7 @@ PyTorch 内置实现会将整个计算融合到一个 CUDA kernel 中，只从 H
 
 **Compiled 实现（自动融合，和 builtin 一样快）：**
 
-```
+```python
 compiled_gelu = torch.compile(naive_gelu)  # PyTorch 编译器自动识别可融合的算子
 y = compiled_gelu(x)
 ```
@@ -84,7 +84,7 @@ Triton 编译到 PTX（GPU 汇编语言），可以直接查看生成的代码�
 
 #### 1. GeLU（Element-wise 操作）
 
-```
+```python
 def triton_gelu(x):
     assert x.is_cuda and x.is_contiguous()
     y = torch.empty_like(x)
@@ -125,7 +125,7 @@ def triton_gelu_kernel(x_ptr, y_ptr, num_elements, BLOCK_SIZE: tl.constexpr):
 
 #### 2. Softmax（Reduction，行能放进一个 Block）
 
-```
+```python
 # Naive softmax —— 对比用，可以看到有多少冗余读写
 def naive_softmax(x):
     M, N = x.shape
@@ -177,7 +177,7 @@ def triton_softmax_kernel(x_ptr, y_ptr, x_row_stride, y_row_stride,
 
 #### 3. Row Sum（Reduction，行放不进 Block）
 
-```
+```python
 def triton_row_sum(x, BLOCK_SIZE=1024):
     M, N = x.shape
     y = torch.empty(M, device=x.device, dtype=x.dtype)
@@ -209,7 +209,7 @@ def row_sum_kernel(x_ptr, out_ptr, N, BLOCK_SIZE: tl.constexpr):
 
 #### 4. Matmul + ReLU（Tiling，使用 Shared Memory）
 
-```
+```python
 def triton_matmul_relu(a, b):
     assert a.is_cuda and b.is_cuda
     assert a.is_contiguous() and b.is_contiguous()

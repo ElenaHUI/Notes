@@ -29,7 +29,7 @@
 
 传统的 Kubernetes Service 负载均衡采用简单的轮询或随机策略：
 
-```
+```yaml
 # 传统 K8s Service 负载均衡
 apiVersion: v1
 kind: Service
@@ -66,7 +66,7 @@ spec:
 
 KV 缓存（Key-Value Cache）是 Transformer 模型推理的核心优化技术：
 
-```
+```python
 # Transformer Attention 计算
 for token in input_sequence:
     key = W_k @ token_embedding      # Key 向量
@@ -97,7 +97,7 @@ step3: 复用缓存 + 计算 "脚本" 的 KV → 生成 "来"
 
 #### 1. 相同前缀的请求
 
-```
+```python
 # 这些请求可以共享 KV 缓存
 request1 = "请帮我写一个Python脚本来处理CSV文件"
 request2 = "请帮我写一个Python脚本来连接数据库"  
@@ -109,7 +109,7 @@ request3 = "请帮我写一个Python脚本来发送邮件"
 
 #### 2. 系统提示词复用
 
-```
+```python
 # 大量请求都有相同的系统提示词
 system_prompt = """你是一个专业的AI助手，请遵循以下规则：
 1. 回答要准确、有用
@@ -148,7 +148,7 @@ Claude Code 是 KV 缓存优化的完美场景：
 
 现代推理框架将 KV 缓存分成固定大小的块：
 
-```
+```python
 # vLLM 的 PagedAttention 机制
 BLOCK_SIZE = 16  # 每个块包含 16 个 token
 
@@ -198,7 +198,7 @@ TTFT = first_decode_time = 50ms  # 提升 40x！
 
 #### 方式 1：etcd 服务发现（完整功能）
 
-```
+```jsonc
 // etcd 中存储的服务信息
 {
   "dynamo/vllm-lb/workers/worker-1": {
@@ -214,7 +214,7 @@ TTFT = first_decode_time = 50ms  # 提升 40x！
 
 #### 方式 2：Kubernetes 服务发现（推荐）
 
-```
+```bash
 # 给现有 vLLM Service 打标签
 kubectl label service vllm-service-1 \
   dynamo.nvidia.com/service-type=worker \
@@ -224,7 +224,7 @@ kubectl label service vllm-service-1 \
 
 #### 方式 3：静态配置（最简单）
 
-```
+```yaml
 # dynamo-config.yaml
 discovery:
   backend: "static"
@@ -238,7 +238,7 @@ discovery:
 
 #### Request Plane（必需）
 
-```
+```bash
 # TCP 模式（默认，推荐）
 export DYN_REQUEST_PLANE=tcp
 
@@ -248,7 +248,7 @@ export DYN_REQUEST_PLANE=http
 
 #### Event Plane（可选，用于 KV Events）
 
-```
+```bash
 # 使用 NATS 传输 KV 事件
 export NATS_URL=nats://nats:4222
 
@@ -271,7 +271,7 @@ export DYN_ROUTER_KV_EVENTS=false
 
 ### 最简部署（推荐起步）
 
-```
+```yaml
 # 零额外依赖的部署
 apiVersion: apps/v1
 kind: Deployment
@@ -314,7 +314,7 @@ spec:
 
 ### 前置条件
 
-```
+```bash
 # 1. Kubernetes 集群
 kubectl version
 
@@ -327,14 +327,14 @@ kubectl get nodes -o wide
 
 ### 步骤 1：创建命名空间
 
-```
+```bash
 kubectl create namespace dynamo-system
 kubectl create namespace models  # 如果还没有
 ```
 
 ### 步骤 2：部署 NATS 事件总线
 
-```
+```yaml
 # nats-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment

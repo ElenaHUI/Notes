@@ -63,7 +63,7 @@ aliases:
 
 "语言模型训练在整个互联网上"——这不准确。互联网是 live servers，不能直接训练：
 
-```
+```bash
 $ curl https://cs336.stanford.edu/
 ```
 
