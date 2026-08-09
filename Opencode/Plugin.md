@@ -25,7 +25,7 @@ curl -fsSL http://aliwl-sw529.eng.t-head.cn:31762/files/dev/install.sh | bash -s
 进度：
 - [x] dev环境测试 ✅ 2026-07-31
 - [x] prod环境测试 ✅ 2026-07-31
-- [ ] B红区测试
+- [x] B红区测试 ✅ 2026-08-09
 
 卸载方式
 

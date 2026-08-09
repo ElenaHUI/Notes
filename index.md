@@ -36,10 +36,11 @@ NVIDIA Dynamo 分布式推理框架的原理与配置。
 - [[Dynamo/Dynamo配置说明|配置说明]]
 - [[Dynamo/NVIDIA Dynamo 博客学习笔记|博客学习笔记]]
 
-## 可观测性
+## 监控链路搭建
 
 - [[Grafana看板]]
 - [[看板问题解决]]
+- [[模型部署]]
 
 ## 算法
 
