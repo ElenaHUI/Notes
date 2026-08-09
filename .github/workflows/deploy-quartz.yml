@@ -1,0 +1,76 @@
+name: Deploy Quartz site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+defaults:
+  run:
+    # Quartz 的所有 CLI 命令都以 process.cwd() 为基准，必须在 .quartz 下执行
+    working-directory: .quartz
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # created-modified-date 插件用 git 历史推算笔记的创建/修改时间
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: .quartz/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Quartz plugins
+        run: npx quartz plugin install
+
+      - name: Build site
+        # -d .. 让内容目录直接指向仓库根，笔记无需复制或同步；
+        # 排除规则见 .quartz/quartz.config.yaml 的 ignorePatterns
+        run: npx quartz build -d ..
+
+      - name: Verify no excluded content leaked
+        # 兜底护栏：若排除规则被改坏，构建产物里出现内部内容时直接让流水线失败
+        run: |
+          if find public \( -ipath '*PTG*' -o -ipath '*Opencode*' -o -ipath '*论文*' \
+               -o -ipath '*待办*' -o -ipath '*模型部署*' -o -ipath '*红区*' -o -ipath '*PPU*' \) \
+               -print | grep -q .; then
+            echo "::error::检测到本应排除的内容进入了构建产物，已中止部署"
+            find public \( -ipath '*PTG*' -o -ipath '*Opencode*' -o -ipath '*论文*' \
+              -o -ipath '*待办*' -o -ipath '*模型部署*' -o -ipath '*红区*' -o -ipath '*PPU*' \) -print
+            exit 1
+          fi
+          echo "排除规则校验通过"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .quartz/public
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
