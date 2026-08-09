@@ -17,8 +17,6 @@
 | Average ITL          | ms            | $\overline{ITL}=\dfrac{\sum_i\sum_j ITL_{ij}}{N_{gap}}$ | 相邻两个输出 token 之间的平均间隔，决定出字快慢；$1000/ITL$ 就是每秒出字数。                          |
 | Average E2E Latency  | s（注意与上两项单位不同） | $\overline{E2E}=\dfrac{\sum_i E2E_i}{N_{req}}$          | 一个请求从进入到说完的平均总时长。它满足 $E2E \approx TTFT + ITL \times OSL$，所以必须结合输出长度才有意义。 |
 
-> ⚠️ 后 6 项面板内置阈值均为模板残留的 `red @ 80`（超过 80 就标红），对 token/请求数无意义，**只看数字别看颜色**。
-
 # Row 2 · Frontend（对外服务质量，9 项）
 
 | 参数名 | 单位 | 计算公式 | 详细解释 |

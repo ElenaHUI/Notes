@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "看板问题解决.md",
+                "file": "PTG/LLM Prometheus 性能分析报告生成Skill.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "看板问题解决"
+              "title": "LLM Prometheus 性能分析报告生成Skill"
             }
           }
         ],
@@ -98,8 +98,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "9a3c6079e211d7fa",
@@ -227,21 +226,22 @@
   },
   "active": "de8dd0554bbbdf7e",
   "lastOpenFiles": [
+    "index.md",
+    "PTG/kimi2.6 PD分离部署记录.md",
+    "PTG/bugmirror.pdf",
+    "PTG/红区Infra.md",
+    "模型部署.md",
+    "Grafana看板.md",
+    "看板问题解决.md",
     "asset/Pasted image 20260807183405.png",
     "asset/Pasted image 20260807182818.png",
     "asset/Pasted image 20260807182718.png",
-    "Grafana看板.md",
-    "看板问题解决.md",
     "asset/Pasted image 20260807174959.png",
     "asset/Pasted image 20260807174740.png",
     "asset/Pasted image 20260807173829.png",
     "asset/Pasted image 20260807173631.png",
     "Dynamo/NVIDIA Dynamo 博客学习笔记.md",
-    "模型部署.md",
     "待办汇总.md",
-    "PTG/kimi2.6 PD分离部署记录.md",
-    "PTG/bugmirror.pdf",
-    "PTG/红区Infra.md",
     "Opencode/Opencode使用.md",
     "asset/Pasted image 20260806171222.png",
     "Opencode/Plugin.md",
@@ -253,7 +253,6 @@
     "CS336/CS336-L14-Data-Processing.md",
     "Opencode/需求手册.md",
     "asset/Pasted image 20260805155928.png",
-    "asset/Pasted image 20260805155907.png",
     "Opencode/bugfix01-没有report接口.md",
     "Opencode/未命名.md",
     "Opencode/使用手册.md",
