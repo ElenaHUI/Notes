@@ -1,3 +1,746 @@
 @use "./variables.scss" as *;
 
-// put your custom CSS here!
+/* ============================================================================
+   「温暖纸质」主题
+   ----------------------------------------------------------------------------
+   配色与字体的基准值写在 quartz.config.yaml 的 theme 里，这里只做质感、
+   排版节奏与组件层面的加工。
+   注意：base.scss 与各插件样式都被包进 @layer quartz-base，而本文件是无层
+   样式，因此这里的规则天然优先，无需靠提高选择器权重来覆盖。
+   ============================================================================ */
+
+// ----------------------------------------------------------------------------
+// 1. 派生变量
+// ----------------------------------------------------------------------------
+:root {
+  // 纸面层次：卡片（凸）/ 凹槽（凹）
+  --paper-card: #fffdf7;
+  --paper-sunk: #f4ecdf;
+  --paper-shadow: rgba(92, 71, 45, 0.09);
+  --paper-shadow-strong: rgba(92, 71, 45, 0.18);
+  --paper-grain: 0.055;
+  --rule: 1px solid var(--lightgray);
+
+  // 中英混排字体栈：拉丁字形来自 Google Fonts（见 config 的 typography），
+  // 中文回退到系统字体，避免为 CJK 拉取几 MB 的 webfont。
+  --serif-stack: "Newsreader", "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", Georgia,
+    serif;
+  --sans-stack: "Source Sans 3", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui,
+    sans-serif;
+}
+
+:root[saved-theme="dark"] {
+  --paper-card: #221e19;
+  --paper-sunk: #15130f;
+  --paper-shadow: rgba(0, 0, 0, 0.45);
+  --paper-shadow-strong: rgba(0, 0, 0, 0.6);
+  --paper-grain: 0.035;
+}
+
+// 侧栏卡片：右栏各组件共用
+@mixin paper-card {
+  box-sizing: border-box;
+  background: var(--paper-card);
+  border: var(--rule);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  box-shadow: 0 1px 2px var(--paper-shadow);
+}
+
+// 卡片小标题：字号收小、字距放开，让侧栏安静下来
+@mixin card-heading {
+  margin: 0;
+  font-family: var(--sans-stack);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+// ----------------------------------------------------------------------------
+// 2. 纸面质感
+// ----------------------------------------------------------------------------
+html {
+  background-color: var(--light);
+}
+
+body {
+  font-family: var(--sans-stack);
+  background-color: var(--light);
+  // 左上/右上两处极淡的暖色光，避免大片纯色显得死板
+  background-image:
+    radial-gradient(ellipse 70% 45% at 10% -10%, rgba(197, 138, 79, 0.13), transparent 70%),
+    radial-gradient(ellipse 55% 35% at 95% -5%, rgba(163, 85, 46, 0.08), transparent 70%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  // 让下面的颗粒层压在 body 背景之上、正文之下
+  isolation: isolate;
+}
+
+// 纸张颗粒：内联 SVG 噪声，不额外请求资源
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--paper-grain);
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='180'%20height='180'%3E%3Cfilter%20id='p'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.9'%20numOctaves='4'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='saturate'%20values='0'/%3E%3C/filter%3E%3Crect%20width='180'%20height='180'%20filter='url(%23p)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: var(--textHighlight);
+  color: var(--dark);
+}
+
+// ----------------------------------------------------------------------------
+// 3. 排版节奏
+// ----------------------------------------------------------------------------
+article {
+  font-size: 1.02rem;
+}
+
+// 中文正文需要比默认更松的行距
+tbody,
+li,
+p {
+  line-height: 1.85;
+}
+
+article {
+  & p {
+    margin: 0 0 1.05rem;
+  }
+
+  & ul,
+  & ol {
+    padding-left: 1.4rem;
+  }
+
+  & li {
+    margin: 0.28rem 0;
+
+    &::marker {
+      color: var(--gray);
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.page-title,
+.article-title {
+  font-family: var(--serif-stack);
+  letter-spacing: 0.01em;
+}
+
+.article-title {
+  margin: 0 0 0.35rem;
+  font-size: 2.1rem;
+  line-height: 1.3;
+}
+
+article {
+  // 二级标题带一条细分割线，像书里的章节
+  & > h2,
+  & .markdown-preview-view > h2 {
+    padding-bottom: 0.35rem;
+    border-bottom: var(--rule);
+  }
+
+  // 三级标题用赭石色短竖线领起
+  & > h3,
+  & .markdown-preview-view > h3 {
+    padding-left: 0.6rem;
+    border-left: 3px solid color-mix(in srgb, var(--secondary) 70%, transparent);
+    line-height: 1.45;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// 4. 链接
+// ----------------------------------------------------------------------------
+a.internal {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--secondary) 32%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  transition:
+    color 0.15s ease,
+    text-decoration-color 0.15s ease;
+
+  &:hover {
+    text-decoration-color: var(--secondary);
+  }
+}
+
+// 标签一律做成标签片
+a.internal.tag-link {
+  text-decoration: none;
+  padding: 0.05rem 0.55rem;
+  border: var(--rule);
+  border-radius: 999px;
+  background: var(--paper-sunk);
+  font-size: 0.82rem;
+  font-weight: $normalWeight;
+
+  &:hover {
+    color: var(--secondary);
+    border-color: color-mix(in srgb, var(--secondary) 45%, var(--lightgray));
+    background: color-mix(in srgb, var(--secondary) 10%, var(--paper-card));
+  }
+}
+
+ul.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.55rem 0 0;
+  padding: 0;
+  list-style: none;
+
+  & > li {
+    margin: 0;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// 5. 正文块级元素
+// ----------------------------------------------------------------------------
+blockquote {
+  margin: 1.4rem 0;
+  padding: 0.55rem 1.1rem;
+  border-left: 3px solid color-mix(in srgb, var(--secondary) 55%, transparent);
+  border-radius: 0 8px 8px 0;
+  background: color-mix(in srgb, var(--secondary) 4%, var(--paper-sunk));
+
+  & > p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+code {
+  padding: 0.08rem 0.32rem;
+  border: 1px solid color-mix(in srgb, var(--lightgray) 70%, transparent);
+  background: var(--paper-sunk);
+}
+
+pre {
+  padding: 0.25rem 0.6rem;
+  border: var(--rule);
+  border-radius: 10px;
+  background: var(--paper-sunk);
+  box-shadow: inset 0 1px 2px var(--paper-shadow);
+
+  & > code {
+    padding: 0.55rem 0;
+    border: none;
+    background: none;
+  }
+}
+
+// 只有一行的代码块不必显示行号（速记类笔记里大量单行示例）
+pre > code:has(> [data-line]:only-child) > [data-line]::before {
+  display: none;
+}
+
+figure[data-rehype-pretty-code-figure] > [data-rehype-pretty-code-title] {
+  padding: 0.2rem 0.7rem;
+  border-radius: 8px 8px 0 0;
+  border-bottom: none;
+  background: var(--paper-card);
+  color: var(--gray);
+}
+
+.table-container {
+  margin: 1.4rem 0;
+  border: var(--rule);
+  border-radius: 10px;
+  background: var(--paper-card);
+  box-shadow: 0 1px 2px var(--paper-shadow);
+
+  & > table {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+th {
+  font-family: var(--serif-stack);
+  background: var(--paper-sunk);
+  border-bottom: 1px solid color-mix(in srgb, var(--gray) 70%, transparent);
+}
+
+tbody tr:nth-child(2n) {
+  background: color-mix(in srgb, var(--paper-sunk) 50%, transparent);
+}
+
+// 图片像贴在纸上的照片：白色卡纸 + 细边 + 轻投影
+article img {
+  padding: 4px;
+  border: var(--rule);
+  border-radius: 8px;
+  background: var(--paper-card);
+  box-shadow: 0 2px 6px var(--paper-shadow);
+}
+
+// 分隔线换成居中的小装饰
+hr {
+  height: auto;
+  margin: 2.4rem auto;
+  background: none;
+  border: none;
+  text-align: center;
+
+  &::before {
+    content: "❋";
+    display: block;
+    color: var(--gray);
+    font-size: 0.85rem;
+    letter-spacing: 0.4em;
+  }
+}
+
+.callout {
+  border-radius: 10px;
+  box-shadow: 0 1px 2px var(--paper-shadow);
+}
+
+// ----------------------------------------------------------------------------
+// 6. 左侧栏
+// ----------------------------------------------------------------------------
+.page-title {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+
+  & a {
+    color: var(--dark);
+    text-decoration: none;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 2.2rem;
+    height: 2px;
+    margin-top: 0.55rem;
+    border-radius: 2px;
+    background: var(--secondary);
+    opacity: 0.75;
+  }
+}
+
+.search-button {
+  height: 2.1rem;
+  border: var(--rule);
+  border-radius: 999px;
+  background: var(--paper-card);
+  box-shadow: 0 1px 2px var(--paper-shadow);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--secondary) 45%, var(--lightgray));
+    box-shadow: 0 2px 6px var(--paper-shadow);
+  }
+
+  & > p {
+    font-size: 0.9rem;
+  }
+}
+
+// 深浅色 / 阅读模式按钮做成圆形
+.darkmode,
+.readermode {
+  width: 2.1rem;
+  height: 2.1rem;
+  border: var(--rule);
+  border-radius: 999px;
+  background: var(--paper-card);
+  box-shadow: 0 1px 2px var(--paper-shadow);
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+
+  & svg {
+    left: calc(50% - 10px);
+    top: calc(50% - 10px);
+  }
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--secondary) 45%, var(--lightgray));
+    background: color-mix(in srgb, var(--secondary) 8%, var(--paper-card));
+  }
+}
+
+.explorer {
+  & button.desktop-explorer,
+  & button.mobile-explorer {
+    color: var(--gray);
+  }
+
+  & .explorer-content ul li > a {
+    display: inline-block;
+    padding: 0.1rem 0.4rem;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition:
+      background 0.15s ease,
+      color 0.15s ease;
+
+    &:hover {
+      opacity: 1;
+      background: var(--highlight);
+    }
+
+    &.active {
+      opacity: 1;
+      color: var(--secondary);
+      background: color-mix(in srgb, var(--secondary) 10%, transparent);
+    }
+  }
+
+  & .explorer-content .folder-outer > ul {
+    border-left: 1px dashed var(--lightgray);
+  }
+}
+
+// ----------------------------------------------------------------------------
+// 7. 右侧栏组件（卡片化）
+// ----------------------------------------------------------------------------
+.toc,
+.graph,
+.backlinks,
+.recent-notes {
+  @include paper-card;
+}
+
+.toc {
+  & .toc-header h3 {
+    @include card-heading;
+  }
+
+  & .toc-content.overflow {
+    margin: 0.5rem 0 0;
+
+    // 只改上下内边距，depth-N 的缩进（padding-left）保持插件默认
+    & > li {
+      padding-block: 0.12rem;
+    }
+
+    & > li > a {
+      opacity: 0.55;
+      font-size: 0.86rem;
+      text-decoration: none;
+
+      &.in-view {
+        opacity: 1;
+        color: var(--secondary);
+      }
+    }
+  }
+}
+
+.graph {
+  & > h3 {
+    @include card-heading;
+  }
+
+  & > .graph-outer {
+    height: 220px;
+    margin: 0.7rem 0 0;
+    border-radius: 8px;
+    background: var(--paper-sunk);
+  }
+}
+
+.recent-notes,
+.backlinks {
+  & > h3 {
+    @include card-heading;
+  }
+
+  & ul {
+    margin: 0.6rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  & li {
+    margin: 0 0 0.5rem;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  & a {
+    font-size: 0.88rem;
+    line-height: 1.45;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+    }
+  }
+}
+
+.recent-notes {
+  & .section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  & .desc > h3 {
+    margin: 0;
+    font-size: 0.88rem;
+    font-weight: $semiBoldWeight;
+  }
+
+  & .meta {
+    margin: 0;
+    font-size: 0.74rem;
+    color: var(--gray);
+    opacity: 1;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// 8. 页眉附属信息与页脚
+// ----------------------------------------------------------------------------
+.breadcrumb-container {
+  font-size: 0.82rem;
+  color: var(--gray);
+
+  & a {
+    color: var(--gray);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--secondary);
+    }
+  }
+}
+
+.content-meta {
+  font-family: var(--serif-stack);
+  font-size: 0.88rem;
+  letter-spacing: 0.02em;
+  color: var(--gray);
+}
+
+footer {
+  margin-top: 3.5rem;
+  padding-top: 1.2rem;
+  border-top: var(--rule);
+  color: var(--gray);
+  font-size: 0.84rem;
+  text-align: center;
+
+  & p {
+    margin: 0.2rem 0;
+    color: var(--gray);
+  }
+
+  & ul {
+    display: flex;
+    gap: 1.1rem;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// 9. 搜索与弹出预览
+// ----------------------------------------------------------------------------
+.search-layout {
+  border: var(--rule);
+  border-radius: 12px;
+  background: var(--paper-card);
+  box-shadow: 0 8px 28px var(--paper-shadow-strong);
+}
+
+.result-card {
+  border-bottom: 1px solid color-mix(in srgb, var(--lightgray) 70%, transparent);
+
+  &.focus {
+    background: color-mix(in srgb, var(--secondary) 8%, transparent);
+  }
+}
+
+.popover > .popover-inner {
+  border: var(--rule);
+  border-radius: 12px;
+  background: var(--paper-card);
+  box-shadow: 0 8px 24px var(--paper-shadow-strong);
+}
+
+.navigation-progress {
+  height: 2px;
+  background: linear-gradient(90deg, var(--secondary), var(--tertiary));
+}
+
+// 滚动条也收窄成暖色细条
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--gray) 55%, transparent) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--gray) 45%, transparent);
+
+  &:hover {
+    background: color-mix(in srgb, var(--gray) 70%, transparent);
+  }
+}
+
+// ----------------------------------------------------------------------------
+// 10. 首页：导航卡片
+// ----------------------------------------------------------------------------
+body[data-slug="index"] {
+  & .article-title {
+    font-size: 2.4rem;
+  }
+
+  & article {
+    // 首段作为导语（中文不用斜体，改用衬线 + 灰调区分）
+    & > .markdown-preview-view > p:first-child {
+      margin-bottom: 1.6rem;
+      padding-bottom: 1.1rem;
+      border-bottom: var(--rule);
+      font-family: var(--serif-stack);
+      font-size: 1.1rem;
+      line-height: 1.85;
+      letter-spacing: 0.01em;
+      color: color-mix(in srgb, var(--darkgray) 82%, transparent);
+    }
+
+    & .markdown-preview-view > h2 {
+      margin-top: 2.4rem;
+      padding-bottom: 0;
+      border-bottom: none;
+      font-size: 1.3rem;
+
+      &::before {
+        content: "◆";
+        margin-right: 0.5rem;
+        color: var(--secondary);
+        font-size: 0.6em;
+        vertical-align: 0.18em;
+      }
+    }
+
+    // 分组链接排成卡片网格
+    & .markdown-preview-view > ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+      gap: 0.7rem;
+      margin: 1rem 0 0;
+      padding: 0;
+      list-style: none;
+
+      & > li {
+        margin: 0;
+      }
+
+      & > li > a.internal {
+        display: block;
+        position: relative;
+        padding: 0.7rem 2rem 0.7rem 0.9rem;
+        border: var(--rule);
+        border-radius: 10px;
+        background: var(--paper-card);
+        box-shadow: 0 1px 2px var(--paper-shadow);
+        color: var(--dark);
+        line-height: 1.4;
+        text-decoration: none;
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          border-color 0.18s ease,
+          color 0.18s ease;
+
+        &::after {
+          content: "→";
+          position: absolute;
+          top: 50%;
+          right: 0.85rem;
+          transform: translateY(-50%);
+          color: var(--gray);
+          font-family: var(--sans-stack);
+          opacity: 0;
+          transition:
+            opacity 0.18s ease,
+            transform 0.18s ease;
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+          border-color: color-mix(in srgb, var(--secondary) 45%, var(--lightgray));
+          box-shadow: 0 6px 14px var(--paper-shadow);
+          color: var(--secondary);
+
+          &::after {
+            opacity: 1;
+            transform: translateY(-50%) translateX(3px);
+            color: var(--secondary);
+          }
+        }
+      }
+
+      // 未公开发布的笔记（被 ignorePatterns 排除）用虚线卡片表示
+      & > li > a.internal.broken {
+        border-style: dashed;
+        box-shadow: none;
+
+        &:hover {
+          transform: none;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// 11. 窄屏微调
+// ----------------------------------------------------------------------------
+@media all and ($mobile) {
+  .article-title,
+  body[data-slug="index"] .article-title {
+    font-size: 1.75rem;
+  }
+
+  article {
+    font-size: 1rem;
+  }
+
+  body[data-slug="index"] article .markdown-preview-view > ul {
+    grid-template-columns: 1fr;
+  }
+}

@@ -24,7 +24,8 @@ configuration:
     - 论文/**
     - 待办汇总.md
     # 内部部署 runbook：含内网域名 *.eng.t-head.cn、同事用户名路径、钉钉内部文档链接
-    - 模型部署.md
+    # 该笔记在 监控链路搭建/ 子目录下，不带 **/ 前缀的模式只会匹配内容根目录
+    - "**/模型部署.md"
     # 内部材料截图（Assets emitter 会复制所有非 md 文件，未被引用也会发布）
     - "**/*红区*"
     - "**/*PPU*"
@@ -37,30 +38,32 @@ configuration:
     fontOrigin: googleFonts
     cdnCaching: true
     typography:
-      header: Schibsted Grotesk
-      body: Source Sans Pro
+      # 标题用暖调衬线（拉丁），正文用人文无衬线，中文回退在 custom.scss 里补齐
+      header: Newsreader
+      body: Source Sans 3
       code: IBM Plex Mono
     colors:
+      # 「温暖纸质」配色：米白纸面 + 赭石强调色
       lightMode:
-        light: "#faf8f8"
-        lightgray: "#e5e5e5"
-        gray: "#b8b8b8"
-        darkgray: "#4e4e4e"
-        dark: "#2b2b2b"
-        secondary: "#284b63"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#fff23688"
+        light: "#fbf7f0"
+        lightgray: "#e7ded0"
+        gray: "#b7a894"
+        darkgray: "#4b4238"
+        dark: "#262019"
+        secondary: "#a3552e"
+        tertiary: "#c58a4f"
+        highlight: rgba(178, 148, 106, 0.15)
+        textHighlight: "#f6d78f88"
       darkMode:
-        light: "#161618"
-        lightgray: "#393639"
-        gray: "#646464"
-        darkgray: "#d4d4d4"
-        dark: "#ebebec"
-        secondary: "#7b97aa"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#b3aa0288"
+        light: "#1a1815"
+        lightgray: "#322d26"
+        gray: "#6d6255"
+        darkgray: "#ded5c6"
+        dark: "#f4ede1"
+        secondary: "#d99a63"
+        tertiary: "#b9855a"
+        highlight: rgba(200, 168, 120, 0.13)
+        textHighlight: "#a8802288"
 plugins:
   - source: "@quartz-community/created-modified-date"
     enabled: true
@@ -74,9 +77,10 @@ plugins:
   - source: "@quartz-community/syntax-highlighting"
     enabled: true
     options:
+      # vitesse 系列的低饱和配色与纸质底色更协调
       theme:
-        light: github-light
-        dark: github-dark
+        light: vitesse-light
+        dark: vitesse-dark
       keepBackground: false
     order: 20
   - source: "@quartz-community/obsidian-flavored-markdown"
@@ -93,7 +97,9 @@ plugins:
     order: 50
     layout:
       position: right
-      priority: 30
+      # 目录放右栏最上方，且只在真的有标题时出现
+      priority: 10
+      condition: has-toc
   - source: "@quartz-community/crawl-links"
     enabled: true
     options:
@@ -162,7 +168,8 @@ plugins:
     enabled: true
     layout:
       position: right
-      priority: 10
+      priority: 30
+      display: desktop-only
   - source: "@quartz-community/search"
     enabled: true
     layout:
@@ -176,6 +183,8 @@ plugins:
     layout:
       position: right
       priority: 50
+      # 没有反链的页面不再显示空卡片
+      condition: has-backlinks
   - source: "@quartz-community/article-title"
     enabled: true
     layout:
@@ -187,10 +196,11 @@ plugins:
       position: beforeBody
       priority: 20
   - source: "@quartz-community/tag-list"
-    enabled: false
+    enabled: true
     layout:
       position: beforeBody
       priority: 30
+      condition: has-tags
   - source: "@quartz-community/page-title"
     enabled: true
     layout:
@@ -231,7 +241,17 @@ plugins:
       position: footer
       priority: 50
   - source: "@quartz-community/recent-notes"
-    enabled: false
+    enabled: true
+    options:
+      title: 最近更新
+      limit: 5
+      showTags: false
+      hideTagPages: true
+      hideFolderPages: true
+    layout:
+      position: right
+      priority: 40
+      display: desktop-only
   - source: "@quartz-community/spacer"
     enabled: true
     options: {}
@@ -245,6 +265,8 @@ plugins:
     options: {}
     order: 50
   - source: "@quartz-community/note-properties"
+    # 这个插件同时负责解析 frontmatter，不能关掉；
+    # 只隐藏它渲染的属性表格，标签改由 tag-list 以标签片展示
     enabled: true
     options:
       includeAll: false
@@ -253,7 +275,7 @@ plugins:
         - tags
         - aliases
       excludedProperties: []
-      hidePropertiesView: false
+      hidePropertiesView: true
       delimiters: ---
       language: yaml
     order: 5

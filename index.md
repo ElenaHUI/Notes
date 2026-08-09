@@ -25,6 +25,8 @@ LLM 推理与 AI Infra 方向的学习笔记，公开部分由 [Quartz](https://
 
 ## 推理基础设施
 
+大规模推理部署中的架构与通信问题。
+
 - [[Infra/PD分离|PD 分离]]
 - [[Infra/集群通信|集群通信]]
 
@@ -38,11 +40,15 @@ NVIDIA Dynamo 分布式推理框架的原理与配置。
 
 ## 监控链路搭建
 
+Prometheus + Grafana 观测链路的搭建与排障记录。
+
 - [[Grafana看板]]
 - [[看板问题解决]]
 - [[模型部署]]
 
 ## 算法
+
+日常刷题与数据结构速查。
 
 - [[Leetcode/LeetCode 刷题汇总|LeetCode 刷题汇总]]
 - [[Leetcode/数据结构操作速记|数据结构操作速记]]
