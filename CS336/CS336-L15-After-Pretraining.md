@@ -184,6 +184,7 @@ DPO 的目标：去掉 reward model，去掉 on-policy rollout/outer loop。
 ## 相关链接
 
 - 上一讲：[CS336-L14-Data-Processing](CS336-L14-Data-Processing.md)
+- 下一讲：[CS336-L16-RLVR](CS336-L16-RLVR.md)
 - 关键论文：
   - Ouyang et al. 2022 (InstructGPT)
   - Stiennon et al. 2020 (Learning to summarize from human feedback)

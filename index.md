@@ -42,7 +42,7 @@ NVIDIA Dynamo 分布式推理框架的原理与配置。
 
 Prometheus + Grafana 观测链路的搭建与排障记录。
 
-- [[Grafana看板]]
+- [[针对Dynamo v1.3.0的Grafana看板]]
 - [[看板问题解决]]
 - [[模型部署]]
 
