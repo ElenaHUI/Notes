@@ -8,61 +8,35 @@
         "type": "tabs",
         "children": [
           {
-            "id": "2e811de24b6ae538",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Grafana看板.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Grafana看板"
-            }
-          },
-          {
-            "id": "de8dd0554bbbdf7e",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "PTG/bugmirror.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "bugmirror"
-            }
-          },
-          {
             "id": "c06396a837ce4a47",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "监控链路搭建/针对Dynamo v1.3.0的Grafana看板.md",
+                "file": "Opencode/bugfix03-安装脚本时报错.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "针对Dynamo v1.3.0的Grafana看板"
+              "title": "bugfix03-安装脚本时报错"
             }
           },
           {
-            "id": "a4a96703fdd6bcc6",
+            "id": "ce5f6193bff2ecac",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "未命名.md",
+                "file": "Leetcode/LeetCode 刷题汇总.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "未命名"
+              "title": "LeetCode 刷题汇总"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -202,7 +176,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "监控链路搭建/针对Dynamo v1.3.0的Grafana看板.md",
+                "file": "监控链路搭建/看板问题解决.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -250,10 +224,38 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "79528a5fa5a5fadf",
+  "active": "ce5f6193bff2ecac",
   "lastOpenFiles": [
-    "未命名.md",
+    "PTG/kimi2.6 PD分离部署记录.md",
+    "Leetcode/课程表.md",
+    "Leetcode/二分查找.md",
+    "Leetcode/图/210. 课程表 II.md",
+    "Leetcode/图/207. 课程表.md",
+    "Leetcode/回溯/22. 括号生成.md",
+    "Leetcode/二分查找/74. 搜索二维矩阵.md",
+    "Leetcode/二分查找/33. 搜索旋转排序数组.md",
+    "Leetcode/二分查找/153. 寻找旋转排序数组中的最小值.md",
+    "Leetcode/栈/155. 最小栈.md",
+    "Leetcode/栈/394. 字符串解码.md",
+    "Leetcode/栈/739. 每日温度.md",
+    "Leetcode/图",
+    "Leetcode/回溯",
+    "Leetcode/二分查找",
+    "Leetcode/栈",
+    "Leetcode/括号生成.md",
+    "Leetcode/数据结构操作速记.md",
+    "Leetcode/栈.md",
+    "Leetcode/LeetCode 刷题汇总.md",
+    "dynamo PD 分离部署.md",
+    "论文/SMC 2026.md",
+    "论文/GC 2026.md",
+    "Opencode/bugfix04.md",
+    "Opencode/bugfix03-安装脚本时报错.md",
+    "监控链路搭建/看板问题解决.md",
     "监控链路搭建/针对Dynamo v1.3.0的Grafana看板.md",
+    "PTG/bugmirror.pdf",
+    "监控链路搭建/模型部署.md",
+    "未命名.md",
     "监控链路搭建/asset/Pasted image 20260811172552.png",
     "监控链路搭建/asset/Pasted image 20260811172529.png",
     "监控链路搭建/asset/Pasted image 20260811172510.png",
@@ -266,38 +268,10 @@
     "监控链路搭建/asset/Pasted image 20260811171844.png",
     "监控链路搭建/asset",
     "Dynamo/NVIDIA Dynamo 博客学习笔记.md",
-    "Leetcode/数据结构操作速记.md",
-    "监控链路搭建/看板问题解决.md",
-    "Opencode/Plugin.md",
-    "Opencode/Opencode使用.md",
-    "PTG/LLM Prometheus 性能分析报告生成Skill.md",
-    "PTG/KV- cache优化.md",
-    "PTG/bugmirror.pdf",
     "CS336/CS336-L16-RLVR.md.tmp.1769.1786344198325",
-    "PTG/红区Infra.md",
-    "监控链路搭建/模型部署.md",
-    "CS336/CS336-L16-RLVR.md",
     "CS336/CS336-L16-RLVR.md.tmp.1769.1786344179531",
     "CS336/CS336-L16-RLVR.md.tmp.1769.1786344166746",
     "CS336/CS336-L16-RLVR.md.tmp.1769.1786344151140",
-    "Dynamo/Dynamo.md",
-    "Dynamo/Dynamo配置说明.md",
-    "CS336/强化学习.md",
-    "CS336/CS336-L5-GPUs-TPUs.md",
-    "CS336/CS336-L15-After-Pretraining.md",
-    "强化学习.md",
-    "Leetcode/课程表.md",
-    "论文/SMC 2026.md",
-    "论文/GC 2026.md",
-    "index.md",
-    "待办汇总.md",
-    "Opencode/使用手册.md",
-    "Opencode/钉钉群消息.md",
-    "监控链路搭建",
-    "PTG/kimi2.6 PD分离部署记录.md",
-    "Dynamo",
-    "PTG/asset",
-    "Infra/asset",
     "未命名.canvas"
   ]
 }
