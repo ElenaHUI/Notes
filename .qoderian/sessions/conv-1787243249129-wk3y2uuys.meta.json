@@ -1,0 +1,20 @@
+{
+  "id": "conv-1787243249129-wk3y2uuys",
+  "title": "Fix tar extraction error for Node.js tarball",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787243249129,
+  "updatedAt": 1787295888010,
+  "lastResponseAt": 1787293391066,
+  "sessionId": "a5f2a16b-9a08-4d7b-b691-f4e00f2f16b4",
+  "usage": {
+    "model": "qmodel_38max",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 53600,
+    "percentage": 27
+  },
+  "edition": "global"
+}

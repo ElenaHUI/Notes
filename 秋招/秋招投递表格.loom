@@ -1,0 +1,2974 @@
+{
+  "model": {
+    "columns": [
+      {
+        "id": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+        "sortDir": "default",
+        "isVisible": true,
+        "width": "180px",
+        "type": "text",
+        "numberPrefix": "",
+        "numberSuffix": "",
+        "numberSeparator": "",
+        "content": "公司",
+        "numberFormat": "number",
+        "currencyType": "USD",
+        "dateFormat": "mmddyyyy",
+        "dateFormatSeparator": "-",
+        "hour12": true,
+        "includeTime": false,
+        "shouldWrapOverflow": true,
+        "tags": [],
+        "calculationType": "none",
+        "aspectRatio": "unset",
+        "horizontalPadding": "unset",
+        "verticalPadding": "unset",
+        "frontmatterKey": null,
+        "multiTagSortDir": "default"
+      },
+      {
+        "id": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+        "sortDir": "default",
+        "isVisible": true,
+        "width": "130px",
+        "type": "tag",
+        "numberPrefix": "",
+        "numberSuffix": "",
+        "numberSeparator": "",
+        "content": "类型",
+        "numberFormat": "number",
+        "currencyType": "USD",
+        "dateFormat": "mmddyyyy",
+        "dateFormatSeparator": "-",
+        "hour12": true,
+        "includeTime": false,
+        "shouldWrapOverflow": true,
+        "tags": [
+          {
+            "id": "e934d03c-518e-4412-aa3b-3fff46a3f94e",
+            "content": "互联网大厂",
+            "color": "blue"
+          },
+          {
+            "id": "627a550d-fa58-463a-a6af-b3f147f75fcd",
+            "content": "外企",
+            "color": "purple"
+          },
+          {
+            "id": "d63c8bf5-ee92-47df-888e-0a00ad20e197",
+            "content": "AI大模型",
+            "color": "red"
+          },
+          {
+            "id": "8dbe1bf7-2c40-40c6-80e3-677dca73675c",
+            "content": "AI芯片",
+            "color": "orange"
+          },
+          {
+            "id": "af1796a5-87ed-4b99-903a-687304ec5e57",
+            "content": "智算平台",
+            "color": "yellow"
+          },
+          {
+            "id": "13cff533-9f92-4ce6-90a9-22c5e094043b",
+            "content": "自动驾驶",
+            "color": "green"
+          },
+          {
+            "id": "b6fef9d6-5b8d-44c1-9687-58f062d3aa6e",
+            "content": "智能硬件",
+            "color": "brown"
+          },
+          {
+            "id": "f9f6bcbb-7971-48e9-a94a-b96831216fe5",
+            "content": "具身智能",
+            "color": "pink"
+          }
+        ],
+        "calculationType": "none",
+        "aspectRatio": "unset",
+        "horizontalPadding": "unset",
+        "verticalPadding": "unset",
+        "frontmatterKey": null,
+        "multiTagSortDir": "default"
+      },
+      {
+        "id": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+        "sortDir": "default",
+        "isVisible": true,
+        "width": "110px",
+        "type": "tag",
+        "numberPrefix": "",
+        "numberSuffix": "",
+        "numberSeparator": "",
+        "content": "优先级",
+        "numberFormat": "number",
+        "currencyType": "USD",
+        "dateFormat": "mmddyyyy",
+        "dateFormatSeparator": "-",
+        "hour12": true,
+        "includeTime": false,
+        "shouldWrapOverflow": true,
+        "tags": [
+          {
+            "id": "3dd876d9-40c7-4ca7-a0ae-52fdc6a8a216",
+            "content": "🔴 P0",
+            "color": "red"
+          },
+          {
+            "id": "d05a5d33-cf1c-4a38-b8d0-15450c502287",
+            "content": "🟠 P1",
+            "color": "orange"
+          },
+          {
+            "id": "5c966613-6228-4f42-9df7-c06d73586b8a",
+            "content": "🔵 P2",
+            "color": "blue"
+          }
+        ],
+        "calculationType": "none",
+        "aspectRatio": "unset",
+        "horizontalPadding": "unset",
+        "verticalPadding": "unset",
+        "frontmatterKey": null,
+        "multiTagSortDir": "default"
+      },
+      {
+        "id": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+        "sortDir": "default",
+        "isVisible": true,
+        "width": "120px",
+        "type": "tag",
+        "numberPrefix": "",
+        "numberSuffix": "",
+        "numberSeparator": "",
+        "content": "状态",
+        "numberFormat": "number",
+        "currencyType": "USD",
+        "dateFormat": "mmddyyyy",
+        "dateFormatSeparator": "-",
+        "hour12": true,
+        "includeTime": false,
+        "shouldWrapOverflow": true,
+        "tags": [
+          {
+            "id": "73b0ba1b-18ff-4f72-b63f-edc7453757f1",
+            "content": "⬜ 未投递",
+            "color": "light gray"
+          },
+          {
+            "id": "d0382906-8c9a-4534-a6e5-4f86c06f78b1",
+            "content": "📨 已投递",
+            "color": "yellow"
+          },
+          {
+            "id": "a94e2eb8-0f0b-4808-8d40-18f421ca40b0",
+            "content": "📝 笔试",
+            "color": "purple"
+          },
+          {
+            "id": "92e82456-ef58-4831-84b8-ebfa85459b6b",
+            "content": "💬 面试中",
+            "color": "green"
+          },
+          {
+            "id": "01946370-b726-4f52-ae92-bf67e9711869",
+            "content": "✅ Offer",
+            "color": "green"
+          },
+          {
+            "id": "77dba23d-b647-4250-bf20-dbd167f386ca",
+            "content": "❌ 被拒",
+            "color": "red"
+          },
+          {
+            "id": "fb1445ad-0d62-49f5-ad6a-c922ea3a3979",
+            "content": "🧊 泡池",
+            "color": "gray"
+          }
+        ],
+        "calculationType": "none",
+        "aspectRatio": "unset",
+        "horizontalPadding": "unset",
+        "verticalPadding": "unset",
+        "frontmatterKey": null,
+        "multiTagSortDir": "default"
+      },
+      {
+        "id": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+        "sortDir": "default",
+        "isVisible": true,
+        "width": "380px",
+        "type": "text",
+        "numberPrefix": "",
+        "numberSuffix": "",
+        "numberSeparator": "",
+        "content": "备注",
+        "numberFormat": "number",
+        "currencyType": "USD",
+        "dateFormat": "mmddyyyy",
+        "dateFormatSeparator": "-",
+        "hour12": true,
+        "includeTime": false,
+        "shouldWrapOverflow": true,
+        "tags": [],
+        "calculationType": "none",
+        "aspectRatio": "unset",
+        "horizontalPadding": "unset",
+        "verticalPadding": "unset",
+        "frontmatterKey": null,
+        "multiTagSortDir": "default"
+      }
+    ],
+    "rows": [
+      {
+        "id": "fb3e78cf-4080-4276-ae15-c03cb517dfec",
+        "index": 0,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "6e0b4b0b-d220-4430-acd0-9acf73ef0056",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "字节跳动"
+          },
+          {
+            "id": "758efcf4-26e9-41c4-83a9-b5febea0d432",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "e934d03c-518e-4412-aa3b-3fff46a3f94e"
+          },
+          {
+            "id": "8d5d177e-477a-4f0c-8b31-d4bc65d497bb",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "3dd876d9-40c7-4ca7-a0ae-52fdc6a8a216"
+          },
+          {
+            "id": "97938640-5008-4f14-a5ad-934447ce2e21",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "c21db07d-8e9b-466c-aaed-0c95783222bc",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "Seed/豆包大模型基建第一梯队，薪资天花板高"
+          }
+        ]
+      },
+      {
+        "id": "195f5fa8-bec9-48bc-90e7-e66a9ee1a9cd",
+        "index": 1,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "67abf893-8e9a-49b3-a693-85f350293efe",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "DeepSeek（深度求索）"
+          },
+          {
+            "id": "3ebc35d3-59d7-4e8c-b0ee-ad9488b912a0",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "d63c8bf5-ee92-47df-888e-0a00ad20e197"
+          },
+          {
+            "id": "21f0a63b-dc80-47eb-a320-6b4ba84478ad",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "3dd876d9-40c7-4ca7-a0ae-52fdc6a8a216"
+          },
+          {
+            "id": "06e135c7-85bb-4342-a3e3-3f3f5b1a6f92",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "a8393828-7354-41e3-ac32-f7c3649d5dce",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "开源大模型技术标杆，推理系统挑战大，与自身背景匹配度最高"
+          }
+        ]
+      },
+      {
+        "id": "a524bff9-956d-46d2-9f71-cac28ce9f954",
+        "index": 2,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "76a020ed-e559-4e29-8996-83f8a6dde852",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "月之暗面（Kimi）"
+          },
+          {
+            "id": "e28eba92-f45b-4f07-829f-1921be4958ec",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "d63c8bf5-ee92-47df-888e-0a00ad20e197"
+          },
+          {
+            "id": "3b2a4414-f5b8-4efe-8216-5c9df580d575",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "3dd876d9-40c7-4ca7-a0ae-52fdc6a8a216"
+          },
+          {
+            "id": "e4054f39-9bf6-422e-a4d6-a8bf9e98d9f1",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "f7b456f0-c437-4e43-bee3-bd1b7f3858c7",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "头部大模型；已有 Kimi PD 分离部署实战经验，面试有话聊"
+          }
+        ]
+      },
+      {
+        "id": "b7ca6e58-f62f-40ba-9e98-4ebe4251c11e",
+        "index": 3,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "34ee5106-86a8-46d9-b93b-f1b99473cec9",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "英伟达（NVIDIA）中国"
+          },
+          {
+            "id": "b38292de-1b57-40be-954c-91a697d6f21d",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "627a550d-fa58-463a-a6af-b3f147f75fcd"
+          },
+          {
+            "id": "79ee6ce6-ff5f-4f1b-bfeb-14f7ef7a4934",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "3dd876d9-40c7-4ca7-a0ae-52fdc6a8a216"
+          },
+          {
+            "id": "db1cad0b-0f79-4a12-a87f-17460bd59d76",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "1b14354d-b1c7-45b9-9f43-f2020dc6b594",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "AI 芯片霸主，系统软件岗含金量高、WLB 好"
+          }
+        ]
+      },
+      {
+        "id": "62394c44-9f02-40d5-a78b-6785da2acf57",
+        "index": 4,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "351c2e12-a29c-434a-af23-f9e12f8a2620",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "蚂蚁集团"
+          },
+          {
+            "id": "521b4c83-e7f1-4cb7-ab65-26315cfe40e3",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "e934d03c-518e-4412-aa3b-3fff46a3f94e"
+          },
+          {
+            "id": "9942970c-c4bc-4341-84b8-2356cdbed31a",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "3dd876d9-40c7-4ca7-a0ae-52fdc6a8a216"
+          },
+          {
+            "id": "ee4aa353-2816-44ad-a7ad-7237170678ad",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "853a6c9f-0725-4f23-afab-3b708dfbde0c",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "薪资高且稳定，大模型基建岗值得关注"
+          }
+        ]
+      },
+      {
+        "id": "f543f3e7-b5cf-44f1-b7b2-f5042be76cd7",
+        "index": 5,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:57:43.164Z",
+        "cells": [
+          {
+            "id": "e48a883c-689b-4aaf-a3c7-c27a10ee5b92",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "拼多多/Temu"
+          },
+          {
+            "id": "2449e13e-88a2-49d9-869e-da4cde6b82e8",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "e934d03c-518e-4412-aa3b-3fff46a3f94e"
+          },
+          {
+            "id": "7557538f-58e9-4add-be03-1a3708d92cc2",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "3dd876d9-40c7-4ca7-a0ae-52fdc6a8a216"
+          },
+          {
+            "id": "a9c2a268-cf5a-4cff-aab5-cb4a4f337fee",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "d0382906-8c9a-4534-a6e5-4f86c06f78b1"
+          },
+          {
+            "id": "cbfa3bf6-2c83-4fb4-9921-a4e1160f34af",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "投了infra的提前批"
+          }
+        ]
+      },
+      {
+        "id": "c0332f07-8392-4a2d-9d32-5aec65f86994",
+        "index": 6,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "94876c75-a740-4b56-9086-ee1cc10c7969",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "商汤科技"
+          },
+          {
+            "id": "5cbcceb9-3f90-4c8c-8c3f-3ad0a762b63c",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "af1796a5-87ed-4b99-903a-687304ec5e57"
+          },
+          {
+            "id": "16be6330-1969-4afc-aed4-3b26bacb05f1",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "f6ae8424-bd4b-44fc-945a-e97dce2da427",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "92e82456-ef58-4831-84b8-ebfa85459b6b"
+          },
+          {
+            "id": "78f34cb3-ce2e-4d77-b6c6-2cab8956b307",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "8-24 已面大模型系统工程师岗，详见《商汤 大模型系统工程师面经》"
+          }
+        ]
+      },
+      {
+        "id": "4b8aa337-11b4-4141-ab3c-b64c9064a58c",
+        "index": 7,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "d1337940-614b-4390-baaa-51dbb166a428",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "阿里巴巴"
+          },
+          {
+            "id": "5f5caba9-b7dc-4e74-af3c-c5aad7c82866",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "e934d03c-518e-4412-aa3b-3fff46a3f94e"
+          },
+          {
+            "id": "6ecb583d-c019-41d3-8635-8943423d1c6b",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "7a3d7f06-c25e-4575-bc9f-c610bf8c0092",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "95719b3f-6be6-4480-af9e-80e3a171df05",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "本集团，可关注跨 BU / 内部活水通道"
+          }
+        ]
+      },
+      {
+        "id": "7c6f0a78-f65d-4f36-b447-7a33b8443025",
+        "index": 8,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T04:02:44.917Z",
+        "cells": [
+          {
+            "id": "22b347e6-b305-48df-810e-f7b3a3fc03c3",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "腾讯"
+          },
+          {
+            "id": "22a73381-3bc0-40db-a76d-6bb468939aef",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "e934d03c-518e-4412-aa3b-3fff46a3f94e"
+          },
+          {
+            "id": "a1b85016-4251-4a60-8f9b-2a5d35a33121",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "3dd876d9-40c7-4ca7-a0ae-52fdc6a8a216"
+          },
+          {
+            "id": "017e2b1f-58ca-45b9-b57f-fb6877d72b4a",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "63c0c6de-4840-4b7d-a126-0eb67c22d758",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "稳健大厂，混元大模型"
+          }
+        ]
+      },
+      {
+        "id": "07e9da68-03ce-4b02-be8d-089e419c2577",
+        "index": 9,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "0971cf79-fd62-40c1-90fa-b56c4807203c",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "华为"
+          },
+          {
+            "id": "cd763164-9fed-4b83-ad59-863ca163bc47",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "e934d03c-518e-4412-aa3b-3fff46a3f94e"
+          },
+          {
+            "id": "5fac9484-50a3-4f43-8b9d-b2b3f9f46ad0",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "83e35033-d9b1-41b4-8095-1f448c6296a7",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "7af8bf47-6e99-45c7-b64d-cfc311034cd6",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "昇腾生态，与部署背景匹配"
+          }
+        ]
+      },
+      {
+        "id": "7c49cc67-b4c2-422a-84c2-09cb8cf7e335",
+        "index": 10,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "019c7826-2b7c-4989-a636-9cc02f0ee86d",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "小红书"
+          },
+          {
+            "id": "5f7e45ed-2642-4ec3-b767-c9c029ab61f9",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "e934d03c-518e-4412-aa3b-3fff46a3f94e"
+          },
+          {
+            "id": "389c9342-23e2-4a48-bb79-cdeec105f962",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "cbd0fcdb-f79d-4189-8797-9289404a730d",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "658053fa-391a-4af2-9966-2587cc81ef52",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "增长快、薪资高"
+          }
+        ]
+      },
+      {
+        "id": "f59ee90f-813d-476d-9945-289f9d740653",
+        "index": 11,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "96ada8eb-ca1f-480a-9ccb-17202130a6ac",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "美团"
+          },
+          {
+            "id": "912a0169-5890-45df-8f72-3c0d2acc6750",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "e934d03c-518e-4412-aa3b-3fff46a3f94e"
+          },
+          {
+            "id": "2c25e543-724e-4cbf-b2ea-635de8760889",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "86018d82-667c-4544-be80-be0d3165afef",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "e9282114-dace-4037-9d14-70a8bee25a81",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "基建岗扎实，稳定"
+          }
+        ]
+      },
+      {
+        "id": "78c1e43b-edd5-40fc-84ef-32df84dbabd2",
+        "index": 12,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "814f6787-2186-4855-8924-632d28017f6c",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "快手"
+          },
+          {
+            "id": "045d74da-b65f-496f-8c9a-cba451972ae1",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "e934d03c-518e-4412-aa3b-3fff46a3f94e"
+          },
+          {
+            "id": "d7f7447b-31ee-423b-8fda-b33fed1a5e11",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "5a1aef39-85c8-411a-bf35-9d1a351d8b5a",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "26d9b012-f871-45be-8fb5-6d0b2afba16a",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "可灵大模型，视频生成强"
+          }
+        ]
+      },
+      {
+        "id": "b728c110-a1a6-4d32-a86c-ebb809c7a569",
+        "index": 13,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "25e2f53f-1feb-4cd3-802f-f3b3257a4aa1",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "智谱AI"
+          },
+          {
+            "id": "0b4b23a7-9c9c-4979-a233-8482f914463c",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "d63c8bf5-ee92-47df-888e-0a00ad20e197"
+          },
+          {
+            "id": "51a85a1b-9473-4038-81d0-2c502622a08c",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "34c92aa3-2d2f-480c-bdff-890cfa4728b3",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "56e126b4-b16d-488e-9dd8-a9fbd007320c",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "六小虎头部，IPO 进程领先"
+          }
+        ]
+      },
+      {
+        "id": "49e6ae3e-8a3f-4c9b-b6f0-18859d449af3",
+        "index": 14,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "e0fad42f-7f18-4a10-842a-e2edc0adc2d6",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "MiniMax（稀宇科技）"
+          },
+          {
+            "id": "b323cdd5-4bae-471f-b962-ccadb731e3d3",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "d63c8bf5-ee92-47df-888e-0a00ad20e197"
+          },
+          {
+            "id": "46251f47-1605-429c-a3b3-71aa084ded9a",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "37fab69d-5f0c-4da6-a0dc-95cd1edbb217",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "d0a16055-daf2-40cc-90ac-bc87e0bb0580",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "海外商业化收入最强"
+          }
+        ]
+      },
+      {
+        "id": "fbb8daed-2e63-46d1-950e-f83a6196657e",
+        "index": 15,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "7c12019d-d71c-4536-9cea-3ed160d0a149",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "阶跃星辰（StepFun）"
+          },
+          {
+            "id": "a90dbc3d-4e59-47ab-9851-66e6202a7914",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "d63c8bf5-ee92-47df-888e-0a00ad20e197"
+          },
+          {
+            "id": "210dcda1-6a65-480f-98c1-341063f844e5",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "50697ff9-07ae-49e7-b256-a867a156a8bd",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "ce11d503-0312-4521-805d-6d4206c52c11",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "模型口碑好，技术团队强"
+          }
+        ]
+      },
+      {
+        "id": "7d29f913-3906-4cc2-8b1e-e04d31b18269",
+        "index": 16,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "2569a8ae-22b8-4e9c-97ce-5a8cd4def9d3",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "寒武纪"
+          },
+          {
+            "id": "d900ccac-4008-46a5-805d-ab1475b5bfea",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "8dbe1bf7-2c40-40c6-80e3-677dca73675c"
+          },
+          {
+            "id": "44229722-b8f4-4796-8cde-e91bb6c5e642",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "365e738a-30fe-4285-98ba-3fbe84f175c5",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "503b88f3-ce0f-45d3-acfd-e5cf0011df92",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "AI 芯片上市龙头，思元生态"
+          }
+        ]
+      },
+      {
+        "id": "9475caab-4c72-4c2d-bd61-ea4357ce2521",
+        "index": 17,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "60a06011-8dc6-47a5-9fac-39c2ab1fca27",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "海光信息"
+          },
+          {
+            "id": "66180ad6-d441-417e-a74b-71736447069b",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "8dbe1bf7-2c40-40c6-80e3-677dca73675c"
+          },
+          {
+            "id": "a0ebe14a-713d-406a-8544-40c4a9665b67",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "95ff2600-ef94-41d2-9d08-6b232a350630",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "dcedbaa5-0f5b-4a71-98a5-fb82ad7260d9",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "上市，国产 DCU 龙头"
+          }
+        ]
+      },
+      {
+        "id": "4121e3ab-32e9-4e53-9b7f-2aa4d1cea9a5",
+        "index": 18,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "1e563ee6-a663-4368-90c1-cf3cdd4515de",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "华为车BU"
+          },
+          {
+            "id": "720903ee-3f3b-4845-b489-9ed84e9a37a5",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "13cff533-9f92-4ce6-90a9-22c5e094043b"
+          },
+          {
+            "id": "877d5499-54a0-4a40-b3b3-08a2d43c9c89",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "7d91d5a8-f9d3-4dfd-aeec-a23c2cf0147f",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "1030c4a5-7640-46ca-8b83-de7b894ee735",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "ADS 智驾，关注度高"
+          }
+        ]
+      },
+      {
+        "id": "42fcc4c5-bb2b-4e18-9384-30ef56a69c43",
+        "index": 19,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "3b099269-e44c-4169-8170-1c8a54b3f5f3",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "Momenta"
+          },
+          {
+            "id": "f22887c7-1ed7-4526-a176-8030f2ae8f3d",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "13cff533-9f92-4ce6-90a9-22c5e094043b"
+          },
+          {
+            "id": "43082d22-44b9-4c7a-83e9-ccd7189936c7",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "548ae8da-f867-42f7-91d0-5ec8c031ffe2",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "ec078712-90e1-4015-a2d7-e1e8fb6afdf3",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "第三方智驾方案龙头"
+          }
+        ]
+      },
+      {
+        "id": "cc7896d8-62cd-45c7-ba40-1ae886dfd75e",
+        "index": 20,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "6466eaad-c8b9-40d8-82d4-8a9b292078f5",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "小马智行（Pony.ai）"
+          },
+          {
+            "id": "4d0c5353-7309-480f-a3bd-d22a75bf02f0",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "13cff533-9f92-4ce6-90a9-22c5e094043b"
+          },
+          {
+            "id": "10a70635-1c2a-4654-adbe-eb71b0e531cf",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "743d779d-99f8-4704-876a-80491a39f3b1",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "4951e2b8-9846-4637-a5ff-d07190fc7b54",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "已上市，Robotaxi 头部"
+          }
+        ]
+      },
+      {
+        "id": "caf877ac-974d-4254-9b2d-b2f5d569474b",
+        "index": 21,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:57:23.803694+00:00",
+        "lastEditedDateTime": "2026-08-28T03:57:23.803694+00:00",
+        "cells": [
+          {
+            "id": "97f2a339-f7ef-4d7c-ba6e-09d7e326543e",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "大疆"
+          },
+          {
+            "id": "445bb8c8-3453-4fa4-92f3-fa6f3d056ae5",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "b6fef9d6-5b8d-44c1-9687-58f062d3aa6e"
+          },
+          {
+            "id": "2dbd618c-fbde-40e6-b318-4df7c250a05d",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "ee61afe9-82c8-4546-82ad-bdb82ef98f74",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "397f6cb0-f5fd-499b-92a2-62526ad331c3",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "无人机行业霸主，薪资高；AI 岗偏端侧/视觉，文化硬核"
+          }
+        ]
+      },
+      {
+        "id": "ff6b6b16-ca16-49eb-85db-fb91bd69653e",
+        "index": 22,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:57:23.803694+00:00",
+        "lastEditedDateTime": "2026-08-28T03:57:23.803694+00:00",
+        "cells": [
+          {
+            "id": "904ef75f-4c59-4eed-b265-f6dc771a2ca2",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "影石（Insta360）"
+          },
+          {
+            "id": "c67f2ff1-2364-4142-a53b-8a18808f91c5",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "b6fef9d6-5b8d-44c1-9687-58f062d3aa6e"
+          },
+          {
+            "id": "e267430e-cd61-4bca-ba30-9df7b51bc5ba",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "1481c246-49e7-40db-adcc-3a35f03f0631",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "7d516c0c-adfa-46f5-9078-a05eb1174275",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "全景相机龙头，影像 AI 岗位多，增长快"
+          }
+        ]
+      },
+      {
+        "id": "e69449da-e368-4b8c-ba34-8ed237ffa180",
+        "index": 23,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "5e5c31af-1c65-4f68-8ea3-1be760666082",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "小米"
+          },
+          {
+            "id": "3331b176-78c1-4ca9-bde1-ad2ed9bd7419",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "b6fef9d6-5b8d-44c1-9687-58f062d3aa6e"
+          },
+          {
+            "id": "b09e596f-718d-45ca-a6f8-9b425b004685",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "2add1e07-7f33-40b9-a6dc-8136d2893489",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "fdd69683-51fe-4bf9-ad69-b14ee0922e30",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "端侧大模型 + 小米汽车，岗位多"
+          }
+        ]
+      },
+      {
+        "id": "d54f6406-01e3-4e99-8558-a2814efb98d0",
+        "index": 24,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "d0a37736-6968-4220-a2ce-9ab450e93787",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "OPPO"
+          },
+          {
+            "id": "248ebcb0-2038-4d04-944a-4a1a039954c6",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "b6fef9d6-5b8d-44c1-9687-58f062d3aa6e"
+          },
+          {
+            "id": "c822822a-f3d4-4aa3-8636-404b6dc53d09",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "759c95b3-a76d-4a19-b544-77be7b6a2942",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "bd3f9105-a459-45ec-8b78-b9852ce5cb04",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "老东家，端侧量化部署匹配度极高"
+          }
+        ]
+      },
+      {
+        "id": "3c666752-8ecd-4371-8506-466731078763",
+        "index": 25,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "c3c1e779-f334-48fa-b553-2a7e0560e372",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "vivo"
+          },
+          {
+            "id": "7764a663-edde-4ed8-a9dc-125172fcb4a2",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "b6fef9d6-5b8d-44c1-9687-58f062d3aa6e"
+          },
+          {
+            "id": "53566bb3-d682-4f84-993a-5114ac9cf14a",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "ecc4ed7b-7df1-49a0-89fa-22e099e1ff86",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "bff1cf5a-e299-46fe-8448-9f09a3a5b588",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "蓝心大模型，端侧 + 云端部署"
+          }
+        ]
+      },
+      {
+        "id": "5f270d09-a547-435e-8642-1fa109b99b09",
+        "index": 26,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "03f4fc7b-7105-4fc8-91d7-5497394a5d26",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "微软"
+          },
+          {
+            "id": "316e0807-244b-4d61-875f-383aa0ea7108",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "627a550d-fa58-463a-a6af-b3f147f75fcd"
+          },
+          {
+            "id": "c347889d-bb05-471d-8e55-0aaa829f3126",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "1b1a4752-a67d-4bb4-9312-2b632c90ed17",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "34f88878-d472-49bc-a95e-3c1c7d3ab037",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "MSRA/STCA，AI 系统岗强，门槛高"
+          }
+        ]
+      },
+      {
+        "id": "44088bfc-6729-4000-a159-9f6c6874118c",
+        "index": 27,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "4864695e-39e6-4664-9126-bacd2c122c42",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "亚马逊（AWS）"
+          },
+          {
+            "id": "432ccc14-8575-4ecf-8fb7-8f19f742bf18",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "627a550d-fa58-463a-a6af-b3f147f75fcd"
+          },
+          {
+            "id": "23d7dc6a-9db6-4373-94cd-610bbeb9bbce",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "5b2e4973-f3a8-4774-965d-6e2fa9f954a8",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "0027d6d2-8bbb-4660-9168-ad042caff115",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "Bedrock / ML 推理平台"
+          }
+        ]
+      },
+      {
+        "id": "8f8083c9-0771-4a00-86f2-52dac431ce3f",
+        "index": 28,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "b5391dc0-f83e-42bb-bb57-0e26833e5be1",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "AMD 中国"
+          },
+          {
+            "id": "7c11365f-7fb4-4b4b-a529-46497a987211",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "627a550d-fa58-463a-a6af-b3f147f75fcd"
+          },
+          {
+            "id": "3ffbd04e-3db5-4f2c-93d7-951e3dab634a",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "84577cca-602e-43a7-b672-7a3ac8c6093e",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "42eb6857-6550-4d01-8e56-768d249af5c8",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "ROCm / 推理软件栈，GPU 背景匹配"
+          }
+        ]
+      },
+      {
+        "id": "78160902-1401-40c0-81ea-73bcad7a0c7b",
+        "index": 29,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "7337654b-c7b2-45c5-bf1f-35601200e320",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "科大讯飞"
+          },
+          {
+            "id": "c49b378f-e981-4b0d-b8fd-afc1b707b99d",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "d63c8bf5-ee92-47df-888e-0a00ad20e197"
+          },
+          {
+            "id": "fc805b58-8dbd-4805-ac33-8ba1b2b9bb4d",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "6361c0f1-4025-447f-8191-dd209535ae33",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "81788b54-80b9-451a-9edf-a1f11562c619",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "星火大模型，岗位多"
+          }
+        ]
+      },
+      {
+        "id": "38e97e98-57fc-4b12-a848-36d5c3de6010",
+        "index": 30,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "84e0271c-6981-4765-9e73-45e8d6c57e82",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "硅基流动（SiliconFlow）"
+          },
+          {
+            "id": "ca254475-c740-4d9b-a65a-9349782f030c",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "d63c8bf5-ee92-47df-888e-0a00ad20e197"
+          },
+          {
+            "id": "1f3391ac-fa17-4ad3-b867-f49d07b1213c",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "064902fa-2713-40df-aa21-819528f4ab30",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "06c1240f-07fd-4718-94ae-849d380530b0",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "推理云平台，背景匹配度极高"
+          }
+        ]
+      },
+      {
+        "id": "506f2d1d-a685-4eeb-879d-dc57c3e4f249",
+        "index": 31,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "72382a30-f693-4a07-ad00-3f50f9326761",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "智元机器人"
+          },
+          {
+            "id": "061ce19a-9263-47e8-9fb6-e07ce16458d2",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "f9f6bcbb-7971-48e9-a94a-b96831216fe5"
+          },
+          {
+            "id": "0fd7af22-6370-4903-8554-5c96340651ee",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "d2a4b1c7-893b-43aa-b27f-9dba818fec12",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "5cdf0077-7da0-43dc-ae78-f30e7c246c3c",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "具身大模型，融资强"
+          }
+        ]
+      },
+      {
+        "id": "a4aa4b56-f1cb-4180-8d1d-ced160897ef4",
+        "index": 32,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "7d4e6658-922d-4337-9a95-4d2bdab0cbe0",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "地平线"
+          },
+          {
+            "id": "a6c1a6b4-9591-4318-87f0-944ccf5cf50e",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "8dbe1bf7-2c40-40c6-80e3-677dca73675c"
+          },
+          {
+            "id": "c071157e-7020-4584-9b9c-9690210eef41",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "1dfa8dae-8506-40f4-8082-0ae0494949d2",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "759ea443-d12b-460f-a49b-f4afc72ba7c0",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "智驾芯片龙头，港股上市"
+          }
+        ]
+      },
+      {
+        "id": "3f8f2ca2-3f6b-48da-af2d-ac1af5dde225",
+        "index": 33,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "7707bc9b-2112-49bf-a076-f3f2cce6da2f",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "京东"
+          },
+          {
+            "id": "ba725a20-24c5-4956-973e-9132ac7477bb",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "e934d03c-518e-4412-aa3b-3fff46a3f94e"
+          },
+          {
+            "id": "3bfa9514-74d1-4619-8efc-7d863f7bb378",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "d05a5d33-cf1c-4a38-b8d0-15450c502287"
+          },
+          {
+            "id": "632f2c0c-53e1-47b2-b831-0b10a73058c7",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "f59dcc75-5c4c-44eb-964c-22caef4e89a8",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "言犀大模型 + 基础设施"
+          }
+        ]
+      },
+      {
+        "id": "8d97aeaf-d5e8-4d1f-9ca2-549056b54238",
+        "index": 34,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:56:10.590Z",
+        "cells": [
+          {
+            "id": "c23fbfe9-a4b7-4306-a88a-96d833258e58",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "百度"
+          },
+          {
+            "id": "584f5658-b3e0-4706-8b60-aa14f30c050a",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "e934d03c-518e-4412-aa3b-3fff46a3f94e"
+          },
+          {
+            "id": "deaf7f9a-25f3-46a8-94c4-780b97ed39c1",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "3c65d54b-8f60-49ef-98d7-85d6400c2ff0",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "d0382906-8c9a-4534-a6e5-4f86c06f78b1"
+          },
+          {
+            "id": "269cbef0-5aaf-49b7-b2ae-6a21c6ea56f1",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "投了infra目前还没消息"
+          }
+        ]
+      },
+      {
+        "id": "f7511443-65c7-4796-a983-ab8a26e79d8f",
+        "index": 35,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "65f79a59-2ce4-47c4-8547-890ac9826c08",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "零一万物（01.AI）"
+          },
+          {
+            "id": "171f40e0-f543-4e83-8a3b-8cd80fc2aad8",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "d63c8bf5-ee92-47df-888e-0a00ad20e197"
+          },
+          {
+            "id": "8a68a8fa-5ceb-4bbf-ac87-5fd65d557bab",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "a373c02b-6747-4ed8-b1d6-15580d5b2069",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "f34ae10d-902a-4bfb-9504-251b58ee35dc",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "战略调整期，团队变动较多"
+          }
+        ]
+      },
+      {
+        "id": "d745b791-338b-4d47-aac4-95226d5e542c",
+        "index": 36,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "7280e9d1-598d-4bc2-8aa6-9db54f84febc",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "百川智能"
+          },
+          {
+            "id": "76f87456-d341-4f99-8d5e-8720f9d0914f",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "d63c8bf5-ee92-47df-888e-0a00ad20e197"
+          },
+          {
+            "id": "c00271ae-85aa-4d08-8b77-ed511261f5e1",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "ae67d8eb-b953-49fb-bd8e-eaf556657cb9",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "f095dedd-a15b-44d8-bd62-58159a4705ba",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "六小虎中进度偏后"
+          }
+        ]
+      },
+      {
+        "id": "15a2d20d-aca5-43cd-bed0-17d00680e547",
+        "index": 37,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "2b20d089-f797-4884-9463-244ed7b6c38e",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "摩尔线程"
+          },
+          {
+            "id": "c231686c-7097-4f5e-b31c-d1acdd8d1669",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "8dbe1bf7-2c40-40c6-80e3-677dca73675c"
+          },
+          {
+            "id": "fdf5d2a9-ed99-46f4-8b14-bc9280c4bf48",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "77a7575f-926f-4c9c-9b56-ca22901921f1",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "176d8abc-d36a-4604-add2-6680e9b3bc19",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "GPU 创业公司，岗位相关但未上市"
+          }
+        ]
+      },
+      {
+        "id": "d2ef2e10-8615-4975-b04d-657fd754e1b4",
+        "index": 38,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "e4897712-69b6-4a1a-8183-b272136a7592",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "壁仞科技"
+          },
+          {
+            "id": "6342857e-1b20-4dbc-b0ee-35f3a0434d64",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "8dbe1bf7-2c40-40c6-80e3-677dca73675c"
+          },
+          {
+            "id": "50e1752a-568d-4669-a318-f0a724aa6cd8",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "d6ad024f-8c9f-4fdf-b5ab-c32eefb2ec6c",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "6f6efaa2-caf0-4d32-8f24-b61a24af5509",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "GPU 创业公司，岗位相关但未上市"
+          }
+        ]
+      },
+      {
+        "id": "45e3e8c3-631b-44f4-84c9-badc8fdf1a4c",
+        "index": 39,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "d348e7bf-91aa-46f4-be4e-5e53fbcc3de7",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "燧原科技"
+          },
+          {
+            "id": "5d501bf1-a8b8-464a-bc1e-98b75b4dbabd",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "8dbe1bf7-2c40-40c6-80e3-677dca73675c"
+          },
+          {
+            "id": "31749c56-cb63-4b92-95e9-237e78072900",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "8cfa8875-58ff-49c1-ab80-d806d0f42009",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "9ca9b7ed-6544-4955-9f87-f091d860bb95",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "GPU 创业公司，岗位相关但未上市"
+          }
+        ]
+      },
+      {
+        "id": "388d565b-72ea-4537-9965-6a374ea1cf31",
+        "index": 40,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "385c50de-6224-4407-a90c-ed71ce20413a",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "沐曦"
+          },
+          {
+            "id": "73f6af1c-a39d-4f7d-9268-d7db16a46aae",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "8dbe1bf7-2c40-40c6-80e3-677dca73675c"
+          },
+          {
+            "id": "6311dd77-9bef-422b-8b41-3adb1a25407e",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "ad225617-2c79-4f23-b6da-fdccaf03bb2d",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "9e2fcc8a-3e6d-4bbd-ad2a-c8b3c26573ec",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "GPU 创业公司，岗位相关但未上市"
+          }
+        ]
+      },
+      {
+        "id": "44577612-7e55-4f9c-b652-e85faa3fd8d1",
+        "index": 41,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "62f2450f-965d-4a6d-b93b-d3e33939dbc2",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "天数智芯"
+          },
+          {
+            "id": "a4e1c812-f665-4aa5-bc6b-e03c63229a09",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "8dbe1bf7-2c40-40c6-80e3-677dca73675c"
+          },
+          {
+            "id": "179c10f6-4a1e-44ec-b5f0-86c31394a064",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "925bd69a-73b7-446f-981b-0eaf4c1cfb75",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "b203e1d6-101b-4dd0-a10d-9c435fd87baa",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "GPU 创业公司，岗位相关但未上市"
+          }
+        ]
+      },
+      {
+        "id": "4d157160-e909-4076-9749-4e63ebf86106",
+        "index": 42,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "e4417835-df5f-4bbc-8612-58331604503a",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "蔚来"
+          },
+          {
+            "id": "8c3bb78b-3941-4074-8d30-a3e876a7498b",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "13cff533-9f92-4ce6-90a9-22c5e094043b"
+          },
+          {
+            "id": "7e24ff94-7207-4e1e-b38d-d0854bc9251a",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "ad9dbb15-67b5-4e84-9db6-add1729d52f9",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "c64a18ae-f3fd-47a8-8e24-7d56b27e358b",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "车企自研智驾，可作备选"
+          }
+        ]
+      },
+      {
+        "id": "acda8cff-b0d6-4999-b9e4-bda9356e5623",
+        "index": 43,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "16de9418-9832-45fe-9e24-961e1224f070",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "小鹏"
+          },
+          {
+            "id": "139db4d5-8646-4557-853b-40aa31ae1894",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "13cff533-9f92-4ce6-90a9-22c5e094043b"
+          },
+          {
+            "id": "c77f37e5-db21-4a32-988d-351c03970fa3",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "6cb2393d-1661-4055-b9a0-b6aade491baa",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "32e62f70-8006-455f-841d-d6f053713e23",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "车企自研智驾，可作备选"
+          }
+        ]
+      },
+      {
+        "id": "b7b8928d-fac0-4ac8-bd1c-361068b4ffab",
+        "index": 44,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "lastEditedDateTime": "2026-08-28T03:44:45.571319+00:00",
+        "cells": [
+          {
+            "id": "36db93d4-4b70-43b7-9e04-4b7d21e91f3c",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "理想"
+          },
+          {
+            "id": "766ce7a8-9544-4940-b05c-e3fc057f38b0",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "13cff533-9f92-4ce6-90a9-22c5e094043b"
+          },
+          {
+            "id": "c10f35bc-486e-459d-8eac-412263740c45",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "d5a775c9-fe4f-4664-a403-f697d6d319b7",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "096d7299-c978-49ad-b5b1-34119a893ed6",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "车企自研智驾，可作备选"
+          }
+        ]
+      },
+      {
+        "id": "c6dbb719-57d9-4314-aab0-cdefa7351b36",
+        "index": 45,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T05:24:43.031Z",
+        "cells": [
+          {
+            "id": "059490b2-f9ee-49c1-9372-8ca91b66d6dc",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "荣耀"
+          },
+          {
+            "id": "64d1f168-6075-41fd-b429-0d7d93403b74",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "b6fef9d6-5b8d-44c1-9687-58f062d3aa6e"
+          },
+          {
+            "id": "2dd2d866-09cd-49b7-a82d-f97142da9e4b",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "00abe6ae-861c-46e3-8bd6-93ddc00b73c3",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "d0382906-8c9a-4534-a6e5-4f86c06f78b1"
+          },
+          {
+            "id": "5ce172c4-f618-43c8-b55c-9229dbf4f0c5",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "大模型系统工程师"
+          }
+        ]
+      },
+      {
+        "id": "a20b8b2f-a314-406a-a12a-ef1beec56967",
+        "index": 46,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "d7673114-49cc-4448-9d6a-202a1af4e19d",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "安克创新"
+          },
+          {
+            "id": "c6edff46-20f9-40e5-8191-bafa7cbebe54",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "b6fef9d6-5b8d-44c1-9687-58f062d3aa6e"
+          },
+          {
+            "id": "38a98f55-39db-40ce-b6b6-2fc546153d0f",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "b3a76876-7179-47e7-8a43-403c260c1e95",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "643db2d4-53f3-482c-b916-859dc6d17bd7",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "AIoT / 机器人岗，深圳"
+          }
+        ]
+      },
+      {
+        "id": "35056ada-339d-41ec-9bdd-0f19cdc77b7c",
+        "index": 47,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "f70b9d61-8c83-480c-9bc4-f7a6984e104e",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "传音"
+          },
+          {
+            "id": "4c7f5800-9488-458e-bd4f-229355524e2d",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "b6fef9d6-5b8d-44c1-9687-58f062d3aa6e"
+          },
+          {
+            "id": "0ed9faee-986f-48b4-815f-71238d375c17",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "995cd4e5-5224-4916-a1eb-43cc9d7335b9",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "e6105d51-4250-42d4-b4f1-73cc700c7afe",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "新兴市场手机龙头，AI 起步"
+          }
+        ]
+      },
+      {
+        "id": "0077578f-a49b-4e89-af76-08540b17aadd",
+        "index": 48,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "ae68fa40-856d-4076-9538-4a2fd0e974dc",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "高通"
+          },
+          {
+            "id": "16450319-f6dc-4e74-a878-334b9df718ae",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "627a550d-fa58-463a-a6af-b3f147f75fcd"
+          },
+          {
+            "id": "35166fb6-50b6-4d86-b0a0-bbce970ca8bb",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "b0a04f81-ccaa-4c84-8985-d598a0b605a5",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "91c0cf0a-ae08-4335-aae3-7b213fcd7457",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "端侧 AI 芯片"
+          }
+        ]
+      },
+      {
+        "id": "b7c6db3d-75cc-4598-95de-dc591a7d3e43",
+        "index": 49,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "b5aab33c-71c8-45d5-b857-d4a8f54a4670",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "英特尔中国"
+          },
+          {
+            "id": "3cc05e05-a1d0-477a-afb8-5a8f72a97e65",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "627a550d-fa58-463a-a6af-b3f147f75fcd"
+          },
+          {
+            "id": "3773d2b2-6bdf-4143-b2df-cfd36dfd73c9",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "c928b758-297d-4d0e-b8cb-98d42283144b",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "040fe004-6ba1-4d2a-b6d7-0543b5d680a5",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "Gaudi / AI 软件生态"
+          }
+        ]
+      },
+      {
+        "id": "80e1943e-b3f7-4eed-8b7b-451b4cc27faf",
+        "index": 50,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "07a59431-28c5-4211-b626-6a22d83acdc4",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "联发科"
+          },
+          {
+            "id": "118213c4-4ff1-4188-b9f7-1168d6860aca",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "627a550d-fa58-463a-a6af-b3f147f75fcd"
+          },
+          {
+            "id": "b1c11213-d115-49dd-937f-29d5cbef4bb6",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "417f8ce3-a6af-4bb3-aa96-77a1dfbe3a71",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "c6e53564-9a17-4b4f-b07a-d1f472b5e0a2",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "端侧 AI 芯片"
+          }
+        ]
+      },
+      {
+        "id": "5d1c850c-d691-419a-93b3-b6db7559a926",
+        "index": 51,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "6cb6e101-3981-48ce-a057-d13e830e9906",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "苹果中国"
+          },
+          {
+            "id": "f3e19b54-7070-4743-af47-eddc6f326ff3",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "627a550d-fa58-463a-a6af-b3f147f75fcd"
+          },
+          {
+            "id": "53e76c6d-06f2-4fae-bf25-2fbb51391e58",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "8bdeb333-cc9f-4e8f-a2c8-d57374655d6c",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "ec3ec856-37c9-43e7-80b2-52ddb2ec32ee",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "端侧 ML，岗位少"
+          }
+        ]
+      },
+      {
+        "id": "9b4d0020-eb78-414e-83ea-d53c378391a3",
+        "index": 52,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "cc12e0b9-ce5e-4555-90b4-07632e941acf",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "旷视科技"
+          },
+          {
+            "id": "c4a47685-1477-4ed5-a5bd-cb346628e4b1",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "d63c8bf5-ee92-47df-888e-0a00ad20e197"
+          },
+          {
+            "id": "fcc0af82-3c1e-44c0-a6de-7e8fca8b7390",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "e8032be4-75b9-41a9-bca9-96f5b4c2b92a",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "e6d32f69-deff-4e5e-aef2-c501d766314c",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "转向具身智能"
+          }
+        ]
+      },
+      {
+        "id": "6734cc7f-626f-461c-a2f1-73151b6fce83",
+        "index": 53,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "0798a8b6-8326-4aad-b361-048cc3a82282",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "360"
+          },
+          {
+            "id": "d46c4bf0-e498-4ab0-800f-4273420cc79e",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "d63c8bf5-ee92-47df-888e-0a00ad20e197"
+          },
+          {
+            "id": "3854b869-02a4-488e-8ac7-417d0748ed5a",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "ddce0821-6a71-43f5-9003-b6ea58fbbefb",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "7ff971ae-5f5d-4225-bee8-4e231f7b9bc4",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "智脑大模型，保底"
+          }
+        ]
+      },
+      {
+        "id": "4f849390-1263-470e-9e0f-075fb620d916",
+        "index": 54,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "c87d8be8-ad10-49e6-933d-ffff1c3d34e4",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "宇树科技"
+          },
+          {
+            "id": "ac18bbd0-5cfa-4c25-bce7-0fc5e4437b31",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "f9f6bcbb-7971-48e9-a94a-b96831216fe5"
+          },
+          {
+            "id": "be8a5f1b-fbf3-458f-96cb-db1b6f90369c",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "27c60cf0-6170-4af9-9e84-7a48e4ff190e",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "b4ce3d27-fddf-43eb-9de7-40d64088449e",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "机器人顶流"
+          }
+        ]
+      },
+      {
+        "id": "5e6245bf-c41c-4638-a929-1f27c7deeba8",
+        "index": 55,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "9b6aaa6a-d513-4a9c-ad4f-27ac24592e0f",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "优必选"
+          },
+          {
+            "id": "0892e700-00bc-4288-aa74-c21bec48367e",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "f9f6bcbb-7971-48e9-a94a-b96831216fe5"
+          },
+          {
+            "id": "9e1f8202-9175-46bf-8321-b7ef6b8fc9d1",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "87d6f0a2-82f8-4afa-a1b8-9a7db84d7b00",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "2b0a2ea2-69e4-4306-b179-7fd485e5d917",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "港股上市人形机器人"
+          }
+        ]
+      },
+      {
+        "id": "e253c02e-0ea9-4ed0-9ade-f80af2893584",
+        "index": 56,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "007dcf7d-2242-4412-a37b-f6b914a6b12b",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "黑芝麻智能"
+          },
+          {
+            "id": "7a9c68c1-0f2a-40cc-a1f2-10311fda136e",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "8dbe1bf7-2c40-40c6-80e3-677dca73675c"
+          },
+          {
+            "id": "b5596f92-701f-4b35-b5e1-4f2b0b0a77d9",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "c86b48d2-1386-48b6-bd20-160ce548e52e",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "4f8d862d-2af2-417e-a3ca-b36b7ad6da00",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "智驾芯片，已上市"
+          }
+        ]
+      },
+      {
+        "id": "9704a26f-d9f7-46c5-b071-e2bfe3ce8dd6",
+        "index": 57,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "2dc92f41-51a3-44a2-aa0b-fa7ad8bcbb07",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "紫光展锐"
+          },
+          {
+            "id": "90d85eab-c3b4-44a9-b6bf-e558c56ee93d",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "8dbe1bf7-2c40-40c6-80e3-677dca73675c"
+          },
+          {
+            "id": "c5ec0661-50ba-48fb-9ee9-4d305a87e9c2",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "82e18f96-1d7a-4553-90a2-35c83088904f",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "2b06cdd2-921e-4f41-b974-619a95735aa6",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "移动 SoC + AI"
+          }
+        ]
+      },
+      {
+        "id": "43e43969-8951-45b0-bdd8-a5679a7fc16c",
+        "index": 58,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "18ab6c8c-d493-484e-a9a0-1c1c10161213",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "银河通用"
+          },
+          {
+            "id": "d136c03a-91f7-414c-a9d8-4b42b6ac02c6",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "f9f6bcbb-7971-48e9-a94a-b96831216fe5"
+          },
+          {
+            "id": "d80dd75e-1168-490d-9055-6ccc47938141",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "9700c200-c245-49a6-b874-db743dcce265",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "71d99fbf-1b38-422b-9e55-acd11b80722a",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "具身智能新锐"
+          }
+        ]
+      },
+      {
+        "id": "6c6a4fdd-4d70-43fb-8a69-34b048ea20e1",
+        "index": 59,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "c82fda7b-1496-4a35-9e57-0843bb69356e",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "滴滴自动驾驶"
+          },
+          {
+            "id": "da861d73-5654-44e0-aa4c-1ad956715444",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "13cff533-9f92-4ce6-90a9-22c5e094043b"
+          },
+          {
+            "id": "49f18630-5e8b-438a-bccd-f52a5714fdf6",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "a2b4f64e-1ba7-4cf7-b1da-08e8c7447c18",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "d43a42af-312e-4b94-934f-2883e8afcf37",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "Robotaxi"
+          }
+        ]
+      },
+      {
+        "id": "36dba663-0ae3-4f15-9b01-ad8b622b7269",
+        "index": 60,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "2d0e1910-a166-4ca2-83d4-57d771f6ea0c",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "文远知行"
+          },
+          {
+            "id": "3949cfc1-5a6c-4446-b8f4-6bc44bb67602",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "13cff533-9f92-4ce6-90a9-22c5e094043b"
+          },
+          {
+            "id": "1bee0928-cb56-4377-b237-846e114d8410",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "4e26f726-4a6f-42df-9b1a-7834b055ff7e",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "222ab87e-6053-4d90-97b4-36fa0edc28f4",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "Robotaxi，已上市"
+          }
+        ]
+      },
+      {
+        "id": "9f0fd046-73bc-46f1-a8fa-d9cfa27f8165",
+        "index": 61,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "5ed4c5c8-2e2a-4116-a885-0cff7e548c60",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "比亚迪"
+          },
+          {
+            "id": "9dcb59d0-a4e8-403b-a1a0-49c95e93fd25",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "13cff533-9f92-4ce6-90a9-22c5e094043b"
+          },
+          {
+            "id": "43b720ca-77cc-4ab4-8ce5-97a08442bfd2",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "5d64cea2-5aca-4873-9713-15ce4e6c39d3",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "1197a596-f4d6-40b8-afa6-ec3d376c2a00",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "车企巨头，智驾扩张"
+          }
+        ]
+      },
+      {
+        "id": "2b93c718-4799-4159-ba1c-6caddc83e2ad",
+        "index": 62,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "ad688f98-2ffb-4286-b98b-25323a382bf3",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "博世中国"
+          },
+          {
+            "id": "cbb5fc50-7602-4c82-8999-ae34514f68be",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "13cff533-9f92-4ce6-90a9-22c5e094043b"
+          },
+          {
+            "id": "bff9e65a-6758-44dc-965d-e938397ba3e6",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "a361f52f-0eb1-4a04-bca6-022b844d58f5",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "f439ad44-261f-42a7-be87-60eac9d148d2",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "Tier1 巨头"
+          }
+        ]
+      },
+      {
+        "id": "83cfb065-ca14-4f94-a613-b84c5dad0cda",
+        "index": 63,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "732bcb9b-61df-46e1-9a2e-b5678a624749",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "浪潮信息"
+          },
+          {
+            "id": "8efa2861-d25a-487f-8164-b1a2f992c2b4",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "af1796a5-87ed-4b99-903a-687304ec5e57"
+          },
+          {
+            "id": "2587391a-8579-4ae3-b124-0a4bfe84ee7a",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "d7139a20-bd0d-4342-b005-67dd6a8a3f06",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "847888b9-cc16-4ed3-ac63-4a0df940442e",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "AI 服务器龙头"
+          }
+        ]
+      },
+      {
+        "id": "1dcf1bca-acc8-4456-90ac-9e95173d83df",
+        "index": 64,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "c0eaacd5-d089-43e6-8d10-633ec68f8531",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "中科曙光"
+          },
+          {
+            "id": "a6cfa852-c51c-4ed5-a2b4-2e725a9378a0",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "af1796a5-87ed-4b99-903a-687304ec5e57"
+          },
+          {
+            "id": "37e2db63-6543-4e55-92b0-9ea966b522cb",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "bbeec75d-5886-46fb-9ae5-d6cca29aa862",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "08de47fc-31ea-49ff-816f-32ae0ed38722",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "国产算力"
+          }
+        ]
+      },
+      {
+        "id": "b4d655db-8e6e-4579-ac18-a1aa99f91c69",
+        "index": 65,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "2811377d-4b39-4920-8d5d-35863228efa1",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "网易"
+          },
+          {
+            "id": "965df67a-aaae-4e2e-b89c-8d2a9c710f64",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "e934d03c-518e-4412-aa3b-3fff46a3f94e"
+          },
+          {
+            "id": "8cd71017-8be6-465c-9c04-4574970cfe6d",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "b265f5a0-3e31-4e47-bdeb-4a6b7be03164",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "9ac5123d-e2d8-4380-8603-2be0d53f4bb8",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "伏羲 AI"
+          }
+        ]
+      },
+      {
+        "id": "7ff55b87-e341-41a0-a251-047d3e98e4c4",
+        "index": 66,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "61e3e796-0f64-4635-b78f-25c079f37184",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "哔哩哔哩"
+          },
+          {
+            "id": "583810d1-8015-4fad-a388-900b25a61391",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "e934d03c-518e-4412-aa3b-3fff46a3f94e"
+          },
+          {
+            "id": "7a238ef6-f5b2-41a5-95ec-d41a2468bdd5",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "36fa7a97-c654-4cdd-8898-59cc0a861ad8",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "61e892b7-0068-4fd5-a859-4ec685d782dd",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "基础设施岗"
+          }
+        ]
+      },
+      {
+        "id": "984b7ef6-8012-4d15-91a1-22c38eb1a575",
+        "index": 67,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "91fa4750-d20b-4627-b78b-3e9d66462b48",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "滴滴"
+          },
+          {
+            "id": "76aa3e42-159e-4ece-8a5e-400d5e324098",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "e934d03c-518e-4412-aa3b-3fff46a3f94e"
+          },
+          {
+            "id": "766e48bb-ae09-4321-b99d-f275291ee625",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "4a295fe0-1442-49e0-a841-47496c6c4517",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "6c192539-2a7b-435f-aa52-c80b7ccadd9f",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "出行基建"
+          }
+        ]
+      },
+      {
+        "id": "3f13e8e9-a7a5-4362-b70d-d1623c24b191",
+        "index": 68,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "ce165d9d-b067-41a4-99f8-b116c89b7061",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "携程"
+          },
+          {
+            "id": "9585a865-e51a-4302-8e41-8c448ef2359e",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "e934d03c-518e-4412-aa3b-3fff46a3f94e"
+          },
+          {
+            "id": "3e5e93fb-4f75-497d-ab24-baa18c383b30",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "7353b6eb-29a5-4dd5-8ea2-2165d8d6ce06",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "e7afdea9-b20b-4981-a204-b67982aa3a8a",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "稳定"
+          }
+        ]
+      },
+      {
+        "id": "789b2e6e-2515-4c7a-aefe-1f2e83575172",
+        "index": 69,
+        "sourceId": null,
+        "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "cells": [
+          {
+            "id": "400261db-8184-49f6-b903-0f71ab808224",
+            "columnId": "7a00d6d5-b01f-4f11-8813-f70dc1ced447",
+            "hasValidFrontmatter": null,
+            "content": "米哈游"
+          },
+          {
+            "id": "910bd4e5-0b78-4b2b-a11d-479b99fc08f8",
+            "columnId": "0cb550da-3d1f-4e44-b953-96fa694a6071",
+            "hasValidFrontmatter": null,
+            "tagId": "e934d03c-518e-4412-aa3b-3fff46a3f94e"
+          },
+          {
+            "id": "53dbf57d-abe6-4047-83bd-80867a85e919",
+            "columnId": "be6fb3a0-65a2-4ab4-a655-a4a6c658618a",
+            "hasValidFrontmatter": null,
+            "tagId": "5c966613-6228-4f42-9df7-c06d73586b8a"
+          },
+          {
+            "id": "61c13088-0905-47b6-aba8-9c498e169534",
+            "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+            "hasValidFrontmatter": null,
+            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+          },
+          {
+            "id": "9b0b5330-356e-4983-9064-7ac42b7602df",
+            "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
+            "hasValidFrontmatter": null,
+            "content": "薪资高，AI 岗少"
+          }
+        ]
+      }
+    ],
+    "filters": [
+      {
+        "id": "8be3b7a7-0517-4833-b3f6-86de85d24dc9",
+        "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
+        "operator": "or",
+        "isEnabled": true,
+        "type": "tag",
+        "condition": "is",
+        "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+      }
+    ],
+    "sources": [],
+    "settings": {
+      "numFrozenColumns": 1,
+      "showCalculationRow": true
+    },
+    "externalRowOrder": []
+  },
+  "pluginVersion": "8.16.17"
+}

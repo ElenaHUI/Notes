@@ -1,0 +1,20 @@
+{
+  "id": "conv-1787300182128-iy2rhvrc2",
+  "title": "Check whether the current startup port is random",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787300182129,
+  "updatedAt": 1787822739857,
+  "lastResponseAt": 1787300491205,
+  "sessionId": "efdbd055-4f42-4e71-8541-18b76eaa54fa",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 36600,
+    "percentage": 18
+  },
+  "edition": "global"
+}

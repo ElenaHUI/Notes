@@ -1,0 +1,20 @@
+{
+  "id": "conv-1787543294402-iqiubjyrr",
+  "title": "Format SenseTime LLM system engineer interview",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787543294402,
+  "updatedAt": 1787822754608,
+  "lastResponseAt": 1787543460555,
+  "sessionId": "7f14ed8b-5e83-4d9e-a06c-ce591c34999b",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 31200,
+    "percentage": 16
+  },
+  "edition": "global"
+}

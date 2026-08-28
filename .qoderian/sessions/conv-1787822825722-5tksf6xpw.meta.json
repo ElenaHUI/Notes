@@ -1,0 +1,21 @@
+{
+  "id": "conv-1787822825722-5tksf6xpw",
+  "title": "Enhance Obsidian job application table",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787822825722,
+  "updatedAt": 1787896851503,
+  "lastResponseAt": 1787896851503,
+  "sessionId": "267a7cdd-b413-40bc-89b9-9d3190e9e4fa",
+  "currentNote": "秋招/秋招投递表格.md",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 99200,
+    "percentage": 50
+  },
+  "edition": "global"
+}

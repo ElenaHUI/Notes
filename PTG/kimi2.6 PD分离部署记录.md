@@ -50,23 +50,14 @@ PREFILL_DP_SIZE=1 DECODE_DP_SIZE=16 python -m sglang_router.launch_router --pd-d
 
 ## 问题1: RuntimeError: q_v is only supported for Hopper GPUs
 
-decode节点会报错，至文说你碰到过了，请问需要如何处理
-
-![](https://alidocs.dingtalk.com/core/api/resources/img/5eecdaf48460cde537024e4aa570f2781f00ae151cbfa7eb75b8339e1c4c2483f35a8ff3f0692652d08509556868857aa156a98577f418d5bb044b3671ec6295641413a6d4196afadf7c7163a36ca42ae32d6660a03f14703716e209d665a4e1?tmpCode=328f863f-090e-45de-9f25-3a9b26af4151)
-
 这个是 fa3 内部不支持的问题，现在 kimi / glm5 / dpsk v32 设置 --attention-backend fa3 都会有这个错误
 
 需要把 --attention-backend fa3 换成 --decode-attention-backend flashmla --prefill-attention-backend fa3
 
 ## 问题2: assert m == m_ and n == n_ and k == k AssertError
 
-![](https://alidocs.dingtalk.com/core/api/resources/img/5eecdaf48460cde537024e4aa570f2781f00ae151cbfa7eb75b8339e1c4c2483f35a8ff3f0692652d08509556868857aa156a98577f418d5cc87af9123659186baf241439a90f73b320088687c33d8a648d3807c3d63bd991c25f921ffffc45f?tmpCode=328f863f-090e-45de-9f25-3a9b26af4151)
-
 解决方法：
-
-![](https://alidocs.dingtalk.com/core/api/resources/img/5eecdaf48460cde537024e4aa570f2781f00ae151cbfa7eb75b8339e1c4c2483f35a8ff3f0692652d08509556868857aa156a98577f418d5fde5e222027e2ff0ecdf58afeb7613798ddc14b8fc678faebb80a7c321e6ee6ff231a9e02ba3bd6b?tmpCode=328f863f-090e-45de-9f25-3a9b26af4151)
-
-这两个要删掉，w4a8 不支持开 ep
+w4a8 不支持开 ep
 
 ## 问题3: RDMA通信异常
 

@@ -1,0 +1,550 @@
+{
+  "userName": "",
+  "permissionMode": "acceptEdits",
+  "model": "qmodel_38max",
+  "enableAutoTitleGeneration": true,
+  "titleGenerationModel": "auto",
+  "excludedTags": [],
+  "mediaFolder": "",
+  "systemPrompt": "",
+  "persistentExternalContextPaths": [],
+  "keyboardNavigation": {
+    "scrollUpKey": "w",
+    "scrollDownKey": "s",
+    "focusInputKey": "i"
+  },
+  "requireCommandOrControlEnterToSend": false,
+  "locale": "en",
+  "qoder": {
+    "cliPath": "",
+    "cliPathsByHost": {},
+    "edition": "global",
+    "loadUserSettings": true,
+    "enableBangBash": false,
+    "discoveredModels": [
+      {
+        "value": "auto",
+        "displayName": "Auto",
+        "description": "Vision · 1.00x Credit",
+        "group": "Qoder",
+        "priceFactor": 1
+      },
+      {
+        "value": "ultimate",
+        "displayName": "Ultimate",
+        "description": "Reasoning · Vision · 1.60x Credit",
+        "group": "Qoder",
+        "priceFactor": 1.6,
+        "contextTiers": [
+          {
+            "label": "200K",
+            "tokenCount": 200000,
+            "isDefault": true
+          },
+          {
+            "label": "400K",
+            "tokenCount": 400000,
+            "isDefault": false
+          },
+          {
+            "label": "1M",
+            "tokenCount": 1000000,
+            "isDefault": false
+          }
+        ],
+        "thinkingDisableable": true,
+        "thinkingEfforts": [
+          {
+            "value": "low",
+            "isDefault": false
+          },
+          {
+            "value": "medium",
+            "isDefault": false
+          },
+          {
+            "value": "high",
+            "isDefault": true
+          },
+          {
+            "value": "xhigh",
+            "isDefault": false
+          },
+          {
+            "value": "max",
+            "isDefault": false
+          }
+        ]
+      },
+      {
+        "value": "performance",
+        "displayName": "Performance",
+        "description": "Vision · 1.10x Credit",
+        "group": "Qoder",
+        "priceFactor": 1.1,
+        "contextTiers": [
+          {
+            "label": "272K",
+            "tokenCount": 272000,
+            "isDefault": true
+          },
+          {
+            "label": "400K",
+            "tokenCount": 400000,
+            "isDefault": false
+          },
+          {
+            "label": "1M",
+            "tokenCount": 1000000,
+            "isDefault": false
+          }
+        ],
+        "thinkingDisableable": true,
+        "thinkingEfforts": [
+          {
+            "value": "low",
+            "isDefault": false,
+            "description": "Low thinking intensity"
+          },
+          {
+            "value": "medium",
+            "isDefault": true,
+            "description": "Medium thinking intensity"
+          },
+          {
+            "value": "high",
+            "isDefault": false,
+            "description": "High thinking intensity"
+          },
+          {
+            "value": "xhigh",
+            "isDefault": false,
+            "description": "Extreme thinking intensity"
+          },
+          {
+            "value": "max",
+            "isDefault": false,
+            "description": "Maximum thinking intensity"
+          }
+        ]
+      },
+      {
+        "value": "efficient",
+        "displayName": "Efficient",
+        "description": "Vision · 0.30x Credit",
+        "group": "Qoder",
+        "priceFactor": 0.3,
+        "originalPriceFactor": 0.5
+      },
+      {
+        "value": "lite",
+        "displayName": "Lite",
+        "description": "0.00x Credit",
+        "group": "Qoder",
+        "priceFactor": 0
+      },
+      {
+        "value": "qmodel_38max",
+        "displayName": "Qwen3.8-Max",
+        "description": "Reasoning · Vision · New · 0.50x Credit",
+        "group": "New models",
+        "priceFactor": 0.5,
+        "promotion": {
+          "active": false,
+          "badge": {
+            "en": "Off-Peak 50% off",
+            "zh": "错峰 5 折"
+          },
+          "discountFactor": 0.5,
+          "window": "22:00-08:00 Asia/Singapore"
+        },
+        "contextTiers": [
+          {
+            "label": "200K",
+            "tokenCount": 200000,
+            "isDefault": true
+          },
+          {
+            "label": "400K",
+            "tokenCount": 400000,
+            "isDefault": false
+          },
+          {
+            "label": "1M",
+            "tokenCount": 1000000,
+            "isDefault": false
+          }
+        ],
+        "thinkingDisableable": true,
+        "thinkingEfforts": [
+          {
+            "value": "low",
+            "isDefault": false
+          },
+          {
+            "value": "medium",
+            "isDefault": false
+          },
+          {
+            "value": "xhigh",
+            "isDefault": true
+          }
+        ]
+      },
+      {
+        "value": "qfmodel",
+        "displayName": "Qwen3.8-Flash",
+        "description": "Reasoning · Vision · New · 0.10x Credit",
+        "group": "New models",
+        "priceFactor": 0.1,
+        "contextTiers": [
+          {
+            "label": "200K",
+            "tokenCount": 200000,
+            "isDefault": true
+          },
+          {
+            "label": "400K",
+            "tokenCount": 400000,
+            "isDefault": false
+          },
+          {
+            "label": "1M",
+            "tokenCount": 1000000,
+            "isDefault": false
+          }
+        ],
+        "thinkingDisableable": true,
+        "thinkingEfforts": [
+          {
+            "value": "low",
+            "isDefault": false
+          },
+          {
+            "value": "medium",
+            "isDefault": false
+          },
+          {
+            "value": "xhigh",
+            "isDefault": true
+          }
+        ]
+      },
+      {
+        "value": "qmodel_latest",
+        "displayName": "Qwen3.7-Max",
+        "description": "Vision · New · 0.50x Credit",
+        "group": "New models",
+        "priceFactor": 0.5,
+        "originalPriceFactor": 0.5,
+        "promotion": {
+          "active": false,
+          "badge": {
+            "en": "Off-Peak 80% off",
+            "zh": "错峰2折"
+          },
+          "discountFactor": 0.2,
+          "window": "22:00-08:00 Asia/Singapore"
+        },
+        "contextTiers": [
+          {
+            "label": "200K",
+            "tokenCount": 200000,
+            "isDefault": true
+          },
+          {
+            "label": "400K",
+            "tokenCount": 400000,
+            "isDefault": false
+          },
+          {
+            "label": "1M",
+            "tokenCount": 1000000,
+            "isDefault": false
+          }
+        ],
+        "thinkingDisableable": true
+      },
+      {
+        "value": "qmodel",
+        "displayName": "Qwen3.7-Plus",
+        "description": "Vision · New · 0.10x Credit",
+        "group": "New models",
+        "priceFactor": 0.1,
+        "promotion": {
+          "active": false,
+          "badge": {
+            "en": "Off-Peak 60% off",
+            "zh": "错峰4折"
+          },
+          "discountFactor": 0.4,
+          "window": "22:00-08:00 Asia/Singapore"
+        },
+        "contextTiers": [
+          {
+            "label": "200K",
+            "tokenCount": 200000,
+            "isDefault": true
+          },
+          {
+            "label": "400K",
+            "tokenCount": 400000,
+            "isDefault": false
+          },
+          {
+            "label": "1M",
+            "tokenCount": 1000000,
+            "isDefault": false
+          }
+        ],
+        "thinkingDisableable": true
+      },
+      {
+        "value": "kmodel_latest",
+        "displayName": "Kimi-K3",
+        "description": "Vision · New · 0.80x Credit",
+        "group": "New models",
+        "priceFactor": 0.8,
+        "contextTiers": [
+          {
+            "label": "200K",
+            "tokenCount": 200000,
+            "isDefault": true
+          },
+          {
+            "label": "400K",
+            "tokenCount": 400000,
+            "isDefault": false
+          },
+          {
+            "label": "1M",
+            "tokenCount": 1000000,
+            "isDefault": false
+          }
+        ],
+        "thinkingEfforts": [
+          {
+            "value": "low",
+            "isDefault": false
+          },
+          {
+            "value": "high",
+            "isDefault": false
+          },
+          {
+            "value": "max",
+            "isDefault": true
+          }
+        ]
+      },
+      {
+        "value": "kmodel",
+        "displayName": "Kimi-K2.7-Code",
+        "description": "Vision · New · 0.30x Credit",
+        "group": "New models",
+        "priceFactor": 0.3,
+        "contextTiers": [
+          {
+            "label": "default",
+            "tokenCount": 256000,
+            "isDefault": true
+          }
+        ]
+      },
+      {
+        "value": "gmodel",
+        "displayName": "GLM-5.3",
+        "description": "Reasoning · Vision · New · 0.60x Credit",
+        "group": "New models",
+        "priceFactor": 0.6,
+        "contextTiers": [
+          {
+            "label": "200K",
+            "tokenCount": 200000,
+            "isDefault": true
+          },
+          {
+            "label": "400K",
+            "tokenCount": 400000,
+            "isDefault": false
+          },
+          {
+            "label": "1M",
+            "tokenCount": 1000000,
+            "isDefault": false
+          }
+        ],
+        "thinkingEfforts": [
+          {
+            "value": "low",
+            "isDefault": false
+          },
+          {
+            "value": "high",
+            "isDefault": false
+          },
+          {
+            "value": "max",
+            "isDefault": true
+          }
+        ]
+      },
+      {
+        "value": "gfmodel",
+        "displayName": "GLM-5.3-Flash",
+        "description": "Reasoning · Vision · New · 0.05x Credit",
+        "group": "New models",
+        "priceFactor": 0.05,
+        "originalPriceFactor": 0.1,
+        "contextTiers": [
+          {
+            "label": "200K",
+            "tokenCount": 200000,
+            "isDefault": true
+          },
+          {
+            "label": "400K",
+            "tokenCount": 400000,
+            "isDefault": false
+          },
+          {
+            "label": "1M",
+            "tokenCount": 1000000,
+            "isDefault": false
+          }
+        ],
+        "thinkingEfforts": [
+          {
+            "value": "high",
+            "isDefault": false
+          },
+          {
+            "value": "max",
+            "isDefault": true
+          }
+        ]
+      },
+      {
+        "value": "dmodel",
+        "displayName": "DeepSeek-V4-Pro",
+        "description": "Reasoning · Vision · New · 0.80x Credit",
+        "group": "New models",
+        "priceFactor": 0.8,
+        "contextTiers": [
+          {
+            "label": "200K",
+            "tokenCount": 200000,
+            "isDefault": true
+          },
+          {
+            "label": "400K",
+            "tokenCount": 400000,
+            "isDefault": false
+          },
+          {
+            "label": "1M",
+            "tokenCount": 1000000,
+            "isDefault": false
+          }
+        ],
+        "thinkingDisableable": true,
+        "thinkingEfforts": [
+          {
+            "value": "high",
+            "isDefault": false,
+            "description": "High thinking intensity"
+          },
+          {
+            "value": "max",
+            "isDefault": true,
+            "description": "Maximum thinking intensity"
+          }
+        ]
+      },
+      {
+        "value": "dfmodel",
+        "displayName": "DeepSeek-V4-Flash",
+        "description": "Reasoning · Vision · New · 0.30x Credit",
+        "group": "New models",
+        "priceFactor": 0.3,
+        "contextTiers": [
+          {
+            "label": "200K",
+            "tokenCount": 200000,
+            "isDefault": true
+          },
+          {
+            "label": "400K",
+            "tokenCount": 400000,
+            "isDefault": false
+          },
+          {
+            "label": "1M",
+            "tokenCount": 1000000,
+            "isDefault": false
+          }
+        ],
+        "thinkingDisableable": true,
+        "thinkingEfforts": [
+          {
+            "value": "low",
+            "isDefault": false
+          },
+          {
+            "value": "high",
+            "isDefault": false
+          },
+          {
+            "value": "max",
+            "isDefault": true
+          }
+        ]
+      },
+      {
+        "value": "mmodel",
+        "displayName": "MiniMax-M3",
+        "description": "Vision · New · 0.20x Credit",
+        "group": "New models",
+        "priceFactor": 0.2,
+        "contextTiers": [
+          {
+            "label": "200K",
+            "tokenCount": 200000,
+            "isDefault": true
+          },
+          {
+            "label": "400K",
+            "tokenCount": 400000,
+            "isDefault": false
+          },
+          {
+            "label": "1M",
+            "tokenCount": 1000000,
+            "isDefault": false
+          }
+        ]
+      }
+    ],
+    "discoveredAgents": [
+      {
+        "name": "general-purpose",
+        "description": "General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you."
+      },
+      {
+        "name": "Explore",
+        "description": "Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer where something is defined and which files reference it. Do not use it for code review, design-document auditing, cross-file consistency checks, or open-ended analysis because it reads excerpts rather than whole files and can miss content outside its read window. Specify search breadth: \"quick\" for a targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" for multiple locations and naming conventions."
+      },
+      {
+        "name": "Plan",
+        "description": "Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs."
+      }
+    ],
+    "lastModel": "qmodel_38max",
+    "modelOverrides": {}
+  },
+  "maxTabs": 3,
+  "enableAutoScroll": true,
+  "deferMathRenderingDuringStreaming": true,
+  "expandFileEditsByDefault": false,
+  "chatViewPlacement": "right-sidebar"
+}
