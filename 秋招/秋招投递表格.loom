@@ -1357,7 +1357,7 @@
         "index": 29,
         "sourceId": null,
         "creationDateTime": "2026-08-28T04:01:38.905533+00:00",
-        "lastEditedDateTime": "2026-08-28T04:01:38.905533+00:00",
+        "lastEditedDateTime": "2026-08-31T03:17:12.298Z",
         "cells": [
           {
             "id": "7337654b-c7b2-45c5-bf1f-35601200e320",
@@ -1381,13 +1381,13 @@
             "id": "6361c0f1-4025-447f-8191-dd209535ae33",
             "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
             "hasValidFrontmatter": null,
-            "tagId": "73b0ba1b-18ff-4f72-b63f-edc7453757f1"
+            "tagId": "a94e2eb8-0f0b-4808-8d40-18f421ca40b0"
           },
           {
             "id": "81788b54-80b9-451a-9edf-a1f11562c619",
             "columnId": "2fd1b5a5-fdbf-4281-94d5-4841ff45fa8b",
             "hasValidFrontmatter": null,
-            "content": "星火大模型，岗位多"
+            "content": "投了ai系统，要做测评"
           }
         ]
       },
@@ -1552,7 +1552,7 @@
         "index": 34,
         "sourceId": null,
         "creationDateTime": "2026-08-28T03:44:45.571319+00:00",
-        "lastEditedDateTime": "2026-08-28T03:56:10.590Z",
+        "lastEditedDateTime": "2026-08-31T03:17:04.972Z",
         "cells": [
           {
             "id": "c23fbfe9-a4b7-4306-a88a-96d833258e58",
@@ -1576,7 +1576,7 @@
             "id": "3c65d54b-8f60-49ef-98d7-85d6400c2ff0",
             "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
             "hasValidFrontmatter": null,
-            "tagId": "d0382906-8c9a-4534-a6e5-4f86c06f78b1"
+            "tagId": "92e82456-ef58-4831-84b8-ebfa85459b6b"
           },
           {
             "id": "269cbef0-5aaf-49b7-b2ae-6a21c6ea56f1",
@@ -2954,7 +2954,7 @@
     ],
     "filters": [
       {
-        "id": "8be3b7a7-0517-4833-b3f6-86de85d24dc9",
+        "id": "b5da0ebd-bc82-46ec-a620-4c992b06c09e",
         "columnId": "66368e47-bdfc-4eac-8d59-2e70eadd0fb7",
         "operator": "or",
         "isEnabled": true,

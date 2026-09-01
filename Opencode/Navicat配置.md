@@ -3,15 +3,10 @@
 - 开发环境
 -    ```
           - name: DATA_URL
-
           value: rm-0jlo2x82p3pdmdp20.mysql.rds.aliyuncs.com
-
         - name: DATA_USERNAME
-
           value: ptg_devops_mysql_su
-
         - name: DATA_PASSWORD
-
           value: Bm%g4ND6Hs
   ```
   

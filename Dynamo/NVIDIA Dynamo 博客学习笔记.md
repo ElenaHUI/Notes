@@ -16,6 +16,8 @@ tags:
 
 # NVIDIA Dynamo 博客学习笔记
 
+源码链接： https://github.com/ai-dynamo/dynamo
+
 这篇博客是 NVIDIA 在 GTC 2025 上发布 Dynamo 的官方技术文章，把 Dynamo 定位成一个面向生成式 AI 和推理模型的高吞吐、低延迟开源推理 serving 框架。它基于 Triton Inference Server 演进而来，代码仓库在 `ai-dynamo/dynamo`，后续也会通过 NVIDIA AI Enterprise 和 NIM microservices 提供支持。
 
 ## 一、核心定位与背景

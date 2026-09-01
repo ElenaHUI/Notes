@@ -472,7 +472,3 @@ envs:
   - name: DYN_REQUEST_QUEUE_SIZE
     value: "1000"
 ```
-
-### 故障排查
-
-#### 常见问题和解

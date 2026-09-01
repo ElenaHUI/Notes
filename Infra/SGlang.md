@@ -1,0 +1,1 @@
+https://github.com/THUDM/slime/blob/main/README_zh.md

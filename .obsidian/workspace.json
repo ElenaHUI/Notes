@@ -4,19 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "d0c697ff5e64bb9c",
+        "id": "6b37ebd2b8586b84",
         "type": "tabs",
         "children": [
           {
-            "id": "c92915d4a63a1d6e",
+            "id": "e4cb5c8654c7aa37",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "PTG/bugmirror.pdf"
+                "file": "Leetcode/二分查找/33. 搜索旋转排序数组.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-file-text",
-              "title": "bugmirror"
+              "icon": "lucide-file",
+              "title": "33. 搜索旋转排序数组"
             }
           }
         ]
@@ -159,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "秋招投递表格.md",
+                "file": "Leetcode/二分查找/33. 搜索旋转排序数组.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -203,7 +205,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 281.1146240234375
+    "width": 263.07293701171875
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -221,51 +223,52 @@
   },
   "active": "79528a5fa5a5fadf",
   "lastOpenFiles": [
-    "PTG/红区Infra.md",
-    "未命名.md",
+    "Leetcode/CodeTop手撕40题背诵手册.md",
+    "Leetcode/数据结构操作速记.md",
+    "Leetcode/LeetCode 刷题汇总.md",
+    "Infra/DeepSeek系列架构分析.md",
+    "Infra/asset/Pasted image 20260831181026.png",
+    "Infra/Qwen系列架构分析.md",
+    "待办汇总.md",
     "index.md",
+    "秋招/面经/科大讯飞.md",
+    "未命名.md",
+    "秋招/面经/百度 AI infra面经.md",
+    "秋招/面经/快手 AI infra面经.md",
+    "秋招/面经/商汤 大模型系统工程师面经.md",
+    "Dynamo/Dynamo监控链路搭建/后续问题解决.md",
+    "Dynamo/Dynamo监控链路搭建/看板问题解决.md",
+    "AI提效/定时巡检agent.md",
+    "Dynamo/Dynamo监控链路搭建/模型部署.md",
+    "Dynamo/Dynamo监控链路搭建/针对Dynamo v1.3.0的Grafana看板.md",
+    "Dynamo/Dynamo介绍.md",
+    "Dynamo/Dynamo部署流程.md",
+    "AI提效",
+    "2026-08-25.md",
+    "Infra/asset/Pasted image 20260831123547.png",
+    "Infra/asset/Pasted image 20260831115544.png",
+    "Infra/asset/Pasted image 20260831114840.png",
+    "Infra/集群通信.md",
+    "Infra/PD分离.md",
+    "Infra/SGlang.md",
     "秋招/秋招投递表格.loom",
     "秋招/秋招投递表格.md",
-    "秋招/秋招投递表格.loom.md",
-    "Opencode/钉钉群消息.md",
-    "秋招/面经/商汤 大模型系统工程师面经.md",
-    "秋招/面经",
-    "待办汇总.md",
-    "2026-08-25.md",
     "PTG/DeepSeek Harness Web UI 离线包构建流程.md",
+    "PTG/bugmirror.pdf",
+    "PTG/红区Infra.md",
+    "PTG/asset/Pasted image 20260828153229.png",
+    "PTG/asset/Pasted image 20260828144659.png",
+    "秋招/面经",
     "秋招",
-    "PTG/LLM Prometheus 性能分析报告生成Skill.md",
-    "Dynamo/Dynamo.md",
-    "Opencode/bugfix03-安装脚本时报错.md",
     "asset/Pasted image 20260826211631.png",
     "asset/Pasted image 20260826210638.png",
-    "Infra/集群通信.md",
-    "监控链路搭建/模型部署.md",
-    "监控链路搭建/针对Dynamo v1.3.0的Grafana看板.md",
-    "Infra/PD分离.md",
-    "PTG/KV- cache优化.md",
-    "PTG/kimi2.6 PD分离部署记录.md",
     "asset/Pasted image 20260824113422.png",
-    "Dynamo/dynamo PD 分离部署.md",
-    "PTG/bugmirror.pdf",
-    "Dynamo/Dynamo部署流程.md",
-    "Dynamo/NVIDIA Dynamo 博客学习笔记.md",
-    "Dynamo/Dynamo配置说明.md",
-    "CS336/CS336-L17-Multimodal.md",
     "CS336/asset/Pasted image 20260817115504.png",
-    "CS336/课程进度.md",
     "Leetcode/图",
     "Leetcode/回溯",
     "Leetcode/二分查找",
     "Leetcode/栈",
-    "监控链路搭建/asset/Pasted image 20260811172552.png",
-    "监控链路搭建/asset/Pasted image 20260811172529.png",
-    "监控链路搭建/asset/Pasted image 20260811172510.png",
-    "监控链路搭建/asset/Pasted image 20260811172450.png",
-    "监控链路搭建/asset/Pasted image 20260811172341.png",
-    "监控链路搭建/asset/Pasted image 20260811172207.png",
-    "监控链路搭建/asset",
-    "CS336/CS336-L16-RLVR.md.tmp.1769.1786344198325",
+    "Dynamo/Dynamo监控链路搭建/asset",
     "未命名.canvas"
   ]
 }

@@ -34,7 +34,7 @@ LLM 推理与 AI Infra 方向的学习笔记，公开部分由 [Quartz](https://
 
 NVIDIA Dynamo 分布式推理框架的原理与配置。
 
-- [[Dynamo/Dynamo|Dynamo 原理]]
+- [[Dynamo介绍|Dynamo 原理]]
 - [[Dynamo/Dynamo配置说明|配置说明]]
 - [[Dynamo/NVIDIA Dynamo 博客学习笔记|博客学习笔记]]
 

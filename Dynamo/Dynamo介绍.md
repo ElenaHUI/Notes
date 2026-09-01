@@ -18,6 +18,7 @@ NIXL（NVIDIA Inference Transfer Library） 是 NVIDIA 开发的通用数据传�
 | bootstrap 发现 | 手动配置 K8s 注解（`sglang.ai/bootstrap-port`）                                                                                                                      | Dynamo Discovery Service 自动发现               |
 | 运行时弹性        | 固定副本，需整机调度                                                                                                                                                   | 运行时可重配置 xPyD，动态增删 worker                    |
 
+
 Dynamo 设计文档明确指出 NIXL 的 KV 传输是非阻塞的，GPU 前向传播可以在传输期间继续服务其他请求。
 
 ---
