@@ -1,0 +1,20 @@
+{
+  "id": "conv-1788333036163-hj3wj307w",
+  "title": "整理LLM部署面试问题清单",
+  "titleGenerationStatus": "success",
+  "createdAt": 1788333036166,
+  "updatedAt": 1788351994901,
+  "lastResponseAt": 1788334064406,
+  "sessionId": "e2f94a19-9d7e-4f73-998e-5479a840aa92",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 81200,
+    "percentage": 41
+  },
+  "edition": "global"
+}

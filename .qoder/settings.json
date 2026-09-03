@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Write(/tmp/test_llm_impl.py)",
+      "Bash(cat \"/var/folders/h3/vw1vtt3d18x_n874l7lbm9pr0000gn/T/qoder-cli-501/-Users-elenay-Documents-Elena-s-note/8cb2311f-41cc-4ee1-b447-e27fde0565b9/tasks/b132g2dgo.output\" 2>/dev/null; ls /private/tmp/torchtest-venv/lib/python3.9/site-packages 2>/dev/null | head)",
+      "Read(//private/var/folders/h3/vw1vtt3d18x_n874l7lbm9pr0000gn/T/qoder-cli-501/-Users-elenay-Documents-Elena-s-note/8cb2311f-41cc-4ee1-b447-e27fde0565b9/tasks/**)"
+    ]
+  }
+}

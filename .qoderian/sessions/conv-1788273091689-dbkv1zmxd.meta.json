@@ -1,0 +1,20 @@
+{
+  "id": "conv-1788273091689-dbkv1zmxd",
+  "title": "Explain alixpu-peermem module",
+  "titleGenerationStatus": "success",
+  "createdAt": 1788273091689,
+  "updatedAt": 1788277239795,
+  "lastResponseAt": 1788275108428,
+  "sessionId": "46ee3dda-e5d4-4c17-af6f-bdad5c115a16",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 64800,
+    "percentage": 32
+  },
+  "edition": "global"
+}

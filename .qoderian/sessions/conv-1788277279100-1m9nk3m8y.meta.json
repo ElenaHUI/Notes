@@ -1,0 +1,21 @@
+{
+  "id": "conv-1788277279100-1m9nk3m8y",
+  "title": "Complete Python LRUCache class implementation",
+  "titleGenerationStatus": "success",
+  "createdAt": 1788277279100,
+  "updatedAt": 1788333007768,
+  "lastResponseAt": 1788277386768,
+  "sessionId": "297a5dec-79bb-4a7a-ba96-04750dbac703",
+  "currentNote": "Leetcode/CodeTop手撕40题背诵手册.md",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 29400,
+    "percentage": 15
+  },
+  "edition": "global"
+}

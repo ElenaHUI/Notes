@@ -1,0 +1,20 @@
+{
+  "id": "conv-1788352008531-ey4j8qo68",
+  "title": "Implement solution using a heap",
+  "titleGenerationStatus": "success",
+  "createdAt": 1788352008531,
+  "updatedAt": 1788420656258,
+  "lastResponseAt": 1788420656258,
+  "sessionId": "e734305c-9dbf-4772-b2da-e94c09fcfc67",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 101000,
+    "percentage": 51
+  },
+  "edition": "global"
+}

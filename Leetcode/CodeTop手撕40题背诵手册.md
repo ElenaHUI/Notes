@@ -5,7 +5,7 @@ tags:
 created: 2026-08-31
 source: https://leetcode.cn/discuss/post/3623463/codetop-mian-shi-ti-ti-jie-ge-ren-you-hu-rjhy/
 ---
-
+	
 
 # CodeTop 手撕 40 题背诵手册
 
@@ -112,24 +112,21 @@ def reverseList(head):
 
 **题目**：在未排序数组 `nums` 中找出第 `k` 大的元素（排序后从大到小第 k 个）。
 
-**思路**：快排分区随机选择（平均 $O(n)$）；或大小为 $k$ 的小顶堆（$O(n\log k)$）。
+**思路**：维护容量为 $k$ 的**小顶堆**，堆里始终是当前最大的 $k$ 个数，堆顶（这 $k$ 个中最小的）即第 $k$ 大，$O(n\log k)$ / 空间 $O(k)$。也可快排分区随机选择（平均 $O(n)$，最坏 $O(n^2)$）。
 
 ```python
-import random
+import heapq
 def findKthLargest(nums, k):
-    def quickselect(l, r):
-        p = random.randint(l, r)                    # 随机化防最坏
-        nums[p], nums[r] = nums[r], nums[p]
-        pivot, i = nums[r], l
-        for j in range(l, r):
-            if nums[j] >= pivot:                    # 降序，第 k 大在下标 k-1
-                nums[i], nums[j] = nums[j], nums[i]
-                i += 1
-        nums[i], nums[r] = nums[r], nums[i]
-        if i == k - 1: return nums[i]
-        return quickselect(i + 1, r) if i < k - 1 else quickselect(l, i - 1)
-    return quickselect(0, len(nums) - 1)
+    heap = []                               # 小顶堆，容量固定为 k
+    for x in nums:
+        if len(heap) < k:
+            heapq.heappush(heap, x)         # 先填满 k 个
+        elif x > heap[0]:                   # 比堆顶大才有资格进来
+            heapq.heapreplace(heap, x)      # 弹堆顶+压入，一次 O(log k)
+    return heap[0]                          # 堆顶 = 第 k 大
 ```
+
+**为什么是小顶堆**：要淘汰的是「前 $k$ 大中最早的最小值」，小顶堆堆顶正好是这个门槛；且空间只占 $O(k)$，海量数据/数据流（$n$ 装不下内存）依然可做，快排分区不行。
 
 堆写法（一行保底）：`heapq.nlargest(k, nums)[-1]`。
 

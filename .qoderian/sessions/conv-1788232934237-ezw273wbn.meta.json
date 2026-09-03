@@ -1,0 +1,20 @@
+{
+  "id": "conv-1788232934237-ezw273wbn",
+  "title": "整理DeepSeek架构分析笔记格式",
+  "titleGenerationStatus": "success",
+  "createdAt": 1788232934237,
+  "updatedAt": 1788253561495,
+  "lastResponseAt": 1788247317555,
+  "sessionId": "2066cafb-18a3-4951-b726-9a000d69998f",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 94800,
+    "percentage": 47
+  },
+  "edition": "global"
+}

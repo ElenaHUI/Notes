@@ -3,9 +3,7 @@ title: Elena's Notes
 tags:
   - MOC
 ---
-
 LLM 推理与 AI Infra 方向的学习笔记，公开部分由 [Quartz](https://quartz.jzhao.xyz) 从 Obsidian 仓库自动构建。
-
 ## CS336 · 从零构建语言模型
 
 斯坦福 CS336 课程笔记，覆盖分词、硬件、并行、Scaling Law 到推理与评估。

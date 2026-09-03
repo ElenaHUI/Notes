@@ -103,28 +103,23 @@
         "thinkingEfforts": [
           {
             "value": "low",
-            "isDefault": false,
-            "description": "Low thinking intensity"
+            "isDefault": false
           },
           {
             "value": "medium",
-            "isDefault": true,
-            "description": "Medium thinking intensity"
+            "isDefault": false
           },
           {
             "value": "high",
-            "isDefault": false,
-            "description": "High thinking intensity"
+            "isDefault": true
           },
           {
             "value": "xhigh",
-            "isDefault": false,
-            "description": "Extreme thinking intensity"
+            "isDefault": false
           },
           {
             "value": "max",
-            "isDefault": false,
-            "description": "Maximum thinking intensity"
+            "isDefault": false
           }
         ]
       },
