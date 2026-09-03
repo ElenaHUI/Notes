@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "秋招/面经/百度 AI infra面经.md",
+                "file": "秋招/面经/PTG项目简介.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "百度 AI infra面经"
+              "title": "PTG项目简介"
             }
           }
         ]
@@ -223,20 +223,20 @@
   },
   "active": "79528a5fa5a5fadf",
   "lastOpenFiles": [
+    "秋招/秋招投递表格.loom",
+    "秋招/秋招投递表格.md",
+    "秋招/面经/百度 AI infra面经.md",
     "秋招/面经/科大讯飞.md",
     "秋招/面经/快手 AI infra面经.md",
     "秋招/面经/商汤 大模型系统工程师面经.md",
-    "秋招/面经/百度 AI infra面经.md",
     "Dynamo/Dynamo监控链路搭建/后续问题解决.md",
     "Dynamo/Dynamo监控链路搭建/看板问题解决.md",
     "秋招/面经/PTG项目简介.md",
     "每日待办.md",
-    "秋招/秋招投递表格.md",
     "PTG/LLM Warm-up.md",
     "PTG/Warmup效果对比.md",
     "PTG/asset/Pasted image 20260903114401.png",
     "Leetcode/CodeTop手撕40题背诵手册.md",
-    "秋招/秋招投递表格.loom",
     "Leetcode/大模型手撕14题.md",
     "Leetcode/数据结构操作速记.md",
     "Leetcode/LeetCode 刷题汇总.md",
@@ -259,7 +259,6 @@
     "Infra/Qwen系列架构分析.md",
     "Infra/PD分离.md",
     "Leetcode/二分查找/33. 搜索旋转排序数组.md",
-    "未命名.md",
     "AI提效",
     "PTG/bugmirror.pdf",
     "秋招/面经",
