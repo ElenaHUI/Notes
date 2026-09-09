@@ -63,7 +63,7 @@ date: 2026-09-02
 
 **7）可观测**：`--enable-metrics --enable-cache-report --enable-expert-distribution-metrics`，接 Prometheus 出 TTFT / TPOT / 并发 / cache 命中率报表。
 
-> 详见 [[PTG/kimi2.6 PD分离部署记录]]、[[PTG/DeepSeek-Flash-0731 SGLang 的PD分离部署]]。
+> 详见 [[kimi2.6 PD分离部署记录]]、[[DeepSeek-Flash-0731 SGLang 的PD分离部署]]。
 
 ### Q2 其中哪一块是你负责的？业务场景是什么？
 
@@ -795,4 +795,4 @@ $$
 
 **面试官倾向判断**：技术深度问得很细（RDMA 一路追到"完成标志够不够""经不经过 CPU"），并且明显在往 **Agent Infra / RL 环境**方向引。这个岗位对推理侧的深度是认可的，但**最终考察点是能不能迁移到 Agent 侧**。所以补 Agent 协议 + RL 框架的优先级最高。
 
-**关联笔记**：[[PTG/kimi2.6 PD分离部署记录]] · [[PTG/DeepSeek-Flash-0731 SGLang 的PD分离部署]] · [[Infra/PD分离]] · [[秋招/面经/商汤 大模型系统工程师面经]]
+**关联笔记**：[[kimi2.6 PD分离部署记录]] · [[DeepSeek-Flash-0731 SGLang 的PD分离部署]] · [[Infra/PD分离]] · [[秋招/面经/商汤 大模型系统工程师面经]]

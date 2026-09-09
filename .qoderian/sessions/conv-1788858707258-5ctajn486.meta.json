@@ -1,0 +1,20 @@
+{
+  "id": "conv-1788858707258-5ctajn486",
+  "title": "Add OpenCode tasks to requirements manual",
+  "titleGenerationStatus": "success",
+  "createdAt": 1788858707258,
+  "updatedAt": 1788859437481,
+  "lastResponseAt": 1788859437481,
+  "sessionId": "1c6dbf4d-ea49-4316-b443-f014d646a6d5",
+  "currentNote": "PTG/PTG实习工作总结-PPT提纲.md",
+  "usage": {
+    "model": "qmodel_38max",
+    "inputTokens": 84624,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 79641,
+    "contextWindow": 200000,
+    "contextTokens": 164265,
+    "percentage": 82
+  },
+  "edition": "global"
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>红区 AI Infra 分层架构</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 34px 30px 40px;
+    background: #fff;
+    font-family: -apple-system, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+    color: #000;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 700; margin: 0 0 22px; letter-spacing: 1px; }
+  .stack { display: flex; flex-direction: column; gap: 8px; }
+  .layer {
+    display: flex;
+    align-items: center;
+    min-height: 62px;
+    border: 1.5px solid #000;
+    border-left: 6px solid #000;
+    border-radius: 4px;
+    background: #fff;
+  }
+  .name {
+    flex: 0 0 132px;
+    padding: 0 16px;
+    font-size: 16px;
+    font-weight: 700;
+    border-right: 1.5px solid #000;
+  }
+  .items {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 16px;
+  }
+  .chip {
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 3px;
+    padding: 6px 12px;
+    font-size: 13.5px;
+  }
+  .chip.key { border-width: 2px; font-weight: 700; }
+  .chip.mine { border: 2px solid #E8730C; background: #FFF2E4; color: #A34E00; font-weight: 700; }
+  .legend {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 18px;
+    font-size: 13px;
+    color: #444;
+  }
+  .legend .box {
+    width: 22px;
+    height: 13px;
+    border: 2px solid #E8730C;
+    background: #FFF2E4;
+    border-radius: 3px;
+  }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>红区 AI Infra 分层架构</h1>
+  <div class="legend"><span class="box"></span>橙色为本人参与部分</div>
+
+  <div class="stack">
+    <div class="layer l1">
+      <div class="name">Agent 层</div>
+      <div class="items">
+        <div class="chip mine">opencode</div>
+        <div class="chip mine">DeepSeek Harness</div>
+      </div>
+    </div>
+
+    <div class="layer l2">
+      <div class="name">接入层</div>
+      <div class="items"><div class="chip key">LiteLLM</div></div>
+    </div>
+
+    <div class="layer l3">
+      <div class="name">平台层</div>
+      <div class="items">
+        <div class="chip key">管理面平台</div>
+        <div class="chip mine">上报数据大盘</div>
+        <div class="chip">压测 / Capture 面板</div>
+        <div class="chip">PPU 卡台账</div>
+      </div>
+    </div>
+
+    <div class="layer l4">
+      <div class="name">交付层</div>
+      <div class="items">
+        <div class="chip key">Gitea + ArgoCD GitOps</div>
+        <div class="chip">Argo Workflows</div>
+      </div>
+    </div>
+
+    <div class="layer l5">
+      <div class="name">编排层</div>
+      <div class="items">
+        <div class="chip mine">Dynamo</div>
+        <div class="chip">自研 Deployment 版 PD 分离</div>
+        <div class="chip mine">Prometheus + Grafana 度量</div>
+      </div>
+    </div>
+
+    <div class="layer l6">
+      <div class="name">运行时层</div>
+      <div class="items">
+        <div class="chip key">vLLM</div>
+        <div class="chip mine">SGLang</div>
+      </div>
+    </div>
+
+    <div class="layer l7">
+      <div class="name">系统软件层</div>
+      <div class="items">
+        <div class="chip">驱动与算子</div>
+        <div class="chip">编译器与通信库</div>
+      </div>
+    </div>
+
+    <div class="layer l8">
+      <div class="name">资源层</div>
+      <div class="items">
+        <div class="chip key">PPU 810e / 890p</div>
+        <div class="chip">拓扑调度插件</div>
+        <div class="chip">业务池弹性调度</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

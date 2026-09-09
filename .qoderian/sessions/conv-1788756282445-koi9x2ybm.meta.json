@@ -1,0 +1,20 @@
+{
+  "id": "conv-1788756282445-koi9x2ybm",
+  "title": "Organize interview experience notes",
+  "titleGenerationStatus": "success",
+  "createdAt": 1788756282445,
+  "updatedAt": 1788841817783,
+  "lastResponseAt": 1788756458039,
+  "sessionId": "026e2d37-6b3d-4c54-930a-0e8908b2f28e",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 70264,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 68344,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 70200,
+    "percentage": 35
+  },
+  "edition": "global"
+}

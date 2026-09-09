@@ -1,5 +1,6 @@
-![[红区AI Infra.png|1467]]
+![[红区AI Infra.png|705]]
+
+![[Pasted image 20260907154508.png]]
 - [ ] 读取opencode，qwen请求做warmup
-- [ ] pd分离部署
-- [ ] TP32
-- [ ] 网关测
+- [ ] pd分离部署(等后面卡多了)
+- [ ] 网关侧

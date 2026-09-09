@@ -128,8 +128,7 @@
         "displayName": "Efficient",
         "description": "Vision · 0.30x Credit",
         "group": "Qoder",
-        "priceFactor": 0.3,
-        "originalPriceFactor": 0.5
+        "priceFactor": 0.3
       },
       {
         "value": "lite",
@@ -147,10 +146,10 @@
         "promotion": {
           "active": false,
           "badge": {
-            "en": "Off-Peak 50% off",
-            "zh": "错峰 5 折"
+            "en": "Off-Peak 60% off",
+            "zh": "错峰 4 折"
           },
-          "discountFactor": 0.5,
+          "discountFactor": 0.4,
           "window": "22:00-08:00 Asia/Singapore"
         },
         "contextTiers": [
@@ -192,6 +191,15 @@
         "description": "Reasoning · Vision · New · 0.10x Credit",
         "group": "New models",
         "priceFactor": 0.1,
+        "promotion": {
+          "active": false,
+          "badge": {
+            "en": "Off-Peak 60% off",
+            "zh": "错峰 4 折"
+          },
+          "discountFactor": 0.4,
+          "window": "22:00-08:00 Asia/Singapore"
+        },
         "contextTiers": [
           {
             "label": "200K",

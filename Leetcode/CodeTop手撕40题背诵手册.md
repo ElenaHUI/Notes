@@ -28,7 +28,9 @@ class TreeNode:
 
 # 第一页
 
-## 1. LC3 无重复字符的最长子串
+## 1. LC3 无重复字符的最长子串 
+
+1
 
 **题目**：给定字符串 `s`，找出其中**不含重复字符**的最长子串的长度。
 
@@ -47,6 +49,8 @@ def lengthOfLongestSubstring(s: str) -> int:
 ```
 
 ## 2. LC146 LRU 缓存机制
+
+1
 
 **题目**：设计最近最少使用（LRU）缓存，支持 `get(key)` 和 `put(key, value)`，容量满时淘汰最久未使用的键，两个操作都要求 $O(1)$。
 
@@ -93,6 +97,8 @@ class LRUCache:
 
 ## 3. LC206 反转链表
 
+1
+
 **题目**：给定单链表头节点，将整个链表反转，返回新的头节点。
 
 **思路**：迭代三指针，逐个掉头。$O(n)$，$O(1)$ 空间。
@@ -109,6 +115,8 @@ def reverseList(head):
 ```
 
 ## 4. LC215 数组中的第 K 个最大元素
+
+1
 
 **题目**：在未排序数组 `nums` 中找出第 `k` 大的元素（排序后从大到小第 k 个）。
 
@@ -132,6 +140,8 @@ def findKthLargest(nums, k):
 
 ## 5. LC25 K 个一组翻转链表
 
+1
+
 **题目**：每 `k` 个节点一组进行翻转；不足 `k` 个的尾部保持原序，只能改变节点本身（不能只改值）。
 
 **思路**：先数够 $k$ 个（不够则保持原样），反转本段，尾部递归接后续。$O(n)$
@@ -154,6 +164,7 @@ def reverseKGroup(head, k):
 ```
 
 ## 6. LC15 三数之和
+1
 
 **题目**：在数组 `nums` 中找出所有和为 0 的三元组，答案中不能包含重复的三元组。
 
@@ -180,6 +191,7 @@ def threeSum(nums):
 ```
 
 ## 7. LC53 最大子数组和
+1
 
 **题目**：在整数数组中找出一个**连续子数组**，使其和最大，返回该最大和。
 
@@ -217,6 +229,7 @@ def quick_sort(nums, l, r):
 ```
 
 ## 9. LC5 最长回文子串
+1
 
 **题目**：给定字符串 `s`，返回其中最长的回文子串。
 
@@ -257,6 +270,7 @@ def mergeTwoLists(l1, l2):
 ```
 
 ## 11. LC102 二叉树的层序遍历
+1
 
 **题目**：逐层从左到右返回二叉树每层的节点值（列表的列表）。
 
@@ -279,6 +293,7 @@ def levelOrder(root):
 ```
 
 ## 12. LC1 两数之和
+1
 
 **题目**：在数组 `nums` 中找出和为目标值 `target` 的两个数，返回它们的下标（每种输入只有一组答案）。
 
@@ -294,6 +309,7 @@ def twoSum(nums, target):
 ```
 
 ## 13. LC200 岛屿数量
+1
 
 **题目**：给定由 `'1'`（陆地）和 `'0'`（水）组成的二维网格，计算岛屿的数量（水平/垂直相连的陆地算一座岛）。
 
@@ -317,6 +333,7 @@ def numIslands(grid):
 ```
 
 ## 14. LC33 搜索旋转排序数组
+1
 
 **题目**：升序无重复数组在某个未知下标处旋转过（如 `[4,5,6,7,0,1,2]`），在其中搜索 `target`，返回下标或 -1，要求 $O(\log n)$。
 
@@ -338,6 +355,7 @@ def search(nums, target):
 ```
 
 ## 15. LC46 全排列
+1
 
 **题目**：给定一个**不含重复数字**的数组，返回其所有可能的排列。
 
@@ -379,7 +397,7 @@ def merge(nums1, m, nums2, n):
 ```
 
 ## 17. LC121 买卖股票的最佳时机
-
+1
 **题目**：给定数组 `prices` 表示每天股价，只能买入一次、卖出一次（先买后卖），求最大利润；无法获利则返回 0。
 
 **思路**：维护历史最低价，枚举卖出日。$O(n)$
@@ -416,6 +434,7 @@ def zigzagLevelOrder(root):
 ```
 
 ## 19. LC20 有效的括号
+1
 
 **题目**：给定只含 `()[]{}` 的字符串，判断括号是否有效（左右配对且嵌套顺序正确）。
 
@@ -436,19 +455,24 @@ def isValid(s):
 ```
 
 ## 20. LC236 二叉树的最近公共祖先
+1
 
 **题目**：给定二叉树和两个节点 `p`、`q`，找到它们的最近公共祖先（节点本身也可以是自己的祖先）。
 
-**思路**：后序递归；命中 p/q 就返回，左右都非空说明当前节点是分叉点。$O(n)$
+**思路**：后序递归；命中 p/q 就返回，左右都非空说明当前节点是分叉点。$O(n)$统计每个节点作为根的子树中有多少个目标点，**第一个满足`目标点数量 = 2` 的节点就是答案**
+1.定义一个全局变量`LCA = None`
+2.定义`dfs(node)` 返回 以`node`为根的子树中目标点的个数`cnt`。
+3.自底向上的DFS,统计左右子树的目标点，以及检查`node`是否属于`p , q` 以得到`cnt`。
+4.每次检查`node`是否满足**性质1(cnt = 2)** , `LCA`就是DFS过程中最早的满足**性质1**的节点。
 
 ```python
 def lowestCommonAncestor(root, p, q):
-    if not root or root == p or root == q:
+    if not root or root == p or root == q: #找到目标节点或者搜到底
         return root
-    left = lowestCommonAncestor(root.left, p, q)
-    right = lowestCommonAncestor(root.right, p, q)
-    if left and right: return root
-    return left or right
+    left = lowestCommonAncestor(root.left, p, q) #搜左边
+    right = lowestCommonAncestor(root.right, p, q) #搜右边
+    if left and right: return root #如果两边都有就是答案
+    return left or right #返回有的
 ```
 
 ---
@@ -538,19 +562,85 @@ def mergeKLists(lists):
 
 ## 25. LC300 最长上升子序列
 
+快手一面手撕 → 详细解析（还原序列 / 变体题 / 正确性证明）见 [[秋招/面经/快手 AI infra面经#Q15 手撕：最长递增子序列（LC300）]]
+
 **题目**：给定整数数组，找出其中最长**严格递增子序列**的长度（子序列不要求连续）。
 
-**思路**：维护 tails 数组（各长度 LIS 的最小结尾），二分找替换位。$O(n\log n)$
+### 解法一：贪心 + 二分 $O(n\log n)$（面试首选）
+
+**思路**：维护 `tails` 数组，**`tails[k]` = 所有长度为 `k+1` 的递增子序列中结尾最小的那个值**。结尾越小、后面能接上的数越多、潜力越大；`tails` 恒严格递增所以能二分。对每个 `x`：找第一个 `>= x` 的位置替换掉（让该长度的结尾变小），若 `x` 比所有都大就 append（长度 +1）。答案 = `len(tails)`。
+
+> ⚠️ **必考追问**：`tails` **不是**真实的 LIS 序列，只是长度正确的辅助数组。
 
 ```python
 import bisect
-def lengthOfLIS(nums):
-    tails = []
-    for x in nums:
-        i = bisect.bisect_left(tails, x)
-        if i == len(tails): tails.append(x)
-        else: tails[i] = x
-    return len(tails)
+
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        tails = []                       # tails[k]: 长度 k+1 的子序列的最小结尾
+        for x in nums:
+            # 严格递增用 bisect_left；若允许相等（非严格递增）用 bisect_right
+            i = bisect.bisect_left(tails, x)
+            if i == len(tails):
+                tails.append(x)          # x 比所有结尾都大 → 延长
+            else:
+                tails[i] = x             # 替换 → 该长度的结尾变得更小
+        return len(tails)
+```
+
+**手写二分版（面试官不许用 bisect 时）**：
+
+```python
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        tails = []
+        for x in nums:
+            lo, hi = 0, len(tails)       # 左闭右开，找第一个 >= x 的下标
+            while lo < hi:
+                mid = (lo + hi) // 2
+                if tails[mid] < x:
+                    lo = mid + 1
+                else:
+                    hi = mid
+            if lo == len(tails):
+                tails.append(x)
+            else:
+                tails[lo] = x
+        return len(tails)
+```
+
+时间 $O(n\log n)$，空间 $O(n)$。
+
+### 解法二：动态规划 $O(n^2)$（先讲思路 / 兜底）
+
+**答案是 $\max_i dp[i]$，不是 `dp[n-1]`**（LIS 不一定以最后一个元素结尾）。
+
+**思路**：动态规划定义 dp[i]dp[i] 表示以第 ii 个元素结尾的最长递增子序列长度。然后对每个位置 ii，去看它前面的所有位置 jj：只要 nums[j]nums[j] 比 nums[i]nums[i] 小，就可以把 ii 接到 jj 后面，更新 dp[i]dp[i]。本质就是：尝试把当前元素接在之前所有“能接”的位置后面，取一个最长的。
+
+```python
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        n = len(nums)
+
+        # dp[i] 表示以 nums[i] 作为结尾的最长递增子序列长度
+        dp = [1] * n
+
+        # ans 记录所有 dp[i] 中的最大值
+        ans = 1
+
+        # 从左到右枚举每个位置作为子序列结尾
+        for i in range(n):
+            # 枚举 i 前面的所有位置
+            for j in range(i):
+                # 只有 nums[j] < nums[i]，nums[i] 才能接在 nums[j] 后面
+                if nums[j] < nums[i]:
+                    dp[i] = max(dp[i], dp[j] + 1)
+
+            # 更新最长递增子序列长度
+            ans = max(ans, dp[i])
+
+        return ans
+
 ```
 
 ## 26. LC415 字符串相加

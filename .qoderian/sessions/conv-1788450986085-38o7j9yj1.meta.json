@@ -1,0 +1,21 @@
+{
+  "id": "conv-1788450986085-38o7j9yj1",
+  "title": "撰写面试自我介绍",
+  "titleGenerationStatus": "success",
+  "createdAt": 1788450986085,
+  "updatedAt": 1788487626486,
+  "lastResponseAt": 1788451276823,
+  "sessionId": "5080ab8a-d296-47d1-b4cb-173efbc9e9d8",
+  "currentNote": "简历.md",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 29600,
+    "percentage": 15
+  },
+  "edition": "global"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "conv-1788628248755-nf9jsaz7j",
+  "title": "Explain Python deque initialization",
+  "titleGenerationStatus": "success",
+  "createdAt": 1788628248755,
+  "updatedAt": 1788756274961,
+  "lastResponseAt": 1788629311898,
+  "sessionId": "97513d8a-b07d-41e8-8a2c-16d6d6252bad",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 17873,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 17800,
+    "percentage": 9
+  },
+  "edition": "global"
+}

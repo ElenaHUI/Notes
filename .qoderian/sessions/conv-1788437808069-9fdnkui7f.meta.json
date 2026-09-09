@@ -3,8 +3,8 @@
   "title": "Find website URL",
   "titleGenerationStatus": "success",
   "createdAt": 1788437808070,
-  "updatedAt": 1788439323895,
-  "lastResponseAt": 1788439323895,
+  "updatedAt": 1788450966573,
+  "lastResponseAt": 1788439892083,
   "sessionId": "8928b0a3-c64f-4b14-aea9-5f3110c5890c",
   "usage": {
     "model": "auto",
@@ -13,8 +13,8 @@
     "cacheReadInputTokens": 0,
     "contextWindow": 200000,
     "contextWindowIsAuthoritative": false,
-    "contextTokens": 50400,
-    "percentage": 25
+    "contextTokens": 51800,
+    "percentage": 26
   },
   "edition": "global"
 }

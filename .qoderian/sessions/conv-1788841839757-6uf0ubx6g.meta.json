@@ -1,0 +1,20 @@
+{
+  "id": "conv-1788841839757-6uf0ubx6g",
+  "title": "Check KV cache transfer metrics",
+  "titleGenerationStatus": "success",
+  "createdAt": 1788841839757,
+  "updatedAt": 1788858176717,
+  "lastResponseAt": 1788841869435,
+  "sessionId": "9681844b-8ce0-4e15-baab-58827a6ef90f",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 26614,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 15716,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 26600,
+    "percentage": 13
+  },
+  "edition": "global"
+}

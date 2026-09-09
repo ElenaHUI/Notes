@@ -1,0 +1,20 @@
+{
+  "id": "conv-1788487653261-6ac53umva",
+  "title": "Explain GitOps flow and Kustomize base/overlays",
+  "titleGenerationStatus": "success",
+  "createdAt": 1788487653261,
+  "updatedAt": 1788628206607,
+  "lastResponseAt": 1788490539686,
+  "sessionId": "10a2b9f8-3457-43d7-a130-95d9f877af1e",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 34997,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 35000,
+    "percentage": 18
+  },
+  "edition": "global"
+}

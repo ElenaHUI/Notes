@@ -1,0 +1,20 @@
+{
+  "id": "conv-1788538846383-7q3737w2v",
+  "title": "整理并回答秋招面经",
+  "titleGenerationStatus": "success",
+  "createdAt": 1788538846383,
+  "updatedAt": 1788628229104,
+  "lastResponseAt": 1788628225496,
+  "sessionId": "7b92feef-dd04-4116-82ba-539b28963ce3",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 153950,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 151755,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 154000,
+    "percentage": 77
+  },
+  "edition": "global"
+}
