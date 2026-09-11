@@ -281,7 +281,7 @@ ibv_poll_cq                               → 轮询 Work Completion（WC）
 **F. 排查工具**：`ibv_devinfo`、`ibstat`、`show_gids`、`ib_write_bw` / `ib_read_bw`（perftest 打裸流）、`ethtool -i`、`lsmod | grep peermem`、`dmesg`。
 
 > [!todo] 待补充
-> RDMA 调优后的**实测传输速率**（xx GB/s），与 ICN 理论带宽（700 GB/s）的对比，以及 KV 传输耗时占 TTFT 的比例。（和 [[秋招/面经/商汤 大模型系统工程师面经]] 的 Q9 是同一个待补项）
+> RDMA 调优后的**实测传输速率**（300GB/s），与 ICN 理论带宽（700 GB/s）的对比，以及 KV 传输耗时占 TTFT 的比例。（和 [[秋招/面经/商汤 大模型系统工程师面经]] 的 Q9 是同一个待补项）
 
 ### Q9 Decode 端已经收到完整 KV Cache、要开始生成 token 了，它怎么通过 RDMA 的通信状态判定"消息已完整、可以开始 decode"？
 
@@ -789,8 +789,8 @@ $$
 - [ ] **Q15 A2A 协议细节**：Agent Card、Task 状态机、Artifact 增量产出、认证方式
 - [ ] **Q17 幂等性**：Idempotency Key 模式、MCP tool annotation 的 `idempotentHint` / `destructiveHint`
 - [ ] **Q14 Agentic RL**：GRPO / DAPO / GSPO 的差异，veRL 的架构，weight resharding，partial rollout
-- [ ] **Q6 KV Cache 结构**：把"链表 + 数组"说成完整的"数组(block table) + 链表(free list) + 树(radix)"三件套，并区分内部碎片 vs 外部碎片
-- [ ] **Q8/Q9 RDMA 实测速率**：补上具体 GB/s 数字（和商汤面经 Q9 同一个待补项）
+- [x] **Q6 KV Cache 结构**：把"链表 + 数组"说成完整的"数组(block table) + 链表(free list) + 树(radix)"三件套，并区分内部碎片 vs 外部碎片 ✅ 2026-09-10
+- [x] **Q8/Q9 RDMA 实测速率**：补上具体 GB/s 数字（和商汤面经 Q9 同一个待补项） ✅ 2026-09-10
 - [ ] **Q13 HiCache**：整理线上 prefix cache 命中率数据，作为是否上 HiCache 的决策依据
 
 **面试官倾向判断**：技术深度问得很细（RDMA 一路追到"完成标志够不够""经不经过 CPU"），并且明显在往 **Agent Infra / RL 环境**方向引。这个岗位对推理侧的深度是认可的，但**最终考察点是能不能迁移到 Agent 侧**。所以补 Agent 协议 + RL 框架的优先级最高。
