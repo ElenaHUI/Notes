@@ -1,0 +1,21 @@
+{
+  "id": "conv-1789889926469-tp3ru682u",
+  "title": "你好",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1789889926469,
+  "updatedAt": 1790150159317,
+  "lastResponseAt": 1790150159317,
+  "sessionId": "762f2b18-0159-43c4-8a0d-33b73443adcd",
+  "currentNote": "秋招/面经/拼多多 AI Infra 二面.md",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 90600,
+    "percentage": 45
+  },
+  "edition": "global"
+}

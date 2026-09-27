@@ -1,0 +1,20 @@
+{
+  "id": "conv-1789567745267-dc8ns9in7",
+  "title": "整理快手二面面经并逐题详解",
+  "titleGenerationStatus": "success",
+  "createdAt": 1789567745267,
+  "updatedAt": 1789889917221,
+  "lastResponseAt": 1789567953927,
+  "sessionId": "28d543a9-0129-40fa-b52e-91eec80ac237",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 35200,
+    "percentage": 18
+  },
+  "edition": "global"
+}

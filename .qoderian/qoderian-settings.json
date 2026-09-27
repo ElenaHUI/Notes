@@ -25,16 +25,16 @@
       {
         "value": "auto",
         "displayName": "Auto",
-        "description": "Vision · 1.00x Credit",
+        "description": "Vision · 0.50x Credit",
         "group": "Qoder",
-        "priceFactor": 1
+        "priceFactor": 0.5
       },
       {
         "value": "ultimate",
         "displayName": "Ultimate",
-        "description": "Reasoning · Vision · 1.60x Credit",
+        "description": "Reasoning · Vision · 2.00x Credit",
         "group": "Qoder",
-        "priceFactor": 1.6,
+        "priceFactor": 2,
         "contextTiers": [
           {
             "label": "200K",
@@ -103,23 +103,28 @@
         "thinkingEfforts": [
           {
             "value": "low",
-            "isDefault": false
+            "isDefault": false,
+            "description": "Low thinking intensity"
           },
           {
             "value": "medium",
-            "isDefault": false
+            "isDefault": true,
+            "description": "Medium thinking intensity"
           },
           {
             "value": "high",
-            "isDefault": true
+            "isDefault": false,
+            "description": "High thinking intensity"
           },
           {
             "value": "xhigh",
-            "isDefault": false
+            "isDefault": false,
+            "description": "Extreme thinking intensity"
           },
           {
             "value": "max",
-            "isDefault": false
+            "isDefault": false,
+            "description": "Maximum thinking intensity"
           }
         ]
       },
@@ -129,13 +134,6 @@
         "description": "Vision · 0.30x Credit",
         "group": "Qoder",
         "priceFactor": 0.3
-      },
-      {
-        "value": "lite",
-        "displayName": "Lite",
-        "description": "0.00x Credit",
-        "group": "Qoder",
-        "priceFactor": 0
       },
       {
         "value": "qmodel_38max",
@@ -177,11 +175,11 @@
           },
           {
             "value": "medium",
-            "isDefault": false
+            "isDefault": true
           },
           {
             "value": "xhigh",
-            "isDefault": true
+            "isDefault": false
           }
         ]
       },
@@ -191,15 +189,6 @@
         "description": "Reasoning · Vision · New · 0.10x Credit",
         "group": "New models",
         "priceFactor": 0.1,
-        "promotion": {
-          "active": false,
-          "badge": {
-            "en": "Off-Peak 60% off",
-            "zh": "错峰 4 折"
-          },
-          "discountFactor": 0.4,
-          "window": "22:00-08:00 Asia/Singapore"
-        },
         "contextTiers": [
           {
             "label": "200K",
@@ -225,11 +214,11 @@
           },
           {
             "value": "medium",
-            "isDefault": false
+            "isDefault": true
           },
           {
             "value": "xhigh",
-            "isDefault": true
+            "isDefault": false
           }
         ]
       },
@@ -305,6 +294,44 @@
       {
         "value": "kmodel_latest",
         "displayName": "Kimi-K3",
+        "description": "Vision · New · 1.40x Credit",
+        "group": "New models",
+        "priceFactor": 1.4,
+        "contextTiers": [
+          {
+            "label": "200K",
+            "tokenCount": 200000,
+            "isDefault": true
+          },
+          {
+            "label": "400K",
+            "tokenCount": 400000,
+            "isDefault": false
+          },
+          {
+            "label": "1M",
+            "tokenCount": 1000000,
+            "isDefault": false
+          }
+        ],
+        "thinkingEfforts": [
+          {
+            "value": "low",
+            "isDefault": false
+          },
+          {
+            "value": "high",
+            "isDefault": false
+          },
+          {
+            "value": "max",
+            "isDefault": true
+          }
+        ]
+      },
+      {
+        "value": "kmodel",
+        "displayName": "Kimi-K2.8-Preview",
         "description": "Vision · New · 0.80x Credit",
         "group": "New models",
         "priceFactor": 0.8,
@@ -341,25 +368,11 @@
         ]
       },
       {
-        "value": "kmodel",
-        "displayName": "Kimi-K2.7-Code",
-        "description": "Vision · New · 0.30x Credit",
-        "group": "New models",
-        "priceFactor": 0.3,
-        "contextTiers": [
-          {
-            "label": "default",
-            "tokenCount": 256000,
-            "isDefault": true
-          }
-        ]
-      },
-      {
         "value": "gmodel",
         "displayName": "GLM-5.3",
-        "description": "Reasoning · Vision · New · 0.60x Credit",
+        "description": "Reasoning · Vision · New · 0.80x Credit",
         "group": "New models",
-        "priceFactor": 0.6,
+        "priceFactor": 0.8,
         "contextTiers": [
           {
             "label": "200K",
@@ -395,10 +408,9 @@
       {
         "value": "gfmodel",
         "displayName": "GLM-5.3-Flash",
-        "description": "Reasoning · Vision · New · 0.05x Credit",
+        "description": "Reasoning · Vision · New · 0.10x Credit",
         "group": "New models",
-        "priceFactor": 0.05,
-        "originalPriceFactor": 0.1,
+        "priceFactor": 0.1,
         "contextTiers": [
           {
             "label": "200K",
@@ -430,9 +442,9 @@
       {
         "value": "dmodel",
         "displayName": "DeepSeek-V4-Pro",
-        "description": "Reasoning · Vision · New · 0.80x Credit",
+        "description": "Reasoning · Vision · New · 0.50x Credit",
         "group": "New models",
-        "priceFactor": 0.8,
+        "priceFactor": 0.5,
         "contextTiers": [
           {
             "label": "200K",
@@ -466,10 +478,10 @@
       },
       {
         "value": "dfmodel",
-        "displayName": "DeepSeek-V4-Flash",
-        "description": "Reasoning · Vision · New · 0.30x Credit",
+        "displayName": "DeepSeek-Flash",
+        "description": "Reasoning · Vision · New · 0.10x Credit",
         "group": "New models",
-        "priceFactor": 0.3,
+        "priceFactor": 0.1,
         "contextTiers": [
           {
             "label": "200K",
