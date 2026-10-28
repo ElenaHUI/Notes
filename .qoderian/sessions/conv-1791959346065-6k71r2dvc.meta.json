@@ -1,0 +1,20 @@
+{
+  "id": "conv-1791959346065-6k71r2dvc",
+  "title": "Derive P/D balance ratio for LLM inference",
+  "titleGenerationStatus": "success",
+  "createdAt": 1791959346066,
+  "updatedAt": 1792136897619,
+  "lastResponseAt": 1791961795292,
+  "sessionId": "26e96017-9412-4332-bb07-b076332b2aec",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 34929,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 34674,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 35000,
+    "percentage": 18
+  },
+  "edition": "global"
+}

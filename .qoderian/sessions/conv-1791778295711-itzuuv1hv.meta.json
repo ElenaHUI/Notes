@@ -1,0 +1,20 @@
+{
+  "id": "conv-1791778295711-itzuuv1hv",
+  "title": "Translate Dynamo scheduling algorithm note",
+  "titleGenerationStatus": "success",
+  "createdAt": 1791778295711,
+  "updatedAt": 1791959311993,
+  "lastResponseAt": 1791787229288,
+  "sessionId": "8e1fcf89-0335-4786-b88f-87be425c2052",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 22000,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 22000,
+    "percentage": 11
+  },
+  "edition": "global"
+}

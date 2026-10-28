@@ -1,0 +1,20 @@
+{
+  "id": "conv-1792136939126-kgfeid5xk",
+  "title": "Add UCX, Verbs, and IB concepts chapter with di...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1792136939127,
+  "updatedAt": 1792140181097,
+  "lastResponseAt": 1792140181097,
+  "sessionId": "32dc593d-9044-4a3f-9600-01f1f7a02824",
+  "usage": {
+    "model": "auto",
+    "inputTokens": 57076,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 54412,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": false,
+    "contextTokens": 57000,
+    "percentage": 28
+  },
+  "edition": "global"
+}

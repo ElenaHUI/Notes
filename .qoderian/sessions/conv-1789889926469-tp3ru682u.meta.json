@@ -3,10 +3,9 @@
   "title": "你好",
   "titleGenerationStatus": "failed",
   "createdAt": 1789889926469,
-  "updatedAt": 1790150159317,
+  "updatedAt": 1791778278028,
   "lastResponseAt": 1790150159317,
   "sessionId": "762f2b18-0159-43c4-8a0d-33b73443adcd",
-  "currentNote": "秋招/面经/拼多多 AI Infra 二面.md",
   "usage": {
     "model": "auto",
     "inputTokens": 0,

@@ -27,7 +27,14 @@
         "displayName": "Auto",
         "description": "Vision · 0.50x Credit",
         "group": "Qoder",
-        "priceFactor": 0.5
+        "priceFactor": 0.5,
+        "contextTiers": [
+          {
+            "label": "200K",
+            "tokenCount": 200000,
+            "isDefault": true
+          }
+        ]
       },
       {
         "value": "ultimate",
@@ -77,15 +84,29 @@
         ]
       },
       {
-        "value": "performance",
-        "displayName": "Performance",
-        "description": "Vision · 1.10x Credit",
+        "value": "efficient",
+        "displayName": "Efficient",
+        "description": "Vision · 0.30x Credit",
         "group": "Qoder",
-        "priceFactor": 1.1,
+        "priceFactor": 0.3,
         "contextTiers": [
           {
-            "label": "272K",
-            "tokenCount": 272000,
+            "label": "200K",
+            "tokenCount": 200000,
+            "isDefault": true
+          }
+        ]
+      },
+      {
+        "value": "smodel",
+        "displayName": "Sonus",
+        "description": "Reasoning · Vision · New · 8.00x Credit",
+        "group": "New models",
+        "priceFactor": 8,
+        "contextTiers": [
+          {
+            "label": "200K",
+            "tokenCount": 200000,
             "isDefault": true
           },
           {
@@ -99,41 +120,28 @@
             "isDefault": false
           }
         ],
-        "thinkingDisableable": true,
         "thinkingEfforts": [
           {
             "value": "low",
-            "isDefault": false,
-            "description": "Low thinking intensity"
+            "isDefault": false
           },
           {
             "value": "medium",
-            "isDefault": true,
-            "description": "Medium thinking intensity"
+            "isDefault": false
           },
           {
             "value": "high",
-            "isDefault": false,
-            "description": "High thinking intensity"
+            "isDefault": true
           },
           {
             "value": "xhigh",
-            "isDefault": false,
-            "description": "Extreme thinking intensity"
+            "isDefault": false
           },
           {
             "value": "max",
-            "isDefault": false,
-            "description": "Maximum thinking intensity"
+            "isDefault": false
           }
         ]
-      },
-      {
-        "value": "efficient",
-        "displayName": "Efficient",
-        "description": "Vision · 0.30x Credit",
-        "group": "Qoder",
-        "priceFactor": 0.3
       },
       {
         "value": "qmodel_38max",
@@ -221,41 +229,6 @@
             "isDefault": false
           }
         ]
-      },
-      {
-        "value": "qmodel_latest",
-        "displayName": "Qwen3.7-Max",
-        "description": "Vision · New · 0.50x Credit",
-        "group": "New models",
-        "priceFactor": 0.5,
-        "originalPriceFactor": 0.5,
-        "promotion": {
-          "active": false,
-          "badge": {
-            "en": "Off-Peak 80% off",
-            "zh": "错峰2折"
-          },
-          "discountFactor": 0.2,
-          "window": "22:00-08:00 Asia/Singapore"
-        },
-        "contextTiers": [
-          {
-            "label": "200K",
-            "tokenCount": 200000,
-            "isDefault": true
-          },
-          {
-            "label": "400K",
-            "tokenCount": 400000,
-            "isDefault": false
-          },
-          {
-            "label": "1M",
-            "tokenCount": 1000000,
-            "isDefault": false
-          }
-        ],
-        "thinkingDisableable": true
       },
       {
         "value": "qmodel",
@@ -517,10 +490,10 @@
       },
       {
         "value": "mmodel",
-        "displayName": "MiniMax-M3",
-        "description": "Vision · New · 0.20x Credit",
+        "displayName": "MiniMax-M3.1-Flash",
+        "description": "Vision · New · 0.10x Credit",
         "group": "New models",
-        "priceFactor": 0.2,
+        "priceFactor": 0.1,
         "contextTiers": [
           {
             "label": "200K",

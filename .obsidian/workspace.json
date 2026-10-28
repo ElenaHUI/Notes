@@ -4,39 +4,61 @@
     "type": "split",
     "children": [
       {
-        "id": "a9d659c484549438",
+        "id": "7bc34f64bde85c93",
         "type": "tabs",
         "children": [
           {
-            "id": "7471a8dc54a6a0ad",
+            "id": "1949997074bd7fa5",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "MX P2P分发.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "MX P2P分发"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "关系图谱"
             }
           },
           {
-            "id": "b90939b739971db0",
+            "id": "712fe57d836821ab",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "PTG/红区值守Agent-巡检流程.png"
+              },
+              "icon": "lucide-image",
+              "title": "红区值守Agent-巡检流程"
+            }
+          },
+          {
+            "id": "26934f78d8a27406",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PTG/ModelExpress_P2P_验证方案_b1043256.md",
+                "file": "UCX中基于peermem的修复与定位.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "ModelExpress_P2P_验证方案_b1043256"
+              "title": "UCX中基于peermem的修复与定位"
+            }
+          },
+          {
+            "id": "112f5aa87c98e4a0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "秋招/闫一慧-个人简历.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "闫一慧-个人简历"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -176,7 +198,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "ModelExpress_P2P_验证方案_b1043256.md",
+                "file": "秋招/闫一慧-个人简历.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -225,7 +247,6 @@
   "left-ribbon": {
     "hiddenItems": {
       "obisidian-dataloom:Create loom": false,
-      "markdown-importer:打开 Markdown 格式转换器": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -233,57 +254,59 @@
       "templates:插入模板": true,
       "command-palette:打开命令面板": true,
       "obsidian-git:Open Git source control": false,
-      "qoderian:Open Qoderian": false
+      "qoderian:Open Qoderian": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "b90939b739971db0",
+  "active": "79528a5fa5a5fadf",
   "lastOpenFiles": [
+    "Leetcode/CodeTop手撕40题背诵手册.md",
+    "Leetcode/华为手撕秘籍.md",
+    "Leetcode/数据结构操作速记.md",
+    "Leetcode/大模型手撕14题.md",
+    "Leetcode/栈/739. 每日温度.md",
+    "Leetcode/栈/394. 字符串解码.md",
+    "Leetcode/栈/155. 最小栈.md",
+    "Leetcode/LeetCode 刷题汇总.md",
     "论文/GC 2026.md",
-    "论文/SMC 2026.md",
-    "未命名.canvas",
-    "Untitled.loom",
-    "MX P2P分发.md",
-    "asset/Pasted image 20260924120951.png",
-    "asset/Pasted image 20260924115609.png",
-    "论文/~$师范大学研究生学位论文开题报告闫一慧.docx",
-    "论文/华东师范大学研究生学位论文开题报告闫一慧.docx",
-    "论文/华东师范大学研究生学位论文开题报告闫一慧.docx.crdownload",
-    "asset/Pasted image 20260924110432.png",
-    "PTG/ModelExpress_P2P_验证方案_b1043256.md",
-    "秋招/校招DDL清单.md",
-    "秋招/面经/拼多多 ai infra面经.md",
-    "秋招/秋招投递表格.loom",
-    "秋招/面经/拼多多 AI Infra 二面.md",
-    "PTG/链路优化/ModelExpress P2P 权重 RDMA 分发 — GLM-5.3 TRTLLM 落地指南.md",
-    "PTG/链路优化/LLM 模型启动 Warmup 真实请求录制回放完整方案.md",
-    "PTG/链路优化/LLM Prometheus 性能分析报告生成Skill.md",
-    "PTG/链路优化/传输模式更新.md",
-    "PTG/ModelExpress_P2P_验证方案_b1043256.md.crdownload",
-    "论文/MAPPO-JSCC_SMC2026.pptx",
-    "论文/~$MAPPO-JSCC_SMC2026.pptx",
+    "秋招/闫一慧-个人简历.md",
+    "UCX中基于peermem的修复与定位.md",
     "PTG/红区值守Agent-巡检流程.png",
     "PTG/红区AI-Infra-分层架构.png",
     "PTG/红区Infra.md",
-    "PTG/PTG 暑期实习转正答辩 · 演讲稿.md",
-    "待办汇总.md",
+    "PTG/未命名.md",
+    "Infra/Qwen系列架构分析.md",
     "每日待办.md",
+    "待办汇总.md",
     "index.md",
-    "PTG/链路优化/权重分发验证报告.md",
-    "PTG/PTG实习工作总结-PPT提纲.md",
-    "PTG/~$PTG实习工作总结-v2.pptx",
-    "Opencode/Plugin使用方法.md",
-    "Opencode/Opencode使用.md",
-    "Opencode/opencode 一键上报插件.md",
-    "Opencode/需求手册.md",
-    "Opencode/未命名.md",
-    "Opencode/使用手册.md",
-    "Opencode/钉钉群消息.md",
-    "PTG/~$ModelExpress-P2P权重分发-验证.pptx",
-    "PTG/asset/mx-p2p-transfer-log.png",
-    "PTG/链路优化/KV- cache优化.md",
-    "PTG/链路优化/asset/Pasted image 20260918124001.png",
-    "PTG/链路优化/asset/Pasted image 20260918121535.png",
-    "PTG/链路优化/asset/Pasted image 20260918110651.png",
-    "PTG/链路优化/asset/Pasted image 20260916160119.png"
+    "PTG/模型部署/PD分离配置指南.md",
+    "PTG/模型部署/asset/Pasted image 20261014142332.png",
+    "PTG/模型部署/asset",
+    "论文/SMC 2026.md",
+    "秋招/八股/操作系统.md",
+    "秋招/简历.md",
+    "秋招/秋招投递表格.loom",
+    "秋招/秋招投递表格.md",
+    "秋招/校招DDL清单.md",
+    "秋招/闫一慧-个人简历 1.md",
+    "秋招/CET4_202106_610031211102518.pdf",
+    "秋招/CET6_202112_610031212208304.pdf",
+    "未命名.canvas",
+    "未命名 1.canvas",
+    "Infra/SGlang.md",
+    "Untitled.loom",
+    "Infra/PD分离.md",
+    "Excalidraw",
+    "Dynamo/asset/Pasted image 20261012120833.png",
+    "Dynamo/asset/Pasted image 20261012120749.png",
+    "Dynamo/asset",
+    "秋招/asset",
+    "秋招/CET6_202112_610031212208304_副本.pdf",
+    "秋招/CET4_202106_610031211102518_副本.pdf",
+    "asset/Pasted image 20260929120903.png",
+    "asset/Pasted image 20260924120951.png",
+    "asset/Pasted image 20260924115609.png",
+    "asset/Pasted image 20260924110432.png",
+    "PTG/asset/mx-p2p-transfer-log.png"
   ]
 }
